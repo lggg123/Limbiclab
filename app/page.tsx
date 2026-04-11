@@ -89,7 +89,7 @@ export default function HomePage() {
           medical advice.
         </p>
         <p className="mt-1">
-          Built with Next.js 14 · TypeScript · Tailwind CSS
+          Built with Next.js 15 · TypeScript · Tailwind CSS
         </p>
       </footer>
     </main>

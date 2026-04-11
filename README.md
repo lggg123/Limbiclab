@@ -4,7 +4,7 @@ Computational psychiatry simulator modeling cannabis × hypomania interactions a
 
 ## Stack
 
-- **Next.js 14** with App Router
+- **Next.js 15** with App Router
 - **TypeScript** (strict mode)
 - **Tailwind CSS** with CSS-variable color palette
 - **ESLint** (`next/core-web-vitals`)
