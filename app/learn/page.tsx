@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { ConceptCard } from "@/components/learn/ConceptCard";
 import { DsmCategoryCard } from "@/components/learn/DsmCategoryCard";
 import { DisorderExplorer } from "@/components/learn/DisorderExplorer";
@@ -80,10 +81,12 @@ export default function LearnPage() {
 
       {/* Disorder explorer */}
       <section className="mb-16">
-        <DisorderExplorer
-          profiles={DISORDER_SPOTLIGHTS}
-          psychoticDomains={PSYCHOTIC_SYMPTOM_DOMAINS}
-        />
+        <Suspense fallback={<div className="py-12 text-center text-sm text-muted-foreground">Loading disorder explorer…</div>}>
+          <DisorderExplorer
+            profiles={DISORDER_SPOTLIGHTS}
+            psychoticDomains={PSYCHOTIC_SYMPTOM_DOMAINS}
+          />
+        </Suspense>
       </section>
 
       {/* Stress-diathesis framing */}

@@ -25,13 +25,10 @@ export function DisorderExplorer({ profiles, psychoticDomains }: DisorderExplore
   const [activeFamily, setActiveFamily] = useState<FamilyFilter>("all");
   const [query, setQuery] = useState("");
 
-  const normalizeFamily = (raw: string | null): FamilyFilter => {
-    if (!raw || raw === "all") return "all";
-    return families.includes(raw) ? raw : "all";
-  };
-
   useEffect(() => {
-    const urlFamily = normalizeFamily(searchParams.get("family"));
+    const raw = searchParams.get("family");
+    const urlFamily: FamilyFilter =
+      !raw || raw === "all" ? "all" : families.includes(raw) ? raw : "all";
     const urlQuery = searchParams.get("q") ?? "";
     if (urlFamily !== activeFamily) setActiveFamily(urlFamily);
     if (urlQuery !== query) setQuery(urlQuery);
