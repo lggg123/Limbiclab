@@ -30,9 +30,9 @@ export function DisorderExplorer({ profiles, psychoticDomains }: DisorderExplore
     const urlFamily: FamilyFilter =
       !raw || raw === "all" ? "all" : families.includes(raw) ? raw : "all";
     const urlQuery = searchParams.get("q") ?? "";
-    if (urlFamily !== activeFamily) setActiveFamily(urlFamily);
-    if (urlQuery !== query) setQuery(urlQuery);
-  }, [searchParams, families, activeFamily, query]);
+    setActiveFamily((prev) => (prev === urlFamily ? prev : urlFamily));
+    setQuery((prev) => (prev === urlQuery ? prev : urlQuery));
+  }, [searchParams, families]);
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
