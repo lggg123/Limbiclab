@@ -35,6 +35,12 @@ export default function HomePage() {
           neuroscience — all in your browser.
         </p>
 
+        <p className="mb-8 max-w-2xl text-sm text-muted-foreground">
+          LimbicLab uses a stress-diathesis framing: vulnerability is widely
+          distributed across people, and sustained stress can increase the chance of
+          mood-disorder expression.
+        </p>
+
         <div className="flex flex-col gap-4 sm:flex-row">
           <Button asChild size="lg">
             <Link href="/simulator">Launch Simulator</Link>

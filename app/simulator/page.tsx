@@ -25,6 +25,11 @@ export default function SimulatorPage() {
           bipolar risk interact over time. The ODE engine integrates dopamine,
           serotonin, and GABA dynamics with stochastic noise.
         </p>
+        <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+          This simulator follows a stress-diathesis model: risk emerges through the
+          interaction of vulnerability and environmental load, not from a fixed
+          difference in personal worth.
+        </p>
       </div>
 
       {/* Simulator */}

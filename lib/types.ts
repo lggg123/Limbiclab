@@ -118,3 +118,40 @@ export interface SimulationResult {
   /** Human-readable summary of risk level */
   riskSummary: string;
 }
+
+// ─── Learn Content Types ────────────────────────────────────────────────────
+
+export interface LearnConcept {
+  emoji: string;
+  title: string;
+  summary: string;
+  detail: string;
+}
+
+export interface DsmCategory {
+  emoji: string;
+  family: string;
+  focus: string;
+  examples: string[];
+}
+
+export interface DisorderProfile {
+  name: string;
+  family: string;
+  keyFeatures: string;
+  typicalOnset: string;
+  contextNote: string;
+  citations: string[];
+}
+
+export interface GlossaryEntry {
+  term: string;
+  definition: string;
+}
+
+export interface PsychoticDomain {
+  domain: string;
+  description: string;
+  examples: string[];
+  clinicalImportance: string;
+}
