@@ -155,3 +155,11 @@ export interface PsychoticDomain {
   examples: string[];
   clinicalImportance: string;
 }
+
+export interface NeurotransmitterProfile {
+  name: string;
+  primaryRole: string;
+  whenLow: string;
+  whenHighOrDysregulated: string;
+  learningNote: string;
+}

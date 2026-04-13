@@ -13,6 +13,7 @@ import {
   DISORDER_SPOTLIGHTS,
   PSYCHOTIC_SYMPTOM_DOMAINS,
   STRESS_DIATHESIS_PARAGRAPHS,
+  NEUROTRANSMITTER_PROFILES,
   GLOSSARY_TERMS,
   LEARN_REFERENCES,
 } from "@/lib/learnContent";
@@ -59,6 +60,46 @@ export default function LearnPage() {
         <div className="flex flex-col gap-6">
           {LEARN_CONCEPTS.map((c) => (
             <ConceptCard key={c.title} {...c} />
+          ))}
+        </div>
+      </section>
+
+      {/* Neurotransmitter primer */}
+      <section className="mx-auto mb-16 max-w-3xl">
+        <h2 className="mb-3 text-2xl font-bold text-foreground">
+          Dopamine, GABA, and Serotonin
+        </h2>
+        <p className="mb-6 text-sm text-muted-foreground">
+          These systems interact continuously. In neuroscience, symptoms usually reflect
+          circuit-level imbalance over time, not one neurotransmitter acting alone.
+        </p>
+        <div className="flex flex-col gap-4">
+          {NEUROTRANSMITTER_PROFILES.map((item) => (
+            <Card key={item.name}>
+              <CardHeader>
+                <CardTitle>{item.name}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-sm text-foreground/90">
+                  <span className="font-semibold text-foreground">Primary role: </span>
+                  {item.primaryRole}
+                </p>
+                <p className="text-sm text-foreground/90">
+                  <span className="font-semibold text-foreground">When low: </span>
+                  {item.whenLow}
+                </p>
+                <p className="text-sm text-foreground/90">
+                  <span className="font-semibold text-foreground">
+                    When high or dysregulated: 
+                  </span>
+                  {item.whenHighOrDysregulated}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-semibold">Learning note: </span>
+                  {item.learningNote}
+                </p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </section>

@@ -4,6 +4,7 @@ import type {
   DisorderProfile,
   GlossaryEntry,
   PsychoticDomain,
+  NeurotransmitterProfile,
 } from "@/lib/types";
 
 export const LEARN_CONCEPTS: LearnConcept[] = [
@@ -230,6 +231,42 @@ export const STRESS_DIATHESIS_PARAGRAPHS: string[] = [
   "A diagnosis is not a marker of lesser humanity. It describes how biology, environment, and lived experience interact over time.",
 ];
 
+export const NEUROTRANSMITTER_PROFILES: NeurotransmitterProfile[] = [
+  {
+    name: "Dopamine",
+    primaryRole:
+      "Helps the brain assign salience (what matters), learn from reward prediction error, and regulate motivation, movement, and goal-directed behavior.",
+    whenLow:
+      "Can be associated with reduced drive, less pleasure from normally rewarding activities, cognitive slowing, and in some circuits motor slowing.",
+    whenHighOrDysregulated:
+      "Excessive or poorly timed dopamine signaling can amplify threat/reward salience and has been linked to manic activation and psychosis-spectrum symptoms in vulnerable people.",
+    learningNote:
+      "Dopamine is not a simple 'pleasure chemical.' It is a precision-learning and salience signal distributed across multiple pathways.",
+  },
+  {
+    name: "GABA",
+    primaryRole:
+      "The major inhibitory neurotransmitter in the CNS. It dampens over-excitation and helps stabilize network rhythms needed for attention, emotion regulation, and sleep.",
+    whenLow:
+      "Reduced inhibitory tone can contribute to hyperarousal, anxiety, poor sleep, sensory overload, and increased vulnerability to excitatory runaway states.",
+    whenHighOrDysregulated:
+      "Excessive inhibition may present as sedation, slowed cognition, or emotional blunting, depending on which circuits are affected.",
+    learningNote:
+      "Think of GABA as a braking system: healthy function requires balance with excitatory signaling rather than maximal inhibition.",
+  },
+  {
+    name: "Serotonin",
+    primaryRole:
+      "Modulates mood, anxiety, impulse control, appetite, pain processing, and sleep-wake timing across widespread brain networks.",
+    whenLow:
+      "Lower serotonergic tone is associated in some individuals with depressed mood, anxiety, irritability, and reduced stress resilience.",
+    whenHighOrDysregulated:
+      "Overactivation of serotonergic pathways can cause agitation, GI symptoms, tremor, and in severe medication interactions, serotonin toxicity.",
+    learningNote:
+      "Serotonin is a broad modulatory system, not a single mood dial; effects depend on receptor subtype, brain region, and timescale.",
+  },
+];
+
 export const GLOSSARY_TERMS: GlossaryEntry[] = [
   {
     term: "Bipolar Disorder",
@@ -270,6 +307,21 @@ export const GLOSSARY_TERMS: GlossaryEntry[] = [
     term: "CB1 Receptor",
     definition:
       "The primary cannabinoid receptor in the brain, strongly involved in THC effects.",
+  },
+  {
+    term: "Dopamine",
+    definition:
+      "A neurotransmitter involved in salience, motivation, reward-based learning, movement, and goal-directed behavior.",
+  },
+  {
+    term: "GABA",
+    definition:
+      "The brain's main inhibitory neurotransmitter, helping regulate excitability and stabilize neural signaling.",
+  },
+  {
+    term: "Serotonin",
+    definition:
+      "A broadly modulatory neurotransmitter involved in mood, anxiety regulation, impulse control, sleep, appetite, and stress responsiveness.",
   },
   {
     term: "ODE (Ordinary Differential Equation)",
