@@ -5,7 +5,7 @@ import { SimulatorClient } from "@/components/simulator/SimulatorClient";
 export const metadata: Metadata = {
   title: "Mood Simulator",
   description:
-    "Interactive stochastic ODE simulator modelling cannabis × bipolar interactions across polygenic risk.",
+    "Interactive stochastic ODE simulator modelling cannabis and alcohol effects across polygenic bipolar risk.",
 };
 
 export default function SimulatorPage() {
@@ -21,9 +21,9 @@ export default function SimulatorPage() {
         </Link>
         <h1 className="text-4xl font-bold text-foreground">Mood Simulator</h1>
         <p className="mt-2 max-w-2xl text-muted-foreground">
-          Adjust parameters below to model how cannabis exposure and polygenic
-          bipolar risk interact over time. The ODE engine integrates dopamine,
-          serotonin, and GABA dynamics with stochastic noise.
+          Adjust parameters below to model how cannabis exposure, alcohol exposure,
+          and polygenic bipolar risk interact over time. The ODE engine integrates
+          dopamine, serotonin, and GABA dynamics with stochastic noise.
         </p>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
           This simulator follows a stress-diathesis model: risk emerges through the

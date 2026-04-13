@@ -48,6 +48,9 @@ export default function HomePage() {
           <Button asChild variant="outline" size="lg">
             <Link href="/learn">Neuroscience Explainer</Link>
           </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link href="/brain">Creative Brain Atlas</Link>
+          </Button>
         </div>
       </section>
 

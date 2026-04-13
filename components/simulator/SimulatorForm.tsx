@@ -106,6 +106,41 @@ export function SimulatorForm({ params, onChange, onRun, isRunning }: SimulatorF
         </div>
       </section>
 
+      {/* Alcohol */}
+      <section>
+        <h3 className="mb-3 text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+          Alcohol Exposure
+        </h3>
+        <div className="flex flex-col gap-4">
+          <SliderRow
+            label="Use frequency"
+            value={params.alcoholFrequency}
+            min={0}
+            max={8}
+            step={0.1}
+            unit=" drinks/day"
+            onChange={(v) => onChange({ alcoholFrequency: v })}
+          />
+          <SliderRow
+            label="Intensity"
+            value={params.alcoholIntensity}
+            min={0}
+            max={1}
+            step={0.01}
+            onChange={(v) => onChange({ alcoholIntensity: v })}
+          />
+          <SliderRow
+            label="Days since onset"
+            value={params.alcoholDaysElapsed}
+            min={0}
+            max={3650}
+            step={1}
+            unit=" days"
+            onChange={(v) => onChange({ alcoholDaysElapsed: v })}
+          />
+        </div>
+      </section>
+
       {/* Genetic */}
       <section>
         <h3 className="mb-3 text-sm font-semibold uppercase tracking-widest text-muted-foreground">

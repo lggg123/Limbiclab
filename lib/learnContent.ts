@@ -5,6 +5,7 @@ import type {
   GlossaryEntry,
   PsychoticDomain,
   NeurotransmitterProfile,
+  GeneProfile,
 } from "@/lib/types";
 
 export const LEARN_CONCEPTS: LearnConcept[] = [
@@ -267,6 +268,44 @@ export const NEUROTRANSMITTER_PROFILES: NeurotransmitterProfile[] = [
   },
 ];
 
+export const GENE_PRIMER_PARAGRAPHS: string[] = [
+  "Genes are segments of DNA that provide instructions for building proteins. Proteins help neurons grow, communicate, and adapt, so genetic variation can influence how brain circuits develop and respond to stress.",
+  "In psychiatry, risk is usually polygenic: many common variants each contribute a very small effect. Genes are not destiny; they shift probability in combination with environment, development, sleep, trauma load, substance exposure, and social context.",
+];
+
+export const PRIORITY_GENE_PROFILES: GeneProfile[] = [
+  {
+    symbol: "CACNA1C",
+    fullName: "Calcium Voltage-Gated Channel Subunit Alpha1 C",
+    whatItDoes:
+      "Encodes a major subunit of L-type voltage-gated calcium channels, which regulate calcium entry during neuronal firing and influence excitability, synaptic plasticity, and gene transcription.",
+    whyStudiedInPsychiatry:
+      "Common variants near CACNA1C repeatedly appear in large GWAS of bipolar disorder and other mood/psychosis-related phenotypes.",
+    plainLanguageTakeaway:
+      "CACNA1C affects how strongly neurons respond and adapt, making it a biologically plausible contributor to mood-circuit sensitivity.",
+  },
+  {
+    symbol: "ANK3",
+    fullName: "Ankyrin 3",
+    whatItDoes:
+      "Helps organize ion channels, especially at the axon initial segment and nodes of Ranvier, which are key for action-potential initiation and stable signal conduction.",
+    whyStudiedInPsychiatry:
+      "ANK3 is one of the most consistently replicated bipolar-associated loci across multiple genetic studies.",
+    plainLanguageTakeaway:
+      "ANK3 supports the electrical architecture neurons use to fire reliably, so variation may alter network stability in vulnerable circuits.",
+  },
+  {
+    symbol: "NRXN1",
+    fullName: "Neurexin 1",
+    whatItDoes:
+      "Encodes a synaptic adhesion molecule involved in how neurons form and maintain synaptic connections and coordinate neurotransmitter release.",
+    whyStudiedInPsychiatry:
+      "NRXN1 variation, including some rare structural variants, has been linked to neurodevelopmental and psychosis-spectrum risk in subsets of individuals.",
+    plainLanguageTakeaway:
+      "NRXN1 relates to synapse wiring quality, making it relevant when studying how communication across brain networks can become less robust.",
+  },
+];
+
 export const GLOSSARY_TERMS: GlossaryEntry[] = [
   {
     term: "Bipolar Disorder",
@@ -322,6 +361,21 @@ export const GLOSSARY_TERMS: GlossaryEntry[] = [
     term: "Serotonin",
     definition:
       "A broadly modulatory neurotransmitter involved in mood, anxiety regulation, impulse control, sleep, appetite, and stress responsiveness.",
+  },
+  {
+    term: "CACNA1C",
+    definition:
+      "A gene encoding a key subunit of an L-type calcium channel; variants near this gene are repeatedly associated with bipolar risk in large studies.",
+  },
+  {
+    term: "ANK3",
+    definition:
+      "A gene involved in organizing ion-channel architecture in neurons, important for reliable action-potential firing.",
+  },
+  {
+    term: "NRXN1",
+    definition:
+      "A synaptic adhesion gene involved in neuron-to-neuron connectivity and neurotransmitter signaling at synapses.",
   },
   {
     term: "ODE (Ordinary Differential Equation)",

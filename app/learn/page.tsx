@@ -14,6 +14,8 @@ import {
   PSYCHOTIC_SYMPTOM_DOMAINS,
   STRESS_DIATHESIS_PARAGRAPHS,
   NEUROTRANSMITTER_PROFILES,
+  GENE_PRIMER_PARAGRAPHS,
+  PRIORITY_GENE_PROFILES,
   GLOSSARY_TERMS,
   LEARN_REFERENCES,
 } from "@/lib/learnContent";
@@ -97,6 +99,45 @@ export default function LearnPage() {
                 <p className="text-sm text-muted-foreground">
                   <span className="font-semibold">Learning note: </span>
                   {item.learningNote}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Gene primer */}
+      <section className="mx-auto mb-16 max-w-3xl">
+        <h2 className="mb-3 text-2xl font-bold text-foreground">
+          Genes: What They Are (and Why CACNA1C, ANK3, NRXN1 Matter)
+        </h2>
+        <div className="mb-6 space-y-3 text-sm leading-relaxed text-muted-foreground">
+          {GENE_PRIMER_PARAGRAPHS.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+
+        <div className="flex flex-col gap-4">
+          {PRIORITY_GENE_PROFILES.map((gene) => (
+            <Card key={gene.symbol}>
+              <CardHeader>
+                <CardTitle>{gene.symbol}</CardTitle>
+                <p className="text-sm text-muted-foreground">{gene.fullName}</p>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-sm text-foreground/90">
+                  <span className="font-semibold text-foreground">What it does: </span>
+                  {gene.whatItDoes}
+                </p>
+                <p className="text-sm text-foreground/90">
+                  <span className="font-semibold text-foreground">
+                    Why it is studied in psychiatry: 
+                  </span>
+                  {gene.whyStudiedInPsychiatry}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-semibold">Plain-language takeaway: </span>
+                  {gene.plainLanguageTakeaway}
                 </p>
               </CardContent>
             </Card>
