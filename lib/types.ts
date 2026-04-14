@@ -205,3 +205,25 @@ export interface GeneProfile {
   whyStudiedInPsychiatry: string;
   plainLanguageTakeaway: string;
 }
+
+export interface WorldviewTaxonomyEntry {
+  name: string;
+  summary: string;
+  worldview: string;
+  psychologicalProfile: string;
+  evidenceNote: string;
+}
+
+export interface BrainAtlasComparison {
+  region: string;
+  atlasHash: string;
+  role: string;
+  positiveRitualPattern: string;
+  threatRitualPattern: string;
+}
+
+export interface MechanismPanel {
+  title: string;
+  detail: string;
+  clinicalMeaning: string;
+}

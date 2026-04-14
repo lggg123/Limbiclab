@@ -6,6 +6,9 @@ import type {
   PsychoticDomain,
   NeurotransmitterProfile,
   GeneProfile,
+  WorldviewTaxonomyEntry,
+  BrainAtlasComparison,
+  MechanismPanel,
 } from "@/lib/types";
 
 export const LEARN_CONCEPTS: LearnConcept[] = [
@@ -396,6 +399,175 @@ export const LEARN_REFERENCES: string[] = [
   "Murray, R.M. et al. (2017). Traditional marijuana, high-potency cannabis and synthetic cannabinoids: increasing risk for psychosis. World Psychiatry, 16(2), 146-149.",
   "Goldbeter, A. (1996). Biochemical Oscillations and Cellular Rhythms. Cambridge University Press.",
   "Russell, J.A. (1980). A circumplex model of affect. Journal of Personality and Social Psychology, 39(6), 1161-1178.",
+];
+
+export const WORLDVIEW_CASE_STUDY_INTRO: string[] = [
+  "This case-study section uses Satanism as an example of how a worldview can be analyzed at three levels at once: symbolic meaning, ritual form, and measurable brain-body mechanisms. The key scientific point is that no study has identified a unique Satanism biomarker. What can be studied are threat processing, reward learning, social bonding, dissociation, trauma load, and moral cognition.",
+  "That distinction matters because non-theistic Satanic movements vary widely. Some are primarily political or philosophical identities, while other settings can involve fear-heavy ritual, coercion, pain, humiliation, or trauma. The neurobiology tracks the experience and conditioning environment more than the label itself.",
+];
+
+export const WORLDVIEW_TAXONOMY: WorldviewTaxonomyEntry[] = [
+  {
+    name: "Theistic / Ritual Satanism",
+    summary: "Literal devotion to Satanic or demonic beings, often through occult ceremonial practice.",
+    worldview:
+      "Usually organized around adversarial spirituality, taboo, hidden power, transgression, and in some cases death-centered symbolism.",
+    psychologicalProfile:
+      "Often overlaps with high openness to unusual experience, attraction to liminal identity, and strong symbolic thinking. Clinical risk rises when the environment becomes coercive, humiliating, or trauma-saturated.",
+    evidenceNote:
+      "Evidence is strongest for general trauma and fear-conditioning mechanisms, not for the label itself as a psychiatric predictor.",
+  },
+  {
+    name: "LaVeyan / Atheistic Satanism",
+    summary: "A non-theistic philosophy centered on self-deification, pride, and radical individualism.",
+    worldview:
+      "Treats Satan as a symbol of rebellion, carnality, self-authorship, and strategic egoism rather than a literal deity.",
+    psychologicalProfile:
+      "More closely tied to anti-authoritarian identity, reactance, and self-enhancement motives than to occult belief. The main psychological question is whether self-assertion remains adaptive or hardens into entitlement and chronic antagonism.",
+    evidenceNote:
+      "There is little evidence for disorder-specific outcomes from non-theistic identification alone.",
+  },
+  {
+    name: "The Satanic Temple",
+    summary: "A non-theistic movement using Satanic imagery for legal activism, satire, and minority-rights politics.",
+    worldview:
+      "Frames Satan as a literary-political emblem of resistance to arbitrary authority and defense of pluralism, autonomy, and church-state separation.",
+    psychologicalProfile:
+      "Typically better explained through civic activism, identity-based solidarity, and oppositional politics than through dark ritual psychology.",
+    evidenceNote:
+      "Any attempt to pathologize this group from symbolism alone would overreach the evidence.",
+  },
+  {
+    name: "Luciferianism",
+    summary: "A related but distinct tradition focused on illumination, individuation, and esoteric self-cultivation.",
+    worldview:
+      "Often emphasizes knowledge, autonomy, adversarial inquiry, and elite self-development rather than the raw inversionism of some Satanic currents.",
+    psychologicalProfile:
+      "Common themes include high openness, intellectualization, and identity built around symbolic depth. Risks depend on whether the system promotes integration or glorified domination.",
+    evidenceNote:
+      "The main psychological distinction is not Satan vs. Lucifer language, but whether practice is integrating, grandiose, coercive, or traumatic.",
+  },
+];
+
+export const WORLDVIEW_BRAIN_MAP: BrainAtlasComparison[] = [
+  {
+    region: "Amygdala",
+    atlasHash: "region-amygdala",
+    role: "Rapid threat detection, emotional salience, and fear learning.",
+    positiveRitualPattern:
+      "In supportive ritual, amygdala activation is buffered by predictability, social safety, and top-down meaning, so arousal stays bounded.",
+    threatRitualPattern:
+      "In fear-heavy ritual, dark imagery, ambiguity, and menace can strengthen threat tagging and cue-dependent vigilance over time.",
+  },
+  {
+    region: "Prefrontal Cortex",
+    atlasHash: "region-prefrontal-cortex",
+    role: "Top-down appraisal, impulse control, and reinterpretation of arousal.",
+    positiveRitualPattern:
+      "Healing ritual can support prefrontal regulation by making sensations legible and manageable within a coherent framework.",
+    threatRitualPattern:
+      "Under chronic threat, prefrontal regulation weakens, making reactions more stimulus-bound and less reflective.",
+  },
+  {
+    region: "Hippocampus",
+    atlasHash: "region-hippocampus",
+    role: "Contextual memory, autobiographical encoding, and linking cues to time and place.",
+    positiveRitualPattern:
+      "Safe ritual can stabilize memory through structured narrative and contextual coherence.",
+    threatRitualPattern:
+      "Traumatic ritual can fragment contextual encoding, especially when fear, dissociation, or sleep disruption are present.",
+  },
+  {
+    region: "Hypothalamus",
+    atlasHash: "region-hypothalamus",
+    role: "Links brain state to hormones, autonomic output, and the HPA stress axis.",
+    positiveRitualPattern:
+      "Breath pacing, social buffering, and predictable sequence can reduce endocrine alarm signals over time.",
+    threatRitualPattern:
+      "Coercive or dread-based settings may keep cortisol signaling elevated and disrupt recovery rhythms.",
+  },
+  {
+    region: "Nucleus Accumbens",
+    atlasHash: "region-nucleus-accumbens",
+    role: "Reward anticipation, reinforcement learning, and motivation.",
+    positiveRitualPattern:
+      "Belonging, music, synchrony, and meaning can reinforce prosocial ritual participation.",
+    threatRitualPattern:
+      "Power fantasy, taboo transgression, and intermittent intensity can also become reinforcing, even when the ritual is aversive overall.",
+  },
+  {
+    region: "Insula",
+    atlasHash: "region-insula",
+    role: "Interoception, body-state awareness, and felt meaning.",
+    positiveRitualPattern:
+      "The insula can help translate breath, posture, and rhythm into grounded self-awareness.",
+    threatRitualPattern:
+      "When ritual amplifies dread, pain, or contamination themes, body sensations can be interpreted as proof of danger or possession.",
+  },
+];
+
+export const WORLDVIEW_MECHANISM_PANELS: MechanismPanel[] = [
+  {
+    title: "Dopamine: D1 / D2 salience and reinforcement",
+    detail:
+      "Intense ritual can recruit mesocorticolimbic dopamine systems through novelty, status, taboo, group intensity, and emotionally charged expectancy. In darker settings, power and transgression may become strongly tagged as salient.",
+    clinicalMeaning:
+      "The relevant risk is not a 'Satanic dopamine receptor' but a habit loop in which reward, identity, and arousal become tightly coupled.",
+  },
+  {
+    title: "Norepinephrine: noradrenergic threat arousal",
+    detail:
+      "The locus coeruleus-norepinephrine system sharpens vigilance, sensory gain, and memory for threat. Dark symbolism, menace, uncertainty, and death imagery can all intensify this response when believed or emotionally primed.",
+    clinicalMeaning:
+      "Repeated activation can bias a person toward hypervigilance, exaggerated significance attribution, and difficulty returning to baseline.",
+  },
+  {
+    title: "Serotonin, GABA, glutamate, and altered state intensity",
+    detail:
+      "Altered states during ritual are more likely when sleep is disrupted, breathing shifts, arousal escalates, or psychoactive substances are involved. Serotonergic tone, inhibitory GABA signaling, and glutamatergic excitation help shape how controllable those states feel.",
+    clinicalMeaning:
+      "The strongest practical distinction is grounded regulation versus dysregulated arousal with derealization, panic, or dissociation.",
+  },
+  {
+    title: "Cortisol, oxytocin, and endogenous opioids",
+    detail:
+      "Threat-heavy settings can increase cortisol and allostatic load, while synchronized group ritual can elevate bonding signals and, in painful ordeals, endogenous opioid release. This mix helps explain why frightening practices can still feel compelling or meaningful to participants.",
+    clinicalMeaning:
+      "Clinically, bonding does not prove safety. High-control groups can combine in-group warmth with fear, shame, and coercion.",
+  },
+  {
+    title: "Genes and epigenetics under chronic stress",
+    detail:
+      "If practice involves chronic fear or trauma, literature on FKBP5, NR3C1 methylation, BDNF suppression, and inflammatory markers such as IL-6 and TNF-alpha becomes relevant. These are stress-trauma pathways, not belief-specific signatures.",
+    clinicalMeaning:
+      "Any gene-expression discussion should be framed as mechanistic plausibility based on adversity exposure, not as evidence that a worldview directly rewires DNA in a unique way.",
+  },
+  {
+    title: "Recovery and plasticity",
+    detail:
+      "After prolonged threat conditioning, recovery depends on safe exposure, coherent meaning-making, trauma treatment, sleep restoration, and rebuilding agency without grandiose or contamination narratives.",
+    clinicalMeaning:
+      "Trauma-focused CBT, EMDR, sleep stabilization, and dependable social support are more evidence-based than ideology-specific healing claims.",
+  },
+];
+
+export const WORLDVIEW_EVIDENCE_BOUNDARIES: string[] = [
+  "No peer-reviewed literature supports a unique molecular or receptor-level profile for Satanism as a category.",
+  "Claims about psychopathy, borderline traits, depression, or suicidal ideation need to be tied to trauma exposure, coercion, isolation, or pre-existing vulnerability rather than assumed from membership alone.",
+  "Reports of ritual abuse should be approached with trauma-informed clinical care and careful evidentiary standards. Trauma symptoms can be real even when surrounding narratives are disputed or contaminated by suggestion.",
+  "The best-supported moral-psychology finding in this area concerns demonization and 'pure evil' framing, which can reduce empathy and increase punitive cognition on all sides of a conflict.",
+];
+
+export const WORLDVIEW_CASE_STUDY_REFERENCES: string[] = [
+  "Hobson, N.M., Schroeder, J., Risen, J.L., Xygalatas, D., & Inzlicht, M. (2018). The psychology of rituals: An integrative review and process-based framework. Personality and Social Psychology Review, 22(3), 260-284.",
+  "Sara, S.J. (2009). The locus coeruleus and noradrenergic modulation of cognition. Nature Reviews Neuroscience, 10(3), 211-223.",
+  "Lupien, S.J., McEwen, B.S., Gunnar, M.R., & Heim, C. (2009). Effects of stress throughout the lifespan on the brain, behaviour and cognition. Nature Reviews Neuroscience, 10(6), 434-445.",
+  "Klengel, T., Mehta, D., Anacker, C., et al. (2013). Allele-specific FKBP5 DNA demethylation mediates gene-childhood trauma interactions. Nature Neuroscience, 16(1), 33-41.",
+  "McGowan, P.O., Sasaki, A., D'Alessio, A.C., et al. (2009). Epigenetic regulation of the glucocorticoid receptor in human brain associates with childhood abuse. Nature Neuroscience, 12(3), 342-348.",
+  "Slavich, G.M., & Irwin, M.R. (2014). From stress to inflammation and major depressive disorder: A social signal transduction theory of depression. Psychological Bulletin, 140(3), 774-815.",
+  "van Elk, M., & Aleman, A. (2017). Brain mechanisms in religion and spirituality: An integrative predictive processing framework. Neuroscience & Biobehavioral Reviews, 73, 359-378.",
+  "Cusack, K., Jonas, D.E., Forneris, C.A., et al. (2016). Psychological treatments for adults with posttraumatic stress disorder: A systematic review and meta-analysis. Clinical Psychology Review, 43, 128-141.",
+  "Brewer, J.A., Worhunsky, P.D., Gray, J.R., Tang, Y.Y., Weber, J., & Kober, H. (2011). Meditation experience is associated with differences in default mode network activity and connectivity. PNAS, 108(50), 20254-20259.",
 ];
 
 export const PSYCHOTIC_SYMPTOM_DOMAINS: PsychoticDomain[] = [
