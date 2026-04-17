@@ -10,6 +10,7 @@ import type {
   BrainAtlasComparison,
   MechanismPanel,
 } from "@/lib/types";
+import { glossaryEntries as richGlossaryEntries } from "@/lib/glossaryData";
 
 export const LEARN_CONCEPTS: LearnConcept[] = [
   {
@@ -390,6 +391,18 @@ export const GLOSSARY_TERMS: GlossaryEntry[] = [
     definition:
       "Containing random variation; stochastic simulations can produce slightly different outputs each run.",
   },
+  ...richGlossaryEntries
+    .filter(
+      (entry) =>
+        entry.term === "Cognitive Dissonance" || entry.term === "Ideological Friction"
+    )
+    .map((entry) => ({
+      term: entry.term,
+      definition: entry.plainDefinition,
+    }))
+    .filter(
+      (entry, index, list) => list.findIndex((item) => item.term === entry.term) === index
+    ),
 ];
 
 export const LEARN_REFERENCES: string[] = [

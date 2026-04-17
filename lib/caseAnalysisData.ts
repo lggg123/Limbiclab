@@ -92,8 +92,8 @@ export const symptomCards: SymptomCard[] = [
   },
   {
     id: "ideological-friction",
-    title: "Ideological Friction",
-    subtitle: "Religious Schemas and Psychological Shut-Off",
+    title: "Ideological Friction / Cognitive Dissonance",
+    subtitle: "Religious Schemas, Dissonance, and Psychological Shut-Off",
     icdCode: "Z65.8 — Other Specified Psychosocial Circumstances",
     description:
       "Competing ideological frameworks — particularly those with high cosmological stakes such as Catholic doctrine vs. adversarial/Satanic schema — create chronic cognitive dissonance. When internalized, they generate a persistent threat-appraisal state that primes the nervous system for dissociative and somatic responses.",
@@ -114,6 +114,7 @@ export const symptomCards: SymptomCard[] = [
     ],
     glossaryTerms: [
       "Ideological Friction",
+      "Cognitive Dissonance",
       "Gray-Rock Response",
       "Affective Flattening",
       "Allostatic Load",

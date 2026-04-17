@@ -509,7 +509,7 @@ export function BrainAtlasClient() {
             </p>
           </CardHeader>
           <CardContent className="space-y-5">
-            <article className="rounded-2xl border border-primary/40 bg-primary/10 p-5">
+            <article id={activeRegionId} className="rounded-2xl border border-primary/40 bg-primary/10 p-5">
               <div className="mb-2 flex items-center justify-between gap-3">
                 <h3 className="text-lg font-semibold text-foreground">{activeRegion.name}</h3>
                 <span className="text-xs uppercase tracking-[0.2em] text-primary">
@@ -527,19 +527,16 @@ export function BrainAtlasClient() {
             </article>
 
             <div className="max-h-[720px] space-y-3 overflow-auto pr-1">
-              {BRAIN_REGIONS.map((region) => {
+              {BRAIN_REGIONS.filter(
+                (region) => toRegionId(region.name) !== activeRegionId
+              ).map((region) => {
                 const regionId = toRegionId(region.name);
-                const isActive = regionId === activeRegionId;
 
                 return (
                   <article
                     key={region.name}
                     id={regionId}
-                    className={`rounded-lg border bg-background/40 p-4 transition-colors ${
-                      isActive
-                        ? "border-primary/70 bg-primary/10"
-                        : "border-border/50 hover:border-border/80"
-                    }`}
+                    className="rounded-lg border border-border/50 bg-background/40 p-4 transition-colors hover:border-border/80"
                   >
                     <div className="mb-1 flex items-center justify-between gap-3">
                       <h3 className="text-sm font-semibold text-foreground">{region.name}</h3>
