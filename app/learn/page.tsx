@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { ConceptCard } from "@/components/learn/ConceptCard";
 import { DsmCategoryCard } from "@/components/learn/DsmCategoryCard";
 import { DisorderExplorer } from "@/components/learn/DisorderExplorer";
-import { Glossary } from "@/components/learn/Glossary";
+import { Glossary, toGlossaryTermId } from "@/components/learn/Glossary";
 import { Button } from "@/components/ui/Button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
@@ -97,6 +97,11 @@ export default function LearnPage() {
               </Button>
               <Button asChild variant="outline">
                 <Link href="#worldview-case-study">Jump to Case Study</Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href={`#${toGlossaryTermId("Cognitive Dissonance")}`}>
+                  Jump to Dissonance
+                </Link>
               </Button>
             </div>
           </CardContent>

@@ -190,6 +190,7 @@ function SymptomCardBlock({
 
   return (
     <motion.div
+      id={card.id}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.15 }}
@@ -200,6 +201,7 @@ function SymptomCardBlock({
         padding: "22px 22px 18px",
         cursor: "pointer",
         userSelect: "none",
+        scrollMarginTop: 24,
       }}
       onClick={() => setExpanded((v) => !v)}
     >
