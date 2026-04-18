@@ -45,7 +45,8 @@ const C = {
 const SECTION_NAV = [
   { id: 'peter-case',   label: '00a Peter — The Case'  },
   { id: 'peter-verse',  label: '00b Primary Source'    },
-  { id: 'nero-666',     label: '00c Nero & 666'        },
+  { id: 'peter-media',  label: '00c Visual Record'     },
+  { id: 'nero-666',     label: '00d Nero & 666'        },
   { id: 'taxonomy',     label: '01 Taxonomy'           },
   { id: 'neuroscience', label: '02 Ritual Neuro'        },
   { id: 'receptors',   label: '03 Neuroreceptors'      },
@@ -1297,6 +1298,176 @@ function RitualsSection() {
   )
 }
 
+// ── Section 00c: Peter Visual Record ─────────────────────────────────────────
+
+function PeterMediaSection() {
+  const [crossPlaying, setCrossPlaying] = useState(false)
+  const [peterPlaying, setPeterPlaying] = useState(false)
+
+  return (
+    <div id="peter-media">
+      <div style={{ fontFamily: 'monospace', fontSize: 11, color: C.crimson, letterSpacing: '0.22em', marginBottom: 6 }}>
+        {`SECTION 00c //`}
+      </div>
+      <h2 style={{ fontFamily: 'monospace', fontSize: 22, fontWeight: 700, color: C.text, letterSpacing: '0.08em', marginBottom: 8 }}>
+        VISUAL RECORD — THE CRUCIFIXION & ITS INVERSION
+      </h2>
+      <p style={{ fontFamily: 'monospace', fontSize: 12, color: C.textDim, lineHeight: 1.7, maxWidth: 680, marginBottom: 28 }}>
+        Documentary footage and imagery tracing the original crucifixion to Peter&apos;s deliberate inversion — the act that transformed the Roman execution cross into the primary symbol of Satanic opposition.
+      </p>
+
+      {/* Three-panel layout: two videos + one image */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 14, marginBottom: 28 }}>
+
+        {/* Panel 1 — Jesus Crucifixion */}
+        <div style={{ background: C.surface, border: `1px solid ${C.borderAccent}` }}>
+          <div style={{ padding: '12px 16px', borderBottom: `1px solid ${C.border}` }}>
+            <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.crimson, letterSpacing: '0.2em', marginBottom: 4 }}>
+              ◈ RECORD 01 — THE ORIGINAL
+            </div>
+            <div style={{ fontFamily: 'monospace', fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 2 }}>
+              The Crucifixion of Yeshua
+            </div>
+            <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim }}>
+              Standard Roman upright cross · c. 30 CE
+            </div>
+          </div>
+          <div style={{ position: 'relative', background: '#000' }}>
+            <video
+              src="/fonts/jesus_crucification.mp4"
+              controls
+              playsInline
+              onPlay={() => setCrossPlaying(true)}
+              onPause={() => setCrossPlaying(false)}
+              style={{ width: '100%', display: 'block', maxHeight: 320, objectFit: 'cover' }}
+            />
+            {!crossPlaying && (
+              <div style={{
+                position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                pointerEvents: 'none',
+              }}>
+                <div style={{
+                  width: 48, height: 48, borderRadius: '50%',
+                  background: 'rgba(138,3,3,0.7)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  <span style={{ color: '#fff', fontSize: 18, marginLeft: 4 }}>▶</span>
+                </div>
+              </div>
+            )}
+          </div>
+          <div style={{ padding: '10px 16px' }}>
+            <p style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, lineHeight: 1.7, margin: 0 }}>
+              The standard Roman crux immissa. The form Peter would later explicitly reject by requesting its inversion.
+            </p>
+          </div>
+        </div>
+
+        {/* Panel 2 — Peter Tapping the Guard */}
+        <div style={{ background: C.surface, border: `1px solid ${C.borderAccent}` }}>
+          <div style={{ padding: '12px 16px', borderBottom: `1px solid ${C.border}` }}>
+            <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.crimson, letterSpacing: '0.2em', marginBottom: 4 }}>
+              ◈ RECORD 02 — THE REQUEST
+            </div>
+            <div style={{ fontFamily: 'monospace', fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 2 }}>
+              Peter Instructs the Guard
+            </div>
+            <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim }}>
+              The deliberate inversion · Rome · c. 64–68 CE
+            </div>
+          </div>
+          <div style={{ position: 'relative', background: '#000' }}>
+            <video
+              src="/fonts/peter_tapping_guard.mov"
+              controls
+              playsInline
+              onPlay={() => setPeterPlaying(true)}
+              onPause={() => setPeterPlaying(false)}
+              style={{ width: '100%', display: 'block', maxHeight: 320, objectFit: 'cover' }}
+            />
+            {!peterPlaying && (
+              <div style={{
+                position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                pointerEvents: 'none',
+              }}>
+                <div style={{
+                  width: 48, height: 48, borderRadius: '50%',
+                  background: 'rgba(138,3,3,0.7)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  <span style={{ color: '#fff', fontSize: 18, marginLeft: 4 }}>▶</span>
+                </div>
+              </div>
+            )}
+          </div>
+          <div style={{ padding: '10px 16px' }}>
+            <p style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, lineHeight: 1.7, margin: 0 }}>
+              Peter &mdash; whom Yeshua himself called &ldquo;Satan&rdquo; &mdash; specifically requests crucifixion head-down, refusing to die in the same posture as his master.
+            </p>
+          </div>
+        </div>
+
+        {/* Panel 3 — Peter Upside Down photograph */}
+        <div style={{ background: C.surface, border: `1px solid ${C.borderAccent}` }}>
+          <div style={{ padding: '12px 16px', borderBottom: `1px solid ${C.border}` }}>
+            <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.crimson, letterSpacing: '0.2em', marginBottom: 4 }}>
+              ◈ RECORD 03 — THE INVERSION
+            </div>
+            <div style={{ fontFamily: 'monospace', fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 2 }}>
+              Peter — Head Down
+            </div>
+            <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim }}>
+              Crux inversa · Origin of the Petrine Cross
+            </div>
+          </div>
+          <div style={{ background: '#000', overflow: 'hidden' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/fonts/IMG_1007.png"
+              alt="Peter crucified upside down — the origin of the inverted cross"
+              style={{ width: '100%', display: 'block', maxHeight: 320, objectFit: 'cover', objectPosition: 'center top' }}
+            />
+          </div>
+          <div style={{ padding: '10px 16px' }}>
+            <p style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, lineHeight: 1.7, margin: 0 }}>
+              The crux inversa, known as the Petrine Cross. This image — the first Christian martyr inverted — became the emblem later appropriated by Satanism as an anti-Christian symbol.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Narrative connector */}
+      <div style={{
+        background: C.surface2,
+        border: `1px solid ${C.borderAccent}`,
+        borderLeft: `3px solid ${C.crimson}`,
+        padding: '16px 20px',
+      }}>
+        <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.crimson, letterSpacing: '0.2em', marginBottom: 8 }}>
+          ◈ THE SYMBOLIC CHAIN
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+          {[
+            { step: '01', label: 'Upright Cross', body: 'The instrument of Yeshua\'s execution — a Roman state punishment, not yet a symbol.' },
+            { step: '02', label: 'Peter\'s Request', body: 'Peter, already called "Satan" by Yeshua in Matthew 16:23, refuses to mirror his master\'s death posture — the inversion is deliberate theology.' },
+            { step: '03', label: 'Crux Inversa', body: 'The inverted cross becomes the Petrine Cross — originally a mark of humility. Centuries later it is re-appropriated as the primary anti-Christian symbol in Satanic iconography.' },
+          ].map((item) => (
+            <div key={item.step} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+              <span style={{ fontFamily: 'monospace', fontSize: 13, color: C.crimson, fontWeight: 700, flexShrink: 0, paddingTop: 1 }}>
+                {item.step}
+              </span>
+              <div>
+                <div style={{ fontFamily: 'monospace', fontSize: 11, color: C.text, fontWeight: 700, marginBottom: 4 }}>{item.label}</div>
+                <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textDim, lineHeight: 1.8, margin: 0 }}>{item.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── Main Dashboard ────────────────────────────────────────────────────────────
 
 export default function SatanismResearchDashboard() {
@@ -1379,6 +1550,7 @@ export default function SatanismResearchDashboard() {
         <div style={{ display: 'grid', gap: 60 }}>
           <PeterCaseSection />
           <PeterVerseSection />
+          <PeterMediaSection />
           <NeroSection />
           <TaxonomySection />
           <NeuroscienceSection />
