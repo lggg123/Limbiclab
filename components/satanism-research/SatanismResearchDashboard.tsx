@@ -3,7 +3,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import NeroSection from './NeroSection'
 import {
+  PETER_CASE,
+  PETER_VERSE,
   TAXONOMY,
   RITUAL_NEUROSCIENCE,
   NEUROPLASTICITY_NOTES,
@@ -38,6 +41,9 @@ const C = {
 }
 
 const SECTION_NAV = [
+  { id: 'peter-case',   label: '00a Peter — The Case'  },
+  { id: 'peter-verse',  label: '00b Primary Source'    },
+  { id: 'nero-666',     label: '00c Nero & 666'        },
   { id: 'taxonomy',     label: '01 Taxonomy'           },
   { id: 'neuroscience', label: '02 Ritual Neuro'        },
   { id: 'receptors',   label: '03 Neuroreceptors'      },
@@ -133,6 +139,297 @@ function SeverityBar({ level }: { level: 'high' | 'moderate' | 'low' }) {
       <span style={{ fontFamily: 'monospace', fontSize: 10, color: colors[level], textTransform: 'uppercase' }}>
         {level}
       </span>
+    </div>
+  )
+}
+
+// ── Section 00a: Peter Case ───────────────────────────────────────────────────
+
+function PeterCaseSection() {
+  const [openActor, setOpenActor] = useState<string | null>(null)
+  const c = PETER_CASE
+
+  return (
+    <div id="peter-case">
+      <div style={{ fontFamily: 'monospace', fontSize: 11, color: C.crimson, letterSpacing: '0.22em', marginBottom: 6 }}>
+        {`SECTION 00a //`}
+      </div>
+      <h2 style={{ fontFamily: 'monospace', fontSize: 22, fontWeight: 700, color: C.text, letterSpacing: '0.08em', marginBottom: 6 }}>
+        {c.title}
+      </h2>
+      <p style={{ fontFamily: 'monospace', fontSize: 13, color: C.crimson, letterSpacing: '0.1em', fontStyle: 'italic', marginBottom: 10 }}>
+        {c.subtitle}
+      </p>
+
+      {/* Disclaimer */}
+      <div style={{ background: C.surface2, borderLeft: `3px solid ${C.gold}`, padding: '10px 14px', marginBottom: 28 }}>
+        <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.goldLight, letterSpacing: '0.2em', marginBottom: 4 }}>⚠ SOURCE NOTE</div>
+        <p style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, lineHeight: 1.8, margin: 0 }}>{c.disclaimer}</p>
+      </div>
+
+      {/* Actors */}
+      <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.crimson, letterSpacing: '0.2em', marginBottom: 10 }}>◈ THE ACTORS</div>
+      <div style={{ display: 'grid', gap: 8, marginBottom: 28 }}>
+        {c.actors.map((actor) => (
+          <div key={actor.name}>
+            <button
+              onClick={() => setOpenActor(openActor === actor.name ? null : actor.name)}
+              style={{
+                width: '100%', textAlign: 'left', background: C.surface,
+                border: `1px solid ${openActor === actor.name ? C.crimson : C.border}`,
+                padding: '12px 16px', cursor: 'pointer',
+                display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12,
+              }}
+            >
+              <div>
+                <div style={{ fontFamily: 'monospace', fontSize: 12, fontWeight: 700, color: C.text, marginBottom: 3 }}>{actor.name}</div>
+                <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.crimson }}>{actor.role}</div>
+              </div>
+              <span style={{ fontFamily: 'monospace', fontSize: 14, color: C.crimson, flexShrink: 0 }}>
+                {openActor === actor.name ? '−' : '+'}
+              </span>
+            </button>
+            <AnimatePresence>
+              {openActor === actor.name && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.18 }}
+                  style={{ overflow: 'hidden' }}
+                >
+                  <div style={{ background: C.surface2, borderLeft: `2px solid ${C.borderAccent}`, padding: '12px 16px' }}>
+                    <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.85, margin: 0 }}>{actor.note}</p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        ))}
+      </div>
+
+      {/* The Women */}
+      <div style={{ background: C.surface, border: `1px solid ${C.borderAccent}`, padding: '20px 22px', marginBottom: 16 }}>
+        <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.crimson, letterSpacing: '0.2em', marginBottom: 8 }}>◈ {c.theWomen.heading}</div>
+        <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.9, marginBottom: 14 }}>{c.theWomen.body}</p>
+        <div style={{ borderLeft: `2px solid ${C.gold}`, paddingLeft: 12 }}>
+          <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.goldLight, letterSpacing: '0.18em', marginBottom: 5 }}>LEGAL NOTE</div>
+          <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textDim, lineHeight: 1.85, margin: 0 }}>{c.theWomen.legalNote}</p>
+        </div>
+      </div>
+
+      {/* Political Context */}
+      <div style={{ background: C.surface, border: `1px solid ${C.border}`, padding: '20px 22px', marginBottom: 16 }}>
+        <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.crimson, letterSpacing: '0.2em', marginBottom: 14 }}>◈ {c.thePoliticalContext.heading}</div>
+        <div style={{ display: 'grid', gap: 14 }}>
+          {[
+            { label: 'AUGUSTUS — THE FIRST CITIZEN',         body: c.thePoliticalContext.augustusNote  },
+            { label: 'JULIUS CAESAR — THE FIRST MISTAKE',    body: c.thePoliticalContext.julianNote    },
+            { label: 'NERO AND THE NERONIAN FRACTURE',       body: c.thePoliticalContext.neroninanNote },
+            { label: 'WHERE PETER STOOD IN ALL OF THIS',     body: c.thePoliticalContext.peterNote     },
+          ].map((item) => (
+            <div key={item.label} style={{ borderLeft: `2px solid ${C.border}`, paddingLeft: 12 }}>
+              <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.textDim, letterSpacing: '0.18em', marginBottom: 5 }}>{item.label}</div>
+              <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.85, margin: 0 }}>{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* The Execution */}
+      <div style={{ background: C.surface, border: `1px solid ${C.borderAccent}`, padding: '20px 22px', marginBottom: 16 }}>
+        <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.crimson, letterSpacing: '0.2em', marginBottom: 10 }}>◈ {c.theExecution.heading}</div>
+        <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.9, marginBottom: 16 }}>{c.theExecution.body}</p>
+        <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.goldLight, letterSpacing: '0.18em', marginBottom: 10 }}>HISTORICAL IRONIES</div>
+        <div style={{ display: 'grid', gap: 8 }}>
+          {c.theExecution.ironies.map((irony, i) => (
+            <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+              <span style={{ fontFamily: 'monospace', fontSize: 10, color: C.crimson, flexShrink: 0, paddingTop: 1 }}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.8, margin: 0 }}>{irony}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Sources */}
+      <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 12 }}>
+        <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.textDim, letterSpacing: '0.18em', marginBottom: 8 }}>SOURCES</div>
+        <div style={{ display: 'grid', gap: 5 }}>
+          {c.sources.map((s, i) => (
+            <div key={i} style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, borderLeft: `1px solid ${C.border}`, paddingLeft: 10 }}>{s}</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ── Section 00: Peter Verse ───────────────────────────────────────────────────
+
+function PeterVerseSection() {
+  const [showBreakdown, setShowBreakdown] = useState(false)
+  const v = PETER_VERSE
+
+  return (
+    <div id="peter-verse">
+      {/* Header label */}
+      <div style={{ fontFamily: 'monospace', fontSize: 11, color: C.crimson, letterSpacing: '0.22em', marginBottom: 6 }}>
+        {`SECTION 00 //`}
+      </div>
+      <h2 style={{ fontFamily: 'monospace', fontSize: 22, fontWeight: 700, color: C.text, letterSpacing: '0.08em', marginBottom: 4 }}>
+        PRIMARY SOURCE — THE YESHUA DECLARATION
+      </h2>
+      <p style={{ fontFamily: 'monospace', fontSize: 12, color: C.textDim, lineHeight: 1.7, maxWidth: 680, marginBottom: 28 }}>
+        Before clinical analysis, the primary source. The word &ldquo;Satan&rdquo; was spoken by Yeshua himself — in Aramaic, the language he lived and taught in — directly to the man whose inverted cross became the emblem of Satanism.
+      </p>
+
+      {/* Reference strip */}
+      <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginBottom: 20 }}>
+        {[
+          { label: 'REFERENCE',  value: v.reference },
+          { label: 'SPEAKER',    value: v.speaker },
+          { label: 'ADDRESSEE',  value: v.addressee },
+          { label: 'SOURCE',     value: v.aramaic.source },
+        ].map((item) => (
+          <div key={item.label} style={{ borderLeft: `2px solid ${C.crimsonDim}`, paddingLeft: 10 }}>
+            <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.crimson, letterSpacing: '0.2em', marginBottom: 2 }}>{item.label}</div>
+            <div style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid }}>{item.value}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Aramaic script — large display */}
+      <div style={{
+        background: C.surface,
+        border: `1px solid ${C.borderAccent}`,
+        padding: '28px 24px',
+        marginBottom: 14,
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        {/* Faint cross watermark */}
+        <div style={{
+          position: 'absolute', right: 20, top: '50%', transform: 'translateY(-50%)',
+          fontFamily: 'serif', fontSize: 120, color: C.crimson, opacity: 0.04,
+          userSelect: 'none', lineHeight: 1,
+        }}>
+          ☩
+        </div>
+
+        <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.crimson, letterSpacing: '0.22em', marginBottom: 12 }}>
+          ◈ ARAMAIC — PESHITTA (EASTERN SYRIAC SCRIPT) · RIGHT TO LEFT
+        </div>
+
+        {/* Aramaic text — right-to-left */}
+        <div style={{
+          direction: 'rtl',
+          fontSize: 26,
+          lineHeight: 1.9,
+          color: C.text,
+          fontFamily: 'serif',
+          marginBottom: 18,
+          letterSpacing: '0.04em',
+        }}>
+          {v.aramaic.script}
+        </div>
+
+        {/* Transliteration */}
+        <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.textDim, letterSpacing: '0.18em', marginBottom: 6 }}>
+          TRANSLITERATION (LATIN SCRIPT)
+        </div>
+        <div style={{
+          fontFamily: 'monospace', fontSize: 14, color: C.textMid,
+          fontStyle: 'italic', lineHeight: 1.7, marginBottom: 18,
+        }}>
+          {v.aramaic.transliteration}
+        </div>
+
+        {/* English */}
+        <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.textDim, letterSpacing: '0.18em', marginBottom: 6 }}>
+          ENGLISH TRANSLATION
+        </div>
+        <div style={{
+          fontFamily: 'monospace', fontSize: 14, color: C.text, lineHeight: 1.7,
+          borderLeft: `3px solid ${C.crimson}`, paddingLeft: 16,
+        }}>
+          {v.english}
+        </div>
+      </div>
+
+      {/* Word-by-word breakdown toggle */}
+      <button
+        onClick={() => setShowBreakdown(!showBreakdown)}
+        style={{
+          fontFamily: 'monospace', fontSize: 10, letterSpacing: '0.15em',
+          padding: '7px 14px', marginBottom: 14,
+          border: `1px solid ${showBreakdown ? C.crimson : C.border}`,
+          background: showBreakdown ? C.crimsonDim : 'transparent',
+          color: showBreakdown ? C.text : C.textDim,
+          cursor: 'pointer',
+        }}
+      >
+        {showBreakdown ? '− HIDE' : '+ SHOW'} ARAMAIC WORD-BY-WORD BREAKDOWN
+      </button>
+
+      <AnimatePresence>
+        {showBreakdown && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            style={{ overflow: 'hidden', marginBottom: 14 }}
+          >
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
+              gap: 8,
+              padding: '14px 0',
+            }}>
+              {v.aramaic.wordBreakdown.map((w) => (
+                <div key={w.roman} style={{
+                  background: C.surface2,
+                  border: `1px solid ${C.border}`,
+                  padding: '10px 12px',
+                }}>
+                  <div style={{ direction: 'rtl', fontFamily: 'serif', fontSize: 20, color: C.text, marginBottom: 4 }}>
+                    {w.aramaic}
+                  </div>
+                  <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.goldLight, fontStyle: 'italic', marginBottom: 2 }}>
+                    {w.roman}
+                  </div>
+                  <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim }}>
+                    {w.meaning}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Context */}
+      <div style={{ display: 'grid', gap: 12 }}>
+        {[
+          { label: 'CONTEXT',                   body: v.context,                  color: C.textDim   },
+          { label: 'LINGUISTIC NOTE ON ܣܛܢܐ',   body: v.linguisticNote,           color: C.crimson   },
+          { label: 'THEOLOGICAL SIGNIFICANCE',   body: v.theologicalSignificance,  color: C.textDim   },
+          { label: 'THE INVERSION OF THE CROSS', body: v.inversionNote,            color: C.crimson   },
+        ].map((item) => (
+          <div key={item.label} style={{
+            background: C.surface2,
+            borderLeft: `2px solid ${item.color === C.crimson ? C.borderAccent : C.border}`,
+            padding: '12px 16px',
+          }}>
+            <div style={{ fontFamily: 'monospace', fontSize: 9, color: item.color, letterSpacing: '0.2em', marginBottom: 6 }}>
+              ◈ {item.label}
+            </div>
+            <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.85, margin: 0 }}>
+              {item.body}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -944,6 +1241,9 @@ export default function SatanismResearchDashboard() {
         </div>
 
         <div style={{ display: 'grid', gap: 60 }}>
+          <PeterCaseSection />
+          <PeterVerseSection />
+          <NeroSection />
           <TaxonomySection />
           <NeuroscienceSection />
           <ReceptorSection />

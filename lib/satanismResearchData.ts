@@ -60,6 +60,121 @@ export interface SatanismReference {
   relevance: string
 }
 
+// ── Historical Case: The Trial of Peter ──────────────────────────────────────
+
+export const PETER_CASE = {
+  title: 'THE CASE OF PETER — ROME, c. 64–68 AD',
+  subtitle: 'What we know. What was charged. What was real.',
+  disclaimer: 'The primary source is the Acts of Peter (Actus Vercellenses), a 2nd–3rd century apocryphal text. It is not canonical scripture. Whether the specific events occurred as described is historically unverifiable. What is verified: Peter was executed in Rome under Nero, crucified upside down at his own request. The political and legal context below is historically grounded.',
+
+  actors: [
+    {
+      name: 'Shimon bar Yona — Petros',
+      role: 'Apostle; leader of the Christian community in Rome',
+      note: 'The same Peter who received "the keys of the kingdom" and was called Satan by Yeshua in the same conversation. Tradition holds he arrived in Rome during Nero\'s reign and led the community there until his execution.',
+    },
+    {
+      name: 'Agrippa',
+      role: 'Roman Prefect of the City (Praefectus Urbi) under Nero',
+      note: 'Not to be confused with King Agrippa of Judea. This Agrippa was the city prefect — effectively the chief of police and civil authority of Rome. He held four concubines (the Acts of Peter names the situation without naming all the women). When those concubines converted to chastity and refused him, he had both motive and institutional power to act.',
+    },
+    {
+      name: 'Albinus',
+      role: 'Amicus Caesaris — friend and associate of Nero Caesar',
+      note: 'A man of direct imperial access. His wife Xanthippe heard Peter preach and converted to sexual chastity, withdrawing from conjugal relations with Albinus entirely. Albinus\'s complaint to Agrippa was what triggered the formal alliance against Peter. A man with a connection to Caesar who could not touch his own wife had every incentive to use political channels rather than domestic ones.',
+    },
+    {
+      name: 'Xanthippe',
+      role: 'Wife of Albinus; convert to chastity',
+      note: 'Named explicitly in the Acts of Peter. Her conversion is the catalytic event — a wife of a Caesar-adjacent nobleman publicly withdrawing from marital relations was a social and political embarrassment that could not be ignored.',
+    },
+    {
+      name: 'The Four Concubines of Agrippa',
+      role: 'Concubines of the Prefect; converts to chastity',
+      note: 'Their individual names are not recorded in surviving texts. Together with Xanthippe and at least one other woman (Agrippina in some manuscript traditions), the total count of women who converted to chastity and directly provoked the men\'s alliance against Peter varies between four and seven depending on the manuscript. Six is the most commonly cited figure in modern scholarship of the Acts.',
+    },
+    {
+      name: 'Nero Caesar',
+      role: 'Emperor of Rome (54–68 AD)',
+      note: 'The Great Fire of Rome burned for six days in July 64 AD, destroying ten of Rome\'s fourteen districts. Nero needed a scapegoat. Christians — already socially isolated, meeting privately, and associated with apocalyptic fire imagery — were the politically convenient target. Tacitus (Annals XV.44) records this explicitly. The arson charge against Peter may have been a compound accusation: theological fire-preaching conflated with political fire-setting.',
+    },
+  ],
+
+  theWomen: {
+    heading: 'The Six Women — What Peter Actually Did',
+    body: 'Peter preached that the body belonged to God, not to husbands or owners. In a Roman world where women — especially concubines — had no legal personhood independent of the men who owned them, this was not merely theological. It was economic disruption. A concubine who refused sexual access was a concubine who had ceased to function as property. Agrippa\'s four concubines did not need to file for divorce — there was no marriage to dissolve. What they did was simply refuse. Under Roman law, Agrippa had no clean legal remedy for a concubine who invoked religious conscience. Xanthippe\'s situation was different — she was a legal wife — but Albinus faced the same problem: Roman civil law offered divorce, but divorce was public humiliation for a man of his status. Neither man wanted the civil remedy. They wanted the man who caused it.',
+    legalNote: 'The Latin concept of stuprum (sexual misconduct) could theoretically be applied in reverse — a Christian teacher inducing women to withhold conjugal relations could be framed as corrupting Roman morality. But this was legally thin. Charging Peter under the broader Neronian anti-Christian persecutions — which did not require specific evidence, only association — was far cleaner. The arson charge was the vehicle. The women were the motive.',
+  },
+
+  thePoliticalContext: {
+    heading: 'Augustus, Julius, and the Legal Architecture of the Empire',
+    augustusNote: 'Gaius Julius Caesar Octavianus — Augustus, "the Revered One" — was careful never to repeat his great-uncle\'s mistake. Julius Caesar called himself Dictator Perpetuo: dictator in perpetuity. It was the title that got him killed on the Ides of March, 44 BC. The Roman Senate and the aristocratic class could not tolerate the open destruction of the Republic\'s fiction. Augustus learned the lesson absolutely. He called himself Princeps — first citizen, not first ruler. He maintained every Republican institution while gutting them of actual power. He held authority without the title that declared it. The Republic existed on paper. The empire existed in fact. This was not stupidity. This was the most successful political architecture in Western history.',
+    julianNote: 'Julius Caesar, by contrast, accumulated titles, refused to stand when the Senate approached him, and accepted divine honors while alive. He was brilliant militarily and administratively and politically obtuse in the specific way that brilliance without social intelligence produces. He could read a battlefield and could not read a room. The senatorial class murdered him for it. Augustus read both.',
+    neroninanNote: 'By the time of Peter\'s execution under Nero (c. 64–68 AD), the Augustan framework was fifty years old. Nero had inherited the "first citizen" architecture but used it with the subtlety of Julius Caesar — which is to say, none. His persecution of Christians after the Great Fire was politically functional but historically crude: blame a minority, avoid accountability, consolidate fear. Within four years of Peter\'s death, Nero was dead by his own hand, the year of four emperors had begun, and the Augustan settlement was fracturing.',
+    peterNote: 'Peter was executed inside this architecture. The charge — arson, sedition, corrupting Roman morality — was the Neronian state\'s chosen instrument. The real charge — that he convinced six women to withhold themselves from the men who owned them — was the charge that could not be spoken in court because it revealed too much about the men bringing it. Agrippa and Albinus needed Peter dead. Nero needed Christians culpable. The interests aligned.',
+  },
+
+  theExecution: {
+    heading: 'The Crucifixion — Upside Down, By Request',
+    body: 'Peter\'s execution by crucifixion is documented in Clement of Rome (c. 96 AD), Ignatius of Antioch, Origen, and Eusebius of Caesarea — making it one of the better-attested facts of early Christian history. The inversion — crucified with his head downward — Peter requested himself, according to Origen (as quoted by Eusebius, Ecclesiastical History III.1): judging himself unworthy to die in the same manner as his Lord. The cross of Peter is therefore not a symbol of defiance or opposition. It is a symbol of radical self-abasement — the same man who had been called Satan by Yeshua, who had denied him three times before the cock crowed, ending his life insisting he was not worthy of an upright death.',
+    ironies: [
+      'The man called "Satan" by Yeshua became the first Bishop of Rome and the theological foundation of the Catholic Church.',
+      'The cross Peter chose out of humility became the primary symbol adopted by those who wish to oppose everything Peter believed.',
+      'Agrippa and Albinus, who conspired against Peter to recover access to women they could not legally compel, are remembered only because Peter is remembered. History retained the accused and forgot the accusers.',
+      'The charge of arson — used to execute Peter — was itself a projection: Nero, not the Christians, was widely believed in antiquity to have set or at least exploited the Great Fire. Tacitus records the rumor explicitly.',
+    ],
+  },
+
+  sources: [
+    'Acts of Peter (Actus Vercellenses) — 2nd–3rd century, apocryphal; Schneemelcher, W. (Ed.), New Testament Apocrypha, Vol. 2',
+    'Tacitus — Annals XV.44 (on Nero\'s persecution of Christians post-fire)',
+    'Eusebius of Caesarea — Ecclesiastical History III.1 (quoting Origen on Peter\'s inverted crucifixion)',
+    'Clement of Rome — First Epistle to the Corinthians, 5.4 (earliest attestation of Peter\'s martyrdom in Rome)',
+    'Suetonius — The Twelve Caesars: Nero, 16 (Christians as practitioners of a "new and maleficent superstition")',
+    'Garnsey, P. & Saller, R. (1987). The Roman Empire: Economy, Society and Culture. University of California Press',
+    'MacDonald, D.R. (1983). The Legend and the Apostle: The Battle for Paul in Story and Canon. Westminster Press',
+  ],
+}
+
+// ── Primary Source: The Yeshua Declaration ────────────────────────────────────
+
+export const PETER_VERSE = {
+  reference: 'Matthew 16:23 · Mark 8:33',
+  speaker: 'Yeshua (Jesus of Nazareth)',
+  addressee: 'Shimon bar Yona — Simon Peter',
+  context:
+    'Peter had just confessed Yeshua as the Messiah (v.16), then rebuked him for predicting his own death and resurrection. Yeshua turned and addressed Peter directly — using the name "Satan" not as an epithet of ultimate evil, but in its original Aramaic meaning: adversary, one who opposes the divine will. The same Peter who received "the keys of the kingdom" moments earlier is addressed as the adversarial principle the moment he places human reasoning above divine purpose.',
+
+  aramaic: {
+    script: 'ܗܦܟ ܕܝܢ ܘܐܡܪ ܠܦܛܪܘܣ ܙܠ ܠܒܣܬܪܝ ܣܛܢܐ ܡܫܩܠܐ ܐܢܬ ܠܝ ܡܛܠ ܕܠܐ ܡܬܪܥܐ ܐܢܬ ܡܕܡ ܕܐܠܗܐ ܐܠܐ ܕܒܢܝ̈ ܐܢܫܐ',
+    transliteration: 'Hapak din w-amar l-Petros: Zel l-batri Satana — maskla ant li, metul d-la metraa ant meddem d-Alaha, ela d-bnay nasha.',
+    wordBreakdown: [
+      { aramaic: 'ܙܠ',     roman: 'Zel',      meaning: 'Go / Get' },
+      { aramaic: 'ܠܒܣܬܪܝ', roman: "l'batri",  meaning: 'behind me' },
+      { aramaic: 'ܣܛܢܐ',   roman: 'Satana',   meaning: 'Adversary / Satan' },
+      { aramaic: 'ܡܫܩܠܐ',  roman: 'maskla',   meaning: 'stumbling block / snare' },
+      { aramaic: 'ܐܢܬ',    roman: 'ant',      meaning: 'you are' },
+      { aramaic: 'ܠܝ',     roman: 'li',       meaning: 'to me / for me' },
+      { aramaic: 'ܡܛܠ',    roman: 'metul',    meaning: 'because' },
+      { aramaic: 'ܐܠܗܐ',   roman: 'Alaha',    meaning: 'God (Aramaic form of Elohim)' },
+      { aramaic: 'ܒܢܝ̈ ܐܢܫܐ', roman: 'bnay nasha', meaning: 'sons of men / human concerns' },
+    ],
+    source: 'Peshitta — Eastern Aramaic New Testament (standard text of Syriac Christianity)',
+  },
+
+  english:
+    'But he turned and said to Peter: "Get behind me, Satan — you are a stumbling block to me, because you are not thinking of the things of God, but of the things of men."',
+
+  linguisticNote:
+    'The word ܣܛܢܐ (Satana) in Aramaic derives from the root ܣܛܢ (s-ṭ-n), meaning "to oppose," "to obstruct," or "to be an adversary." It is a function — not a name. Yeshua did not address Peter as a demonic entity; he addressed the adversarial orientation Peter had adopted in that moment: placing self-preservation and human comfort above divine will. The same root passes through Hebrew שָּׂטָן (śāṭān) into Greek Σατανᾶς (Satanas) and then into Latin and English as "Satan." The Aramaic original reveals what later traditions obscured: Satan is first and foremost a posture of opposition to God, accessible to any person — including the one who holds the keys.',
+
+  theologicalSignificance:
+    'This verse establishes that the "Satanic" disposition is not the exclusive domain of demonic beings or occult practitioners. Yeshua identified it in his closest disciple, in a moment of genuine human love and concern. The inversion of Peter\'s cross — the symbol of his martyrdom, adopted by those who wish to invert and mock what Peter stood for — is thus doubly ironic: Peter himself was called Satan, and his cross became the emblem of opposition to the faith he died defending.',
+
+  inversionNote:
+    'Saint Peter requested to be crucified upside-down, judging himself unworthy to die in the same manner as Yeshua. His inverted cross is therefore a symbol of humility, not defiance. Its adoption as a Satanic symbol represents a second-order inversion: taking a gesture of self-abasement before God and reframing it as proud opposition to God. The neuroscience of symbol inversion is well-documented: appropriating sacred symbols and reversing their meaning is a high-impact transgression strategy — it maximizes amygdala and PFC disruption in observers who carry the original sacred association.',
+}
+
 // ── Section 1: Taxonomy ───────────────────────────────────────────────────────
 
 export const TAXONOMY: TaxonomyEntry[] = [
@@ -524,6 +639,131 @@ export const BIBLIOGRAPHY: SatanismReference[] = [
 ]
 
 export const EVIDENCE_CAVEAT = `IMPORTANT METHODOLOGICAL NOTE: Research specifically on Satanism and neuroscience is sparse. Section 4 draws partly from the "Satanic Panic" era (1980s–1990s), during which many SRA claims were later found to be products of suggestive therapeutic techniques and moral panic rather than verified events (Lanning, 1992). The neurological and epigenetic mechanisms described are well-established in the general trauma and stress literature; their application to Satanic-specific contexts is extrapolated from those foundations. Where studies directly sample Satanists (e.g., Laythe et al., 2011; Šram, 2017), sample sizes are small. Readers should treat this as a theoretical framework and clinical hypothesis generator, not definitive epidemiology.`
+
+// ── Nero / 666 / Roman Constitution ──────────────────────────────────────────
+
+export const NERO_666 = {
+  title: 'NERO, 666, AND THE ROMAN CONSTITUTION',
+  subtitle: 'Was the Emperor the final judge? Two men whose names sum to 666 — separated by 1,500 years of institutional power.',
+
+  neroJudge: {
+    heading: 'Was Nero the Final Judge of Peter?',
+    verdict: 'Most likely yes — by administrative sanction, not personal decree.',
+    body: 'Peter was not a Roman citizen. Under Roman law (the Lex Iulia de vi publica et privata, codified under Augustus), a Roman citizen could appeal a capital sentence to the Emperor (provocatio ad Caesarem — the right Paul exercised in Acts 25:11). Peter, as a Galilean Jew and non-citizen, had no such right. Agrippa, as Praefectus Urbi (city prefect), held the delegated imperium to execute non-citizens for capital offenses within the city without requiring the Emperor\'s personal signature on the warrant. However — the Neronian persecution of Christians was a state policy, not Agrippa\'s private initiative. Tacitus (Annals XV.44) is explicit: Nero identified Christians as the arsonists and ordered their punishment. Peter\'s execution under that edict was Nero\'s policy executed by Agrippa\'s office. The final authority was the Emperor. The final hand was the prefect.',
+    legalMechanism: 'The senatus consultum (Senate decree) of 64 AD that sanctioned the Christian persecution gave Agrippa the legal cover. Nero\'s imperium proconsulare — inherited from Augustus\'s constitutional settlement — was the ultimate source of the authority. In the Augustan constitution, all delegated power flowed from the Princeps. Agrippa could not have executed Peter against Nero\'s wishes. Whether he needed to request permission specifically or acted under standing orders is not documented.',
+  },
+
+  neroGematria: {
+    heading: 'NERO CAESAR = 666 — Hebrew Gematria',
+    method: 'Gematria is the practice of assigning numerical values to letters. In Hebrew, each letter has a fixed numerical value. The name "Neron Kesar" (נרון קסר — the Hebrew/Aramaic transliteration of "Nero Caesar") sums to 666. This is the dominant scholarly explanation for the Number of the Beast in Revelation 13:18, supported by Adela Yarbro Collins (Harvard), David Aune (Notre Dame), and the majority of critical New Testament scholarship.',
+    note: 'A variant spelling — "Nero Kesar" (נרו קסר, dropping the final Nun) — sums to 616, which is the number found in the oldest surviving manuscript of Revelation (Papyrus 115, Oxyrhynchus). Both 666 and 616 point to the same man.',
+    letters: [
+      { letter: 'נ', roman: 'Nun',    value: 50,  word: 'Neron' },
+      { letter: 'ר', roman: 'Resh',   value: 200, word: 'Neron' },
+      { letter: 'ו', roman: 'Waw',    value: 6,   word: 'Neron' },
+      { letter: 'נ', roman: 'Nun',    value: 50,  word: 'Neron' },
+      { letter: 'ק', roman: 'Qoph',   value: 100, word: 'Kesar' },
+      { letter: 'ס', roman: 'Samekh', value: 60,  word: 'Kesar' },
+      { letter: 'ר', roman: 'Resh',   value: 200, word: 'Kesar' },
+    ],
+    total: 666,
+    sources: ['Yarbro Collins, A. (1976). The Combat Myth in the Book of Revelation. Harvard', 'Aune, D.E. (1998). Revelation 6–16. Word Biblical Commentary Vol. 52B', 'Bauckham, R. (1993). The Climax of Prophecy. T&T Clark'],
+  },
+
+  popGematria: {
+    heading: 'VICARIUS FILII DEI = 666 — Latin Numeral Calculation',
+    method: 'Latin uses letters as numerals (Roman numerals). "Vicarius Filii Dei" — "Vicar of the Son of God" — when its letters that double as Roman numerals are summed, produces 666. This calculation has been used since the Reformation (first prominently by Andreas Helwig, 1612) to identify the papacy with the Beast of Revelation.',
+    controversy: 'CRITICAL NOTE: "Vicarius Filii Dei" is NOT a standard papal title. The actual title is "Vicarius Christi" (Vicar of Christ). "Vicarius Filii Dei" appears in the Donatio Constantini (Donation of Constantine) — an 8th-century document proven to be a forgery by Lorenzo Valla in 1440. The calculation is valid arithmetic. The premise — that this is an official papal title — is historically false. What remains true: the institutional claim of the papacy to be "Vicar of the Son of God" in any functional sense does carry this numerical weight when mapped to Latin numerals.',
+    letters: [
+      { letter: 'V', value: 5,   word: 'VICARIUS' },
+      { letter: 'I', value: 1,   word: 'VICARIUS' },
+      { letter: 'C', value: 100, word: 'VICARIUS' },
+      { letter: 'A', value: 0,   word: 'VICARIUS' },
+      { letter: 'R', value: 0,   word: 'VICARIUS' },
+      { letter: 'I', value: 1,   word: 'VICARIUS' },
+      { letter: 'U', value: 5,   word: 'VICARIUS' },
+      { letter: 'S', value: 0,   word: 'VICARIUS' },
+      { letter: 'F', value: 0,   word: 'FILII'    },
+      { letter: 'I', value: 1,   word: 'FILII'    },
+      { letter: 'L', value: 50,  word: 'FILII'    },
+      { letter: 'I', value: 1,   word: 'FILII'    },
+      { letter: 'I', value: 1,   word: 'FILII'    },
+      { letter: 'D', value: 500, word: 'DEI'      },
+      { letter: 'E', value: 0,   word: 'DEI'      },
+      { letter: 'I', value: 1,   word: 'DEI'      },
+    ],
+    subtotals: [
+      { word: 'VICARIUS', total: 112 },
+      { word: 'FILII',    total: 53  },
+      { word: 'DEI',      total: 501 },
+    ],
+    total: 666,
+    sources: ['Helwig, A. (1612). Antichristus Romanus', 'Valla, L. (1440). De falso credita et ementita Constantini donatione (Donation of Constantine as forgery)', 'Froom, L.E. (1950). The Prophetic Faith of Our Fathers. Review and Herald'],
+  },
+
+  romanConstitution: {
+    heading: 'THE ROMAN CONSTITUTION — THE LEGAL ARCHITECTURE THAT KILLED PETER',
+    overview: 'Rome had no single written constitutional document. What scholars call the "Roman Constitution" was an accumulation of precedent, statute, custom (mos maiorum — the way of the ancestors), and senatorial decree built over seven centuries. By Nero\'s reign it had been partially dismantled and largely weaponized. Peter was executed inside this architecture — specifically inside the gap between its Republican ideals and its imperial reality.',
+    pillars: [
+      {
+        name: 'Mos Maiorum — The Way of the Ancestors',
+        latin: 'mos maiorum',
+        description: 'The unwritten customs and traditions that governed Roman public life before statutory law. It included respect for the Senate, the rotation of magistracies, the prohibition of a standing army inside the city walls (hence Caesar\'s Rubicon crossing as an act of war), and the principle that no man should hold perpetual extraordinary power. Augustus honored it rhetorically while destroying it functionally. Nero discarded even the rhetoric.',
+      },
+      {
+        name: 'SPQR — Senatus Populusque Romanus',
+        latin: 'Senatus Populusque Romanus',
+        description: 'The Senate and the People of Rome. The constitutional fiction that Rome was governed by the collective wisdom of the Senate and the sovereign will of the people. By 64 AD this was largely theater. The Senate voted Nero divine honors. The people received bread and circuses. Neither had meaningful power. The Princeps had absolute power dressed in Republican costume.',
+      },
+      {
+        name: 'Imperium — The Source of All Authority',
+        latin: 'imperium proconsulare maius',
+        description: 'The supreme executive power — the right to command armies, execute criminals, and override lesser magistrates. Augustus held imperium proconsulare maius (greater proconsular power) across all provinces simultaneously, making him constitutionally superior to every other official in the empire. This power was transmitted to his successors. Nero\'s authority to persecute Christians derived directly from this Augustan inheritance — the "first citizen" architecture functioning exactly as designed, now turned toward mass execution.',
+      },
+      {
+        name: 'Lex Iulia de Vi — The Law on Violence',
+        latin: 'Lex Iulia de vi publica et privata',
+        description: 'Passed under Julius Caesar and refined under Augustus. Defined illegal uses of force, including unauthorized execution of Roman citizens. The citizen\'s right of appeal (provocatio) to the Emperor was protected here — which is why Paul could appeal to Caesar. Peter, as a non-citizen peregrinus (foreigner), had no such protection. The same legal framework that protected Paul could not protect Peter.',
+      },
+      {
+        name: 'Senatus Consultum — Senate Decrees',
+        latin: 'senatus consultum ultimum',
+        description: 'Emergency decrees by the Senate granting magistrates extraordinary powers. The Neronian Christian persecutions were enabled by senatorial sanction — the Senate formally endorsed the identification of Christians as responsible for the Great Fire. This gave Agrippa\'s actions the full weight of constitutional authority. Peter was not lynched. He was executed by the state, under law, with full institutional backing.',
+      },
+      {
+        name: 'Provocatio — The Right of Appeal',
+        latin: 'provocatio ad populum / ad Caesarem',
+        description: 'The ancient right of a Roman citizen to appeal a capital sentence to the popular assembly (Republic) or the Emperor (Empire). Paul used this right. Peter could not. The provocatio was the single constitutional protection that might have saved Peter — and he did not qualify for it. His legal status as a Galilean provincial non-citizen placed him entirely at the mercy of the prefect\'s delegated imperium.',
+      },
+    ],
+    conclusion: 'The Roman Constitution did not fail Peter. It functioned exactly as the imperial version was designed to function: the Emperor\'s policy, administered through the prefect\'s imperium, sanctioned by the Senate, against a man with no citizen\'s rights of appeal. Augustus\'s "first citizen" architecture — the one that survived because it was not called dictatorship — produced the legal machinery that executed the man whose inverted cross now symbolizes opposition to everything Rome and the Church built together.',
+  },
+
+  neroAsGod: {
+    heading: 'NERO BEYOND JULIUS — NOT DICTATOR, BUT GOD',
+    body: 'Julius Caesar was assassinated for calling himself Dictator Perpetuo. Augustus survived by calling himself merely the first citizen. Nero surpassed both — not by taking a title, but by receiving one: Deus. God. The eastern provinces of the empire — Egypt, Syria, Asia Minor — had traditions of ruler worship stretching back to the Pharaohs and Alexander. In these provinces, Nero was publicly addressed as θεὸς (theos) — God. Coins minted in Alexandria bore his image with the radiate crown of the sun god Sol Invictus. The Greek inscription on some coins reads ΝΕΡΩΝ ΚΛΑΥΔΙΟΣ ΚΑΙΣΑΡ — Neron Claudius Caesar — beneath divine iconography. Julius Caesar had himself deified posthumously by the Senate. Augustus accepted divine honors in the East while carefully refusing them in Rome. Nero accepted them everywhere. He did not merely hold the power of life and death over every person in the empire — including Peter. He held, in the institutional theology of the Roman East, the status of a living god. Peter was not executed by a dictator. He was executed by a man the empire worshipped as divine. The collision was therefore not merely political — it was cosmological: the man called Satan by Yeshua meeting his death at the hands of the man whose name summed, in Hebrew, to 666.',
+    caesarComparison: [
+      {
+        name: 'Gaius Julius Caesar',
+        title: 'Dictator Perpetuo',
+        fate: 'Assassinated March 15, 44 BC — 23 stab wounds, Senate floor',
+        error: 'Named the power openly. The Roman aristocracy could not tolerate explicit monarchy. Calling yourself dictator in perpetuity was a declaration that the Republic was dead. The senatorial class murdered him for the honesty.',
+      },
+      {
+        name: 'Gaius Octavius — Augustus',
+        title: 'Princeps (First Citizen)',
+        fate: 'Died peacefully of natural causes, August 14 AD, age 75',
+        error: 'Had no political error. Named the power nothing while holding everything. The most successful political architect in Roman history. His settlement lasted, in modified form, for four centuries.',
+      },
+      {
+        name: 'Nero Claudius Caesar Augustus Germanicus',
+        title: 'Princeps + Deus (God) in the Eastern Provinces',
+        fate: 'Declared public enemy by the Senate, 68 AD. Fled Rome. Killed himself with a dagger, reportedly saying: "What an artist dies with me."',
+        error: 'Surpassed Augustus by accepting divine status while alive — in the West as well as East. Murdered his own mother (Agrippina the Younger). Executed senators. Destroyed the Augustan fiction of the Principate through naked excess. The Senate — impotent against Augustus — finally broke against Nero because he gave them no face-saving fiction to shelter behind. He was not assassinated. He was simply abandoned by everyone, including his own guards.',
+      },
+    ],
+  },
+}
 
 // ── Section 8: Rituals ────────────────────────────────────────────────────────
 
