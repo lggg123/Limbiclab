@@ -16,6 +16,15 @@ const C = {
   tealLight: '#2a9d9d',
 }
 
+const NEWSLETTER_FEATURES = [
+  'Weekly neuroscience dispatches direct to your inbox',
+  'Bipolar disorder, trauma, and dark psychology research briefs',
+  'Case studies drawn from the LimbicLab research archive',
+  'Early access to new site content and research drops',
+  'Every claim annotated with peer-reviewed citations',
+  'Cancel anytime — no commitment',
+]
+
 const GUIDE_FEATURES = [
   'Identify 12 dark psychology manipulation tactics',
   'Neuroscience-backed defense frameworks',
@@ -25,73 +34,28 @@ const GUIDE_FEATURES = [
   'Instant PDF download after purchase',
 ]
 
-const MEMBERSHIP_FEATURES = [
-  'Monthly deep-dive neuroscience briefings',
-  'Early access to LimbicLab research drops',
-  'Psychological case study breakdowns',
-  'Dark pattern analysis of cultural events',
-  'Members-only annotated reading lists',
-  'Cancel anytime — no commitment',
-]
-
-function FeatureList({ items }: { items: string[] }) {
-  return (
-    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px 0' }}>
-      {items.map((item) => (
-        <li
-          key={item}
-          style={{
-            fontFamily: 'monospace',
-            fontSize: 12,
-            color: C.textMid,
-            lineHeight: 1.7,
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: 8,
-            marginBottom: 6,
-          }}
-        >
-          <span style={{ color: C.tealLight, flexShrink: 0 }}>◈</span>
-          {item}
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-function ProductCard({
-  tag,
-  title,
-  description,
-  features,
-  price,
-  priceNote,
-  product,
-}: {
-  tag: string
-  title: string
-  description: string
-  features: string[]
-  price: string
-  priceNote: string
-  product: 'guide' | 'membership'
-}) {
+export default function StorePage() {
+  const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [guideLoading, setGuideLoading] = useState(false)
+  const [guideError, setGuideError] = useState<string | null>(null)
 
-  async function handleCheckout() {
+  async function handleNewsletter() {
+    if (!email.trim()) {
+      setError('Enter your email to start your free trial.')
+      return
+    }
     setLoading(true)
     setError(null)
     try {
       const res = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ product }),
+        body: JSON.stringify({ product: 'newsletter', email: email.trim() }),
       })
       const data = await res.json()
-      if (!res.ok || !data.url) {
-        throw new Error(data.error || 'Checkout failed')
-      }
+      if (!res.ok || !data.url) throw new Error(data.error || 'Checkout failed')
       window.location.href = data.url
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong')
@@ -99,221 +63,188 @@ function ProductCard({
     }
   }
 
-  return (
-    <div
-      style={{
-        background: C.surface,
-        border: `1px solid ${C.borderAccent}`,
-        padding: '28px 26px 24px',
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
-      }}
-    >
-      <div
-        style={{
-          fontFamily: 'monospace',
-          fontSize: 10,
-          color: C.tealLight,
-          letterSpacing: '0.22em',
-          border: `1px solid ${C.tealLight}`,
-          display: 'inline-block',
-          padding: '2px 8px',
-          marginBottom: 16,
-        }}
-      >
-        {tag}
-      </div>
+  async function handleGuide() {
+    setGuideLoading(true)
+    setGuideError(null)
+    try {
+      const res = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ product: 'guide' }),
+      })
+      const data = await res.json()
+      if (!res.ok || !data.url) throw new Error(data.error || 'Checkout failed')
+      window.location.href = data.url
+    } catch (err) {
+      setGuideError(err instanceof Error ? err.message : 'Something went wrong')
+      setGuideLoading(false)
+    }
+  }
 
-      <h2
-        style={{
-          fontFamily: 'monospace',
-          fontSize: 18,
-          fontWeight: 700,
-          color: C.text,
-          letterSpacing: '0.06em',
-          marginBottom: 12,
-          lineHeight: 1.3,
-        }}
-      >
-        {title}
-      </h2>
-
-      <p
-        style={{
-          fontFamily: 'monospace',
-          fontSize: 12,
-          color: C.textDim,
-          lineHeight: 1.7,
-          marginBottom: 22,
-        }}
-      >
-        {description}
-      </p>
-
-      <FeatureList items={features} />
-
-      <div style={{ marginTop: 'auto' }}>
-        <div style={{ marginBottom: 16 }}>
-          <span
-            style={{
-              fontFamily: 'monospace',
-              fontSize: 28,
-              fontWeight: 700,
-              color: C.text,
-              letterSpacing: '0.04em',
-            }}
-          >
-            {price}
-          </span>
-          <span
-            style={{
-              fontFamily: 'monospace',
-              fontSize: 11,
-              color: C.textDim,
-              marginLeft: 6,
-            }}
-          >
-            {priceNote}
-          </span>
-        </div>
-
-        {error && (
-          <p
-            style={{
-              fontFamily: 'monospace',
-              fontSize: 11,
-              color: '#8A0303',
-              marginBottom: 10,
-            }}
-          >
-            ◈ {error}
-          </p>
-        )}
-
-        <button
-          onClick={handleCheckout}
-          disabled={loading}
-          style={{
-            fontFamily: 'monospace',
-            fontSize: 11,
-            letterSpacing: '0.18em',
-            color: loading ? C.textDim : C.bg,
-            background: loading ? C.surface2 : C.tealLight,
-            border: `1px solid ${loading ? C.border : C.tealLight}`,
-            padding: '10px 24px',
-            cursor: loading ? 'not-allowed' : 'pointer',
-            transition: 'all 0.15s',
-            width: '100%',
-          }}
-          onMouseOver={(e) => {
-            if (!loading) {
-              e.currentTarget.style.background = C.teal
-              e.currentTarget.style.borderColor = C.teal
-            }
-          }}
-          onMouseOut={(e) => {
-            if (!loading) {
-              e.currentTarget.style.background = C.tealLight
-              e.currentTarget.style.borderColor = C.tealLight
-            }
-          }}
-        >
-          {loading ? 'REDIRECTING...' : product === 'guide' ? 'GET THE GUIDE →' : 'START MEMBERSHIP →'}
-        </button>
-      </div>
-    </div>
-  )
-}
-
-export default function StorePage() {
   return (
     <main style={{ background: C.bg, minHeight: '100vh', padding: '60px 24px 80px' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto' }}>
+      <div style={{ maxWidth: 860, margin: '0 auto' }}>
 
         {/* Header */}
-        <div style={{ marginBottom: 48 }}>
-          <div
-            style={{
-              fontFamily: 'monospace',
-              fontSize: 11,
-              color: C.tealLight,
-              letterSpacing: '0.22em',
-              marginBottom: 12,
-            }}
-          >
-            {`// STORE`}
+        <div style={{ marginBottom: 56, textAlign: 'center' }}>
+          <div style={{ fontFamily: 'monospace', fontSize: 11, color: C.tealLight, letterSpacing: '0.22em', marginBottom: 16 }}>
+            {`// LIMBICLAB STORE`}
           </div>
-          <h1
-            style={{
-              fontFamily: 'monospace',
-              fontSize: 28,
-              fontWeight: 700,
-              color: C.text,
-              letterSpacing: '0.08em',
-              marginBottom: 14,
-            }}
-          >
-            LIMBICLAB RESOURCES
+          <h1 style={{ fontFamily: 'monospace', fontSize: 32, fontWeight: 700, color: C.text, letterSpacing: '0.08em', marginBottom: 14, lineHeight: 1.2 }}>
+            NEUROSCIENCE RESEARCH<br />DELIVERED WEEKLY
           </h1>
-          <p
-            style={{
-              fontFamily: 'monospace',
-              fontSize: 13,
-              color: C.textDim,
-              lineHeight: 1.7,
-              maxWidth: 580,
-            }}
-          >
-            Applied neuroscience and psychological defense tools — built from the research.
-            Payments are secured by Stripe.
+          <p style={{ fontFamily: 'monospace', fontSize: 13, color: C.textDim, lineHeight: 1.7, maxWidth: 520, margin: '0 auto' }}>
+            Graduate-level research on bipolar disorder, trauma, dark psychology, and the neuroscience of behavior — cited, sourced, and in your inbox every week.
           </p>
         </div>
 
-        {/* Product Cards */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: 20,
-          }}
-        >
-          <ProductCard
-            tag="ONE-TIME PURCHASE"
-            title="Dark Psychology Defense Guide"
-            description="A field manual for recognizing covert manipulation, narcissistic abuse patterns, and dark triad behavior — grounded in neuroscience and clinical psychology research."
-            features={GUIDE_FEATURES}
-            price="$27"
-            priceNote="one-time · instant download"
-            product="guide"
-          />
-          <ProductCard
-            tag="MONTHLY SUBSCRIPTION"
-            title="Limbic Intel Monthly"
-            description="A curated monthly intelligence briefing on the neuroscience of behavior, psychological case studies, and emerging research on mind, memory, and manipulation."
-            features={MEMBERSHIP_FEATURES}
-            price="$9.99"
-            priceNote="/ month · cancel anytime"
-            product="membership"
-          />
+        {/* Newsletter Hero */}
+        <div style={{
+          background: C.surface,
+          border: `1px solid ${C.tealLight}`,
+          padding: '40px 40px 36px',
+          marginBottom: 24,
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          {/* Background glow */}
+          <div style={{ position: 'absolute', top: -60, right: -60, width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(42,157,157,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+          {/* Trial badge */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+            <div style={{ fontFamily: 'monospace', fontSize: 10, color: '#0a0a0a', background: C.tealLight, letterSpacing: '0.2em', padding: '4px 12px', fontWeight: 700 }}>
+              14 DAYS FREE
+            </div>
+            <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.tealLight, letterSpacing: '0.2em', border: `1px solid ${C.tealLight}`, padding: '4px 12px' }}>
+              WEEKLY NEWSLETTER
+            </div>
+          </div>
+
+          <h2 style={{ fontFamily: 'monospace', fontSize: 24, fontWeight: 700, color: C.text, letterSpacing: '0.06em', marginBottom: 12, lineHeight: 1.3 }}>
+            LimbicLab Newsletter
+          </h2>
+
+          <p style={{ fontFamily: 'monospace', fontSize: 12, color: C.textDim, lineHeight: 1.8, marginBottom: 28, maxWidth: 560 }}>
+            Start free. No charge for 14 days. After your trial, just $9.99/month — cancel anytime with one click.
+          </p>
+
+          {/* Features */}
+          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 24px' }}>
+            {NEWSLETTER_FEATURES.map((f) => (
+              <li key={f} style={{ fontFamily: 'monospace', fontSize: 12, color: C.textMid, lineHeight: 1.6, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                <span style={{ color: C.tealLight, flexShrink: 0, marginTop: 1 }}>◈</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          {/* Email + CTA */}
+          <div style={{ display: 'flex', gap: 0, maxWidth: 520 }}>
+            <input
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleNewsletter()}
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 12,
+                color: C.text,
+                background: C.surface2,
+                border: `1px solid ${error ? '#8A0303' : C.borderAccent}`,
+                borderRight: 'none',
+                padding: '12px 16px',
+                flex: 1,
+                outline: 'none',
+                letterSpacing: '0.05em',
+              }}
+            />
+            <button
+              onClick={handleNewsletter}
+              disabled={loading}
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 11,
+                letterSpacing: '0.18em',
+                color: loading ? C.textDim : C.bg,
+                background: loading ? C.surface2 : C.tealLight,
+                border: `1px solid ${loading ? C.border : C.tealLight}`,
+                padding: '12px 24px',
+                cursor: loading ? 'not-allowed' : 'pointer',
+                transition: 'all 0.15s',
+                whiteSpace: 'nowrap',
+                fontWeight: 700,
+              }}
+              onMouseOver={(e) => { if (!loading) { e.currentTarget.style.background = C.teal; e.currentTarget.style.borderColor = C.teal } }}
+              onMouseOut={(e) => { if (!loading) { e.currentTarget.style.background = C.tealLight; e.currentTarget.style.borderColor = C.tealLight } }}
+            >
+              {loading ? 'LOADING...' : 'START FREE TRIAL →'}
+            </button>
+          </div>
+
+          {error && (
+            <p style={{ fontFamily: 'monospace', fontSize: 11, color: '#8A0303', marginTop: 10 }}>◈ {error}</p>
+          )}
+
+          <p style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, marginTop: 14, letterSpacing: '0.1em' }}>
+            14-day free trial · then $9.99/month · cancel anytime · secured by Stripe
+          </p>
         </div>
 
-        {/* Footer note */}
-        <div
-          style={{
-            marginTop: 48,
-            paddingTop: 24,
-            borderTop: `1px solid ${C.border}`,
-            fontFamily: 'monospace',
-            fontSize: 11,
-            color: C.textDim,
-            lineHeight: 1.7,
-          }}
-        >
+        {/* Divider */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '48px 0 36px' }}>
+          <div style={{ flex: 1, height: 1, background: C.border }} />
+          <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, letterSpacing: '0.25em' }}>ALSO AVAILABLE</div>
+          <div style={{ flex: 1, height: 1, background: C.border }} />
+        </div>
+
+        {/* Guide card */}
+        <div style={{ background: C.surface, border: `1px solid ${C.borderAccent}`, padding: '28px 32px 28px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 24, flexWrap: 'wrap' }}>
+            <div style={{ flex: 1, minWidth: 260 }}>
+              <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.tealLight, letterSpacing: '0.22em', border: `1px solid ${C.tealLight}`, display: 'inline-block', padding: '2px 8px', marginBottom: 14 }}>
+                ONE-TIME PURCHASE
+              </div>
+              <h2 style={{ fontFamily: 'monospace', fontSize: 18, fontWeight: 700, color: C.text, letterSpacing: '0.06em', marginBottom: 10, lineHeight: 1.3 }}>
+                Dark Psychology Defense Guide
+              </h2>
+              <p style={{ fontFamily: 'monospace', fontSize: 12, color: C.textDim, lineHeight: 1.7, marginBottom: 18 }}>
+                A field manual for recognizing covert manipulation, narcissistic abuse patterns, and dark triad behavior — grounded in neuroscience and clinical psychology research.
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 20px' }}>
+                {GUIDE_FEATURES.map((f) => (
+                  <li key={f} style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.6, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                    <span style={{ color: C.tealLight, flexShrink: 0 }}>◈</span>{f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 12, flexShrink: 0 }}>
+              <div>
+                <span style={{ fontFamily: 'monospace', fontSize: 32, fontWeight: 700, color: C.text }}>$27</span>
+                <span style={{ fontFamily: 'monospace', fontSize: 11, color: C.textDim, marginLeft: 6 }}>one-time</span>
+              </div>
+              {guideError && (
+                <p style={{ fontFamily: 'monospace', fontSize: 11, color: '#8A0303', textAlign: 'right' }}>◈ {guideError}</p>
+              )}
+              <button
+                onClick={handleGuide}
+                disabled={guideLoading}
+                style={{ fontFamily: 'monospace', fontSize: 11, letterSpacing: '0.18em', color: guideLoading ? C.textDim : C.bg, background: guideLoading ? C.surface2 : C.tealLight, border: `1px solid ${guideLoading ? C.border : C.tealLight}`, padding: '10px 24px', cursor: guideLoading ? 'not-allowed' : 'pointer', transition: 'all 0.15s', whiteSpace: 'nowrap' }}
+                onMouseOver={(e) => { if (!guideLoading) { e.currentTarget.style.background = C.teal; e.currentTarget.style.borderColor = C.teal } }}
+                onMouseOut={(e) => { if (!guideLoading) { e.currentTarget.style.background = C.tealLight; e.currentTarget.style.borderColor = C.tealLight } }}
+              >
+                {guideLoading ? 'REDIRECTING...' : 'GET THE GUIDE →'}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div style={{ marginTop: 48, paddingTop: 24, borderTop: `1px solid ${C.border}`, fontFamily: 'monospace', fontSize: 11, color: C.textDim, lineHeight: 1.7 }}>
           <span style={{ color: C.tealLight }}>◈</span> All transactions processed securely via Stripe.{' '}
-          <Link href="/" style={{ color: C.textDim, textDecoration: 'underline' }}>
-            ← Back to home
-          </Link>
+          <Link href="/" style={{ color: C.textDim, textDecoration: 'underline' }}>← Back to home</Link>
         </div>
       </div>
     </main>

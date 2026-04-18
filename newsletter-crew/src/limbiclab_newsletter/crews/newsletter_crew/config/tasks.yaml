@@ -1,0 +1,58 @@
+research_task:
+  description: >
+    Conduct thorough research about {topic} in the context of neuroscience
+    and psychiatry. Search for:
+    - Recent peer-reviewed studies (2023–2026)
+    - Clinical findings and mechanistic discoveries
+    - Emerging treatments or research directions
+    - Relevant statistics and epidemiological data
+    - Named researchers or institutions doing notable work
+
+    The current year is 2026. Focus on what is new, surprising, or
+    mechanistically important — not just what is well-known.
+  expected_output: >
+    A structured research brief in markdown with:
+    1. HEADLINE FINDING — the single most important new development
+    2. KEY RESEARCH — 3-5 specific studies or findings with details
+    3. MECHANISM — the biological/neurological mechanism at the core
+    4. STATISTICS — relevant numbers, prevalence, effect sizes
+    5. IMPLICATIONS — what this means clinically or scientifically
+    6. SOURCES — every claim linked to a named study or institution
+
+    Aim for 600-900 words. No fabricated citations.
+  agent: researcher
+  output_file: output/research_brief.md
+
+newsletter_task:
+  description: >
+    Using the research brief provided, write this week's LimbicLab
+    newsletter dispatch on the topic: {topic}.
+
+    VOICE AND STYLE:
+    - Graduate-level — assume the reader has a science background
+    - Dark, precise, clinical — like a forensic scientist writing prose
+    - Every major claim must have a citation in parentheses
+    - Open with a single striking sentence that reframes the topic
+    - Use section headers in ALL CAPS
+    - End with a "THIS WEEK'S CITATION" — one key paper formatted properly
+
+    STRUCTURE:
+    1. Opening hook (1-2 sentences — the most surprising finding)
+    2. THE BIOLOGY — mechanistic explanation (150-200 words)
+    3. WHAT THE RESEARCH SHOWS — 2-3 key findings with citations (200-250 words)
+    4. CLINICAL IMPLICATIONS — what this means for treatment or understanding (100-150 words)
+    5. THIS WEEK'S CITATION — one paper, properly formatted
+    6. Footer: "LimbicLab · limbiclab.com · Unsubscribe"
+
+    Format the final output as clean HTML email, using inline styles only
+    (no external CSS — email clients strip it). Dark background #0a0a0a,
+    text #e0e0e0, accent color #2a9d9d, monospace font stack.
+  expected_output: >
+    A complete HTML email newsletter, ready to send via Resend or SendGrid.
+    Inline styles only. Dark theme. 500-700 words of body content.
+    Proper HTML structure with <html>, <head>, <body> tags.
+    Must include the LimbicLab footer with unsubscribe link placeholder.
+  agent: newsletter_writer
+  context:
+    - research_task
+  output_file: output/newsletter.html

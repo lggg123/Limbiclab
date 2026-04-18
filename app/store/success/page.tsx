@@ -19,6 +19,7 @@ export default async function StoreSuccessPage({
   const { type } = await searchParams
   const isGuide = type === 'guide'
   const isMembership = type === 'membership'
+  const isNewsletter = type === 'newsletter'
 
   return (
     <main
@@ -121,7 +122,36 @@ export default async function StoreSuccessPage({
           </>
         )}
 
-        {!isGuide && !isMembership && (
+        {isNewsletter && (
+          <>
+            <h1
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 20,
+                fontWeight: 700,
+                color: C.text,
+                letterSpacing: '0.06em',
+                marginBottom: 14,
+              }}
+            >
+              YOU&apos;RE SUBSCRIBED
+            </h1>
+            <p
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 12,
+                color: C.textDim,
+                lineHeight: 1.8,
+                marginBottom: 28,
+              }}
+            >
+              Welcome to the LimbicLab Newsletter. Your first dispatch will arrive next week.
+              Check your inbox for a confirmation email.
+            </p>
+          </>
+        )}
+
+        {!isGuide && !isMembership && !isNewsletter && (
           <>
             <h1
               style={{

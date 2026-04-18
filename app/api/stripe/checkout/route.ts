@@ -9,7 +9,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 
 export async function POST(req: NextRequest) {
   try {
-    const { product } = await req.json()
+    const { product, email } = await req.json()
 
     if (product === 'guide') {
       const priceId = process.env.STRIPE_PRICE_GUIDE
@@ -33,24 +33,26 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ url: session.url })
     }
 
-    if (product === 'membership') {
-      const priceId = process.env.STRIPE_PRICE_MEMBERSHIP
+    if (product === 'newsletter') {
+      const priceId = process.env.STRIPE_PRICE_NEWSLETTER
       const session = await stripe.checkout.sessions.create({
         mode: 'subscription',
+        ...(email ? { customer_email: email } : {}),
+        subscription_data: { trial_period_days: 14 },
         line_items: [
           priceId
             ? { price: priceId, quantity: 1 }
             : {
                 price_data: {
                   currency: 'usd',
-                  product_data: { name: 'Limbic Intel Monthly' },
+                  product: 'prod_UMPGewjGqaN2VR',
                   recurring: { interval: 'month' },
                   unit_amount: 999,
                 },
                 quantity: 1,
               },
         ],
-        success_url: `${BASE_URL}/store/success?type=membership`,
+        success_url: `${BASE_URL}/store/success?type=newsletter`,
         cancel_url: `${BASE_URL}/store`,
       })
       return NextResponse.json({ url: session.url })
