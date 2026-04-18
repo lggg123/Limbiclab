@@ -1041,4 +1041,93 @@ export const RITUALS: RitualEntry[] = [
   },
 ]
 
+// ── Ritual Symbolism ───────────────────────────────────────────────────────────
+
+export interface SymbolEntry {
+  id: string
+  name: string
+  altNames: string[]
+  origin: string
+  commonMisconception: string
+  actualMeaning: string
+  psychologicalFunction: string
+  neurologicalProfile: string
+  usedBy: string[]
+  evidenceLevel: 'strong' | 'moderate' | 'limited' | 'contested'
+  sources: string[]
+  tags: string[]
+}
+
+export const SYMBOLS: SymbolEntry[] = [
+  {
+    id: 'inverted-cross',
+    name: 'Inverted Cross',
+    altNames: ['Cross of Saint Peter', 'Petrine Cross'],
+    origin:
+      'Roman crucifixion of Saint Peter (~64 CE). Peter requested to be crucified upside-down, declaring himself unworthy to die as Christ did. The symbol was exclusively Catholic for ~1,900 years before being adopted as anti-Christian iconography in the 20th century.',
+    commonMisconception: 'Universally a symbol of Satanism or anti-Christianity.',
+    actualMeaning:
+      'Humility and unworthiness before God in Catholic tradition. In modern Satanism/occultism, reappropriated as inversion of Christian authority — a deliberate transgression symbol.',
+    psychologicalFunction:
+      'Transgression and identity differentiation. Using a symbol with loaded cultural weight activates the amygdala threat-response in observers while providing the user with in-group identity formation and perceived power through taboo violation.',
+    neurologicalProfile:
+      'Viewing culturally-loaded taboo symbols activates prefrontal-amygdala circuits. For practitioners, repeated exposure paired with ritual context can shift valence from aversion to affiliation via classical conditioning (dopamine-mediated reward).',
+    usedBy: ['Roman Catholicism (original)', 'Theistic Satanism', 'LaVeyan Satanism', 'Heavy metal subculture'],
+    evidenceLevel: 'strong',
+    sources: [
+      'Eusebius of Caesarea, Ecclesiastical History, III.1 (~313 CE)',
+      'Kosloski, P. (2018). "The surprising origin of the upside-down cross." Aleteia.',
+      'Introvigne, M. (2016). Satanism: A Social History. Brill.',
+    ],
+    tags: ['Inversion', 'Catholic origin', 'Transgression', 'Identity', 'Reappropriation'],
+  },
+  {
+    id: 'pentagram',
+    name: 'Pentagram / Sigil of Baphomet',
+    altNames: ['Inverted Pentagram', 'Baphomet Sigil', 'Goat of Mendes'],
+    origin:
+      'The pentagram (upright) was used in ancient Mesopotamia (~3000 BCE), Pythagorean mathematics, medieval Christianity (the five wounds of Christ), and Freemasonry. The inverted pentagram appears in Eliphas Lévi\'s 1854 "Dogme et Rituel de la Haute Magie" as a symbol of "the goat of the sabbath." Anton LaVey incorporated the Baphomet goat-head variant into the Church of Satan\'s official seal in 1966.',
+    commonMisconception:
+      'Always a Satanic symbol. In reality the upright five-pointed star is used in Christianity, Wicca, and national flags (US, Morocco, etc.).',
+    actualMeaning:
+      'Upright: balance, the five elements, divine protection. Inverted with goat head (Baphomet): duality, the material over the spiritual, rejection of hierarchical religious authority. LaVeyan usage emphasizes individualism and carnal indulgence as sacred.',
+    psychologicalFunction:
+      'Functions as an identity badge and boundary marker. The explicit inversion of a recognized sacred symbol is a deliberate act of othering — establishing in-group cohesion through shared transgression. For theistic practitioners, believed to channel Baphomet as an archetype of hidden knowledge.',
+    neurologicalProfile:
+      'Sacred/taboo symbols processed in the ventromedial prefrontal cortex and fusiform gyrus (object recognition overlaid with social meaning). Consistent ritual exposure to a symbol paired with emotional states (fear, awe, excitement) strengthens associative memory traces via the hippocampus and amygdala.',
+    usedBy: ['Church of Satan', 'Theistic Satanism', 'Wicca (upright variant)', 'Medieval Christianity (upright variant)'],
+    evidenceLevel: 'strong',
+    sources: [
+      'Lévi, E. (1854). Dogme et Rituel de la Haute Magie. Paris: Germer Baillière.',
+      'LaVey, A. S. (1969). The Satanic Bible. Avon Books.',
+      'Goodrick-Clarke, N. (2008). The Western Esoteric Traditions. Oxford University Press.',
+    ],
+    tags: ['Baphomet', 'LaVey', 'Inversion', 'Dual meaning', 'Identity', 'Historical'],
+  },
+  {
+    id: 'black-mass-symbolism',
+    name: 'Black Mass — Symbolic Structure',
+    altNames: ['Missa Nigra', 'Sabbatic Mass'],
+    origin:
+      'First documented descriptions emerge in 17th-century French inquisition records (the "Affair of the Poisons," 1677–82). Most early accounts are inquisitorial confessions extracted under torture and considered historically unreliable. The ritualized modern form was systematized by Joris-Karl Huysmans\' 1891 novel Là-Bas and later codified by Aleister Crowley and Anton LaVey.',
+    commonMisconception:
+      'A widespread practice involving animal/human sacrifice common to all Satanists.',
+    actualMeaning:
+      'A theatrical inversion of the Catholic Mass — every element reversed (backwards Latin, inverted cross on altar, host desecration). Functions as psychodrama: a deliberate deconstruction of religious conditioning. LaVey explicitly described it as "intellectual decompression" — a ritual for purging guilt instilled by religious upbringing.',
+    psychologicalFunction:
+      'Cathartic transgression. Breaking deeply conditioned prohibitions in a controlled ritual context can produce intense emotional release. The ceremony leverages the brain\'s violation-of-expectation response (anterior cingulate cortex) for psychological effect. For ex-religious participants, it serves as a deconditioning mechanism.',
+    neurologicalProfile:
+      'Deliberate norm violation in a safe ritual context activates the ACC (conflict monitoring) and orbitofrontal cortex. When paired with group participation and sensory stimulation (candlelight, music, incense), the ritual triggers social bonding neurochemistry (oxytocin, endorphins) alongside the transgression response.',
+    usedBy: ['Theistic Satanism', 'LaVeyan Satanism (psychodrama context)', 'Historical occultism'],
+    evidenceLevel: 'moderate',
+    sources: [
+      'Huysmans, J.-K. (1891). Là-Bas. Paris: Tresse & Stock.',
+      'LaVey, A. S. (1969). The Satanic Bible. Avon Books.',
+      'Medway, G. (2001). Lure of the Sinister: The Unnatural History of Satanism. NYU Press.',
+      'Somerset, A. (1997). The Affair of the Poisons. Weidenfeld & Nicolson.',
+    ],
+    tags: ['Inversion', 'Psychodrama', 'Catholic parody', 'Catharsis', 'Historical', 'LaVey'],
+  },
+]
+
 export const RITUAL_DANGER_NOTE = `Danger levels reflect the assessed psychological and physical harm potential based on clinical literature, forensic documentation, and neurological mechanisms. "Extreme" indicates documented irreversible psychological or physical harm. "High" indicates significant risk of trauma, psychosis, or self-harm. "Moderate" indicates manageable risk in consenting adults with psychological stability. "Low" indicates minimal direct harm risk. All ratings are clinical assessments, not supernatural evaluations.`

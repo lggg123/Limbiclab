@@ -19,7 +19,9 @@ import {
   EVIDENCE_CAVEAT,
   RITUALS,
   RITUAL_DANGER_NOTE,
+  SYMBOLS,
   type RitualEntry,
+  type SymbolEntry,
 } from '@/lib/satanismResearchData'
 
 // ── Colour tokens ─────────────────────────────────────────────────────────────
@@ -52,7 +54,8 @@ const SECTION_NAV = [
   { id: 'genes',       label: '06 Epigenetics'         },
   { id: 'recovery',    label: '07 Recovery'            },
   { id: 'rituals',     label: '08 Rituals'             },
-  { id: 'bibliography',label: '09 Bibliography'        },
+  { id: 'symbolism',    label: '09 Symbolism'           },
+  { id: 'bibliography', label: '10 Bibliography'        },
 ]
 
 const DANGER_COLORS: Record<string, string> = {
@@ -920,14 +923,147 @@ function RecoverySection() {
   )
 }
 
-// ── Section 8 Bibliography ────────────────────────────────────────────────────
+// ── Section 9 Symbolism ───────────────────────────────────────────────────────
+
+function SymbolCard({ symbol }: { symbol: SymbolEntry }) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <Panel accent>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        style={{
+          width: '100%', background: 'none', border: 'none', cursor: 'pointer',
+          display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
+          gap: 12, padding: 0, marginBottom: 10,
+        }}
+      >
+        <div style={{ textAlign: 'left' }}>
+          <div style={{ fontFamily: 'monospace', fontSize: 14, fontWeight: 700, color: C.text, letterSpacing: '0.06em', marginBottom: 4 }}>
+            {symbol.name}
+          </div>
+          <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, letterSpacing: '0.1em' }}>
+            {symbol.altNames.join(' · ')}
+          </div>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+          <EvidenceBadge level={symbol.evidenceLevel} />
+          <span style={{ fontFamily: 'monospace', fontSize: 10, color: C.crimson }}>{isOpen ? '▲' : '▼'}</span>
+        </div>
+      </button>
+
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: isOpen ? 18 : 0 }}>
+        {symbol.tags.map(t => <Tag key={t} label={t} color={C.teal} />)}
+      </div>
+
+      {isOpen && (
+        <div style={{ marginTop: 4 }}>
+          {/* Misconception vs Actual */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 18 }}>
+            <div style={{ background: '#1a0303', border: `1px solid ${C.crimsonDim}`, padding: '12px 14px' }}>
+              <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.crimson, letterSpacing: '0.18em', marginBottom: 6 }}>
+                ✗ COMMON MISCONCEPTION
+              </div>
+              <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.7, margin: 0 }}>
+                {symbol.commonMisconception}
+              </p>
+            </div>
+            <div style={{ background: '#031a1a', border: `1px solid ${C.teal}`, padding: '12px 14px' }}>
+              <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.tealLight, letterSpacing: '0.18em', marginBottom: 6 }}>
+                ◈ ACTUAL MEANING
+              </div>
+              <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.7, margin: 0 }}>
+                {symbol.actualMeaning}
+              </p>
+            </div>
+          </div>
+
+          {/* Origin */}
+          <div style={{ marginBottom: 14 }}>
+            <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.gold, letterSpacing: '0.18em', marginBottom: 6 }}>
+              HISTORICAL ORIGIN //
+            </div>
+            <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textDim, lineHeight: 1.8, margin: 0 }}>
+              {symbol.origin}
+            </p>
+          </div>
+
+          {/* Psychological Function */}
+          <div style={{ marginBottom: 14 }}>
+            <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.gold, letterSpacing: '0.18em', marginBottom: 6 }}>
+              PSYCHOLOGICAL FUNCTION //
+            </div>
+            <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textDim, lineHeight: 1.8, margin: 0 }}>
+              {symbol.psychologicalFunction}
+            </p>
+          </div>
+
+          {/* Neurological Profile */}
+          <div style={{ marginBottom: 14 }}>
+            <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.gold, letterSpacing: '0.18em', marginBottom: 6 }}>
+              NEUROLOGICAL PROFILE //
+            </div>
+            <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textDim, lineHeight: 1.8, margin: 0 }}>
+              {symbol.neurologicalProfile}
+            </p>
+          </div>
+
+          {/* Used By */}
+          <div style={{ marginBottom: 14 }}>
+            <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.textDim, letterSpacing: '0.18em', marginBottom: 8 }}>
+              USED BY //
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {symbol.usedBy.map(u => (
+                <span key={u} style={{ fontFamily: 'monospace', fontSize: 10, color: C.textMid, border: `1px solid ${C.border}`, padding: '2px 8px' }}>
+                  {u}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Sources */}
+          <div>
+            <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.textDim, letterSpacing: '0.18em', marginBottom: 8 }}>
+              SOURCES //
+            </div>
+            {symbol.sources.map((s, i) => (
+              <div key={i} style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, lineHeight: 1.7, paddingLeft: 12, position: 'relative', marginBottom: 2 }}>
+                <span style={{ position: 'absolute', left: 0, color: C.crimsonDim }}>›</span>
+                {s}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </Panel>
+  )
+}
+
+function SymbolismSection() {
+  return (
+    <section style={{ marginBottom: 0 }}>
+      <SectionHeader
+        id="symbolism"
+        number="09"
+        title="RITUAL SYMBOLISM & SACRED INVERSION"
+        subtitle="The actual origins, meanings, and psychological functions of core Satanic symbols — separated from media mythology. Each entry contrasts common misconception with historical record and neurological analysis."
+      />
+      {SYMBOLS.map(symbol => (
+        <SymbolCard key={symbol.id} symbol={symbol} />
+      ))}
+    </section>
+  )
+}
+
+// ── Section 10 Bibliography ───────────────────────────────────────────────────
 
 function BibliographySection() {
   return (
     <div>
       <SectionHeader
         id="bibliography"
-        number="09"
+        number="10"
         title="BIBLIOGRAPHY"
         subtitle="Primary sources cited throughout this analysis. Peer-reviewed where available. Evidence quality varies — see Section 04 methodological caveat."
       />
@@ -1252,6 +1388,7 @@ export default function SatanismResearchDashboard() {
           <GeneticsSection />
           <RecoverySection />
           <RitualsSection />
+          <SymbolismSection />
           <BibliographySection />
         </div>
       </div>

@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { href: '/bipolar',           label: 'Bipolar'      },
   { href: '/environmental-disorders', label: 'Environ.'  },
   { href: '/ebook',             label: 'E-Book'       },
+  { href: '/store',             label: 'Store'        },
 ]
 
 export function Navbar() {
