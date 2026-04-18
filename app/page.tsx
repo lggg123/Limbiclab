@@ -54,6 +54,12 @@ export default function HomePage() {
           <Button asChild variant="outline" size="lg">
             <Link href="/case-analysis#dissociative-deafness">Dissociative Deafness</Link>
           </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link href="/profile">Psychological Profile</Link>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link href="/satanism-research">Satanism — Neuro Profile</Link>
+          </Button>
         </div>
       </section>
 
