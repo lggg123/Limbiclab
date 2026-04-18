@@ -51,7 +51,7 @@ function SectionHeader({ id, number, title, subtitle }: { id: string; number: st
   return (
     <div id={id} className="mb-8 pt-2">
       <div style={{ fontFamily: 'monospace', fontSize: 11, color: C.crimson, letterSpacing: '0.22em', marginBottom: 6 }}>
-        SECTION {number} //
+        {`SECTION ${number} //`}
       </div>
       <h2 style={{ fontFamily: 'monospace', fontSize: 22, fontWeight: 700, color: C.text, letterSpacing: '0.08em', marginBottom: 8 }}>
         {title}
@@ -716,7 +716,7 @@ export default function SatanismResearchDashboard() {
             ◈ ACADEMIC DISCLAIMER
           </div>
           <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textDim, lineHeight: 1.8, margin: 0 }}>
-            This analysis examines Satanism through neuroscience, psychology, and philosophy as an academic research framework — analogous to studying any other belief system's neurological correlates. It does not constitute a religious or political endorsement or condemnation. Citations are provided for verification. Research specific to Satanism is sparse; mechanisms are often extrapolated from broader stress, trauma, and psychology literature.
+            This analysis examines Satanism through neuroscience, psychology, and philosophy as an academic research framework — analogous to studying any other belief system&apos;s neurological correlates. It does not constitute a religious or political endorsement or condemnation. Citations are provided for verification. Research specific to Satanism is sparse; mechanisms are often extrapolated from broader stress, trauma, and psychology literature.
           </p>
         </div>
 

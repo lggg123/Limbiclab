@@ -258,10 +258,10 @@ export default function PsychologicalProfile() {
                 className="text-xs leading-loose tracking-widest"
                 style={{ color: '#E0E0E0', opacity: 0.45 }}
               >
-                "THE MECHANISM DOES NOT FEEL. IT CALCULATES. EVERY CONVULSION IS A
+                &quot;THE MECHANISM DOES NOT FEEL. IT CALCULATES. EVERY CONVULSION IS A
                 TRANSACTION. EVERY SILENCE IS A VERDICT. THE GAZE REMAINS FIXED — NOT
                 FROM ATTENTION, BUT FROM PREDATORY ASSESSMENT. INDIFFERENCE IS THE
-                HIGHEST FORM OF CONTEMPT."
+                HIGHEST FORM OF CONTEMPT.&quot;
               </p>
             </div>
 
