@@ -44,31 +44,26 @@ export default function OGImage() {
           <div key={i} style={{ position: 'absolute', ...pos, width: 18, height: 18, borderTop: i < 2 ? '2px solid #8A0303' : 'none', borderBottom: i >= 2 ? '2px solid #8A0303' : 'none', borderLeft: i % 2 === 0 ? '2px solid #8A0303' : 'none', borderRight: i % 2 === 1 ? '2px solid #8A0303' : 'none' }} />
         ))}
 
-        {/* Left: large inverted cross (Peter's Cross) watermark */}
+        {/* Left: large metallic inverted cross watermark */}
         <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 200 300"
           width="260"
           height="390"
-          viewBox="0 0 48 72"
-          fill="none"
-          style={{ position: 'absolute', left: -60, top: '50%', transform: 'translateY(-50%)', opacity: 0.07 }}
+          style={{ position: 'absolute', left: -60, top: '50%', transform: 'translateY(-50%)', opacity: 0.1 }}
         >
-          {/* Vertical bar */}
-          <rect x="20.5" y="0" width="7" height="72" rx="1.5" fill="#8A0303" />
-          {/* Horizontal bar — lower third (Peter's cross) */}
-          <rect x="0" y="51" width="48" height="7" rx="1.5" fill="#8A0303" />
-          {/* Legs splayed upward */}
-          <line x1="24" y1="7" x2="14" y2="0" stroke="#8A0303" strokeWidth="3.5" strokeLinecap="round" />
-          <line x1="24" y1="7" x2="34" y2="0" stroke="#8A0303" strokeWidth="3.5" strokeLinecap="round" />
-          <circle cx="24" cy="8" r="3" fill="#8A0303" />
-          {/* Torso */}
-          <path d="M17 14 C17 14 14 18 14 28 C14 38 17 46 20.5 48 L20.5 51 L27.5 51 L27.5 48 C31 46 34 38 34 28 C34 18 31 14 31 14 Z" fill="#8A0303" />
-          {/* Arms */}
-          <line x1="14" y1="38" x2="1"  y2="51" stroke="#8A0303" strokeWidth="3.5" strokeLinecap="round" />
-          <line x1="34" y1="38" x2="47" y2="51" stroke="#8A0303" strokeWidth="3.5" strokeLinecap="round" />
-          {/* Severed neck void */}
-          <rect x="20" y="47" width="8" height="5" fill="#020202" />
-          {/* Blood drip */}
-          <path d="M24 58 Q22.5 62 23 65 Q23.5 68 24 68 Q24.5 68 25 65 Q25.5 62 24 58 Z" fill="#8A0303" opacity="0.85" />
+          <defs>
+            <linearGradient id="mg2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   style={{ stopColor: '#888888', stopOpacity: 1 }} />
+              <stop offset="40%"  style={{ stopColor: '#cccccc', stopOpacity: 1 }} />
+              <stop offset="60%"  style={{ stopColor: '#aaaaaa', stopOpacity: 1 }} />
+              <stop offset="100%" style={{ stopColor: '#555555', stopOpacity: 1 }} />
+            </linearGradient>
+          </defs>
+          <rect x="85" y="40" width="30" height="220" fill="url(#mg2)" rx="2" ry="2" />
+          <rect x="30" y="190" width="140" height="30" fill="url(#mg2)" rx="2" ry="2" />
+          <rect x="85" y="40" width="4" height="220" fill="#dddddd" opacity="0.3" rx="1" />
+          <rect x="30" y="190" width="140" height="4" fill="#dddddd" opacity="0.3" rx="1" />
         </svg>
 
         {/* Right content */}
