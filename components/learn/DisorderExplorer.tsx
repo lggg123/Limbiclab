@@ -125,10 +125,14 @@ export function DisorderExplorer({ profiles, psychoticDomains }: DisorderExplore
         <div className="mb-4">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
             <div className="flex-1">
-              <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <label
+                htmlFor="disorder-search"
+                className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+              >
                 Search by disorder name or keyword
               </label>
               <input
+                id="disorder-search"
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}

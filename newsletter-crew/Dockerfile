@@ -18,8 +18,8 @@ COPY . .
 # Create output directory
 RUN mkdir -p output
 
-# Expose port (Railway sets PORT env var)
+# Expose default port; Gunicorn reads PORT at runtime
 EXPOSE 8080
 
 # Run with gunicorn — 1 worker because crew runs in a background thread
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080", "--workers", "1", "--threads", "4", "--timeout", "600"]
+CMD ["gunicorn", "app:app", "-c", "gunicorn.conf.py"]
