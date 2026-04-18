@@ -16,7 +16,7 @@ create table if not exists public.newsletter_subscribers (
   email citext not null unique,
   product text not null default 'newsletter' check (product = 'newsletter'),
   status text not null default 'pending' check (
-    status in ('pending', 'trialing', 'active', 'past_due', 'canceled', 'unpaid', 'incomplete', 'incomplete_expired')
+    status in ('pending', 'trialing', 'active', 'past_due', 'canceled', 'unpaid', 'incomplete', 'incomplete_expired', 'paused')
   ),
   stripe_customer_id text unique,
   stripe_subscription_id text unique,
