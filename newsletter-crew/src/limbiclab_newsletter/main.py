@@ -22,12 +22,20 @@ class NewsletterFlowState(BaseModel):
     research: str = ""
     newsletter_html: str = ""
     week_number: int = 0
+    store_url: str = ""
 
 
 class LimbicLabNewsletterFlow(Flow[NewsletterFlowState]):
 
     @start()
     def prepare_topic(self, crewai_trigger_payload: dict | None = None):
+        base_url = (
+            os.getenv("LIMBICLAB_SITE_URL")
+            or os.getenv("NEXT_PUBLIC_BASE_URL")
+            or "https://limbiclab.com"
+        ).rstrip("/")
+        self.state.store_url = f"{base_url}/store"
+
         if crewai_trigger_payload and crewai_trigger_payload.get("topic"):
             self.state.topic = crewai_trigger_payload["topic"]
         else:
@@ -41,7 +49,12 @@ class LimbicLabNewsletterFlow(Flow[NewsletterFlowState]):
 
     @listen(prepare_topic)
     def run_newsletter_crew(self):
-        result = NewsletterCrew().crew().kickoff(inputs={"topic": self.state.topic})
+        result = NewsletterCrew().crew().kickoff(
+            inputs={
+                "topic": self.state.topic,
+                "store_url": self.state.store_url,
+            }
+        )
         self.state.newsletter_html = result.raw
         print("[LimbicLab Newsletter] Crew finished.")
 

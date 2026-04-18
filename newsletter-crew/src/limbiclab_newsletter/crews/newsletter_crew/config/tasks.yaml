@@ -41,8 +41,11 @@ newsletter_task:
     2. THE BIOLOGY — mechanistic explanation (150-200 words)
     3. WHAT THE RESEARCH SHOWS — 2-3 key findings with citations (200-250 words)
     4. CLINICAL IMPLICATIONS — what this means for treatment or understanding (100-150 words)
-    5. THIS WEEK'S CITATION — one paper, properly formatted
-    6. Footer: "LimbicLab · limbiclab.com · Unsubscribe"
+    5. CALL TO ACTION — a short conversion section inviting the reader to start the
+       LimbicLab newsletter free trial with a styled button or link to {store_url}
+       using action-oriented copy such as "Start your 14-day free trial"
+    6. THIS WEEK'S CITATION — one paper, properly formatted
+    7. Footer: "LimbicLab · limbiclab.com · Unsubscribe"
 
     Format the final output as clean HTML email, using inline styles only
     (no external CSS — email clients strip it). Dark background #0a0a0a,
@@ -51,7 +54,8 @@ newsletter_task:
     A complete HTML email newsletter, ready to send via Resend or SendGrid.
     Inline styles only. Dark theme. 500-700 words of body content.
     Proper HTML structure with <html>, <head>, <body> tags.
-    Must include the LimbicLab footer with unsubscribe link placeholder.
+    Must include a clickable CTA link to {store_url} and the LimbicLab footer
+    with unsubscribe link placeholder.
   agent: newsletter_writer
   context:
     - research_task
