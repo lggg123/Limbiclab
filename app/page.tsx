@@ -146,17 +146,19 @@ export default function HomePage() {
           {/* Satanism Research Card */}
           <Link href="/satanism-research" className="group block no-underline">
             <div className="relative overflow-hidden rounded-none border border-border bg-card p-6 transition-all duration-300 group-hover:border-[#8A0303]/60 group-hover:bg-[#0d0505]">
-              {/* Background symbol — inverted pentagram */}
               <div className="pointer-events-none absolute right-4 top-4 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" stroke="#8A0303" strokeWidth="1">
-                  <polygon points="50,5 20,90 95,35 5,35 80,90" strokeLinejoin="round" />
-                  <circle cx="50" cy="50" r="48" />
+                <svg width="80" height="80" viewBox="0 0 200 300">
+                  <defs><linearGradient id="lc1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style={{ stopColor: '#888888' }} /><stop offset="40%" style={{ stopColor: '#cccccc' }} /><stop offset="100%" style={{ stopColor: '#555555' }} /></linearGradient></defs>
+                  <rect x="85" y="40" width="30" height="220" fill="url(#lc1)" rx="2" />
+                  <rect x="30" y="190" width="140" height="30" fill="url(#lc1)" rx="2" />
                 </svg>
               </div>
               <div className="mb-4 flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center border border-[#8A0303]/40 bg-[#8A0303]/10">
-                  <svg width="20" height="20" viewBox="0 0 100 100" fill="none" stroke="#8A0303" strokeWidth="5">
-                    <polygon points="50,5 20,90 95,35 5,35 80,90" strokeLinejoin="round" />
+                  <svg width="18" height="28" viewBox="0 0 200 300">
+                    <defs><linearGradient id="lc2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style={{ stopColor: '#888888' }} /><stop offset="40%" style={{ stopColor: '#cccccc' }} /><stop offset="100%" style={{ stopColor: '#555555' }} /></linearGradient></defs>
+                    <rect x="85" y="40" width="30" height="220" fill="url(#lc2)" rx="2" />
+                    <rect x="30" y="190" width="140" height="30" fill="url(#lc2)" rx="2" />
                   </svg>
                 </div>
                 <div>
@@ -171,6 +173,108 @@ export default function HomePage() {
               </p>
               <div className="mt-4 font-mono text-xs text-[#8A0303] group-hover:text-[#c00] transition-colors">
                 OPEN RESEARCH →
+              </div>
+            </div>
+          </Link>
+
+          {/* Bipolar Disorder Card */}
+          <Link href="/bipolar" className="group block no-underline">
+            <div className="relative overflow-hidden rounded-none border border-border bg-card p-6 transition-all duration-300 group-hover:border-[#2a9d9d]/60 group-hover:bg-[#030c0c]">
+              <div className="pointer-events-none absolute right-4 top-4 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" stroke="#2a9d9d" strokeWidth="1">
+                  <ellipse cx="50" cy="50" rx="45" ry="28" />
+                  <ellipse cx="50" cy="50" rx="28" ry="45" />
+                  <circle cx="50" cy="50" r="8" fill="#2a9d9d" fillOpacity="0.3" />
+                </svg>
+              </div>
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center border border-[#2a9d9d]/40 bg-[#2a9d9d]/10">
+                  <svg width="20" height="20" viewBox="0 0 100 100" fill="none" stroke="#2a9d9d" strokeWidth="6">
+                    <path d="M10 50 Q25 20 50 50 Q75 80 90 50" strokeLinecap="round" />
+                    <circle cx="50" cy="50" r="6" fill="#2a9d9d" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-mono text-xs tracking-widest text-[#2a9d9d]">DEEP RESEARCH</div>
+                  <h3 className="font-mono text-sm font-bold text-foreground tracking-wide">
+                    Bipolar Disorder
+                  </h3>
+                </div>
+              </div>
+              <p className="font-mono text-xs leading-relaxed text-muted-foreground">
+                Neuroimaging, circadian clock biology, lithium mechanism (GSK-3β), extended genetics (CACNA1C, ANK3), the creativity-bipolar link, and suicidality including Joiner&apos;s Interpersonal Theory.
+              </p>
+              <div className="mt-4 font-mono text-xs text-[#2a9d9d] group-hover:text-[#3bbfbf] transition-colors">
+                OPEN RESEARCH →
+              </div>
+            </div>
+          </Link>
+
+          {/* Environmental Disorders Card */}
+          <Link href="/environmental-disorders" className="group block no-underline">
+            <div className="relative overflow-hidden rounded-none border border-border bg-card p-6 transition-all duration-300 group-hover:border-[#d4a017]/60 group-hover:bg-[#0c0a02]">
+              <div className="pointer-events-none absolute right-4 top-4 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" stroke="#d4a017" strokeWidth="1">
+                  <path d="M50 10 L50 90 M10 50 L90 50" />
+                  <circle cx="50" cy="50" r="40" />
+                  <circle cx="50" cy="50" r="20" />
+                </svg>
+              </div>
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center border border-[#d4a017]/40 bg-[#d4a017]/10">
+                  <svg width="20" height="20" viewBox="0 0 100 100" fill="none" stroke="#d4a017" strokeWidth="6">
+                    <path d="M20 80 Q50 20 80 80" strokeLinecap="round" />
+                    <circle cx="50" cy="52" r="8" fill="#d4a017" fillOpacity="0.4" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-mono text-xs tracking-widest text-[#d4a017]">DEEP RESEARCH</div>
+                  <h3 className="font-mono text-sm font-bold text-foreground tracking-wide">
+                    Environmental Disorders
+                  </h3>
+                </div>
+              </div>
+              <p className="font-mono text-xs leading-relaxed text-muted-foreground">
+                ACEs, poverty neuroscience, racial trauma, climate grief, urban density, epigenetics of inherited trauma, suicidology, and evidence-based interventions (TF-CBT, EMDR, DBT, safety planning).
+              </p>
+              <div className="mt-4 font-mono text-xs text-[#d4a017] group-hover:text-[#f0b820] transition-colors">
+                OPEN RESEARCH →
+              </div>
+            </div>
+          </Link>
+
+          {/* E-Book Card */}
+          <Link href="/ebook" className="group block no-underline">
+            <div className="relative overflow-hidden rounded-none border border-border bg-card p-6 transition-all duration-300 group-hover:border-[#7c3aed]/60 group-hover:bg-[#080412]">
+              <div className="pointer-events-none absolute right-4 top-4 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" stroke="#7c3aed" strokeWidth="1">
+                  <rect x="15" y="10" width="70" height="80" rx="2" />
+                  <line x1="30" y1="30" x2="70" y2="30" />
+                  <line x1="30" y1="45" x2="70" y2="45" />
+                  <line x1="30" y1="60" x2="55" y2="60" />
+                </svg>
+              </div>
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center border border-[#7c3aed]/40 bg-[#7c3aed]/10">
+                  <svg width="18" height="22" viewBox="0 0 100 120" fill="none" stroke="#7c3aed" strokeWidth="7">
+                    <rect x="15" y="10" width="70" height="100" rx="3" />
+                    <line x1="30" y1="40" x2="70" y2="40" />
+                    <line x1="30" y1="60" x2="70" y2="60" />
+                    <line x1="30" y1="80" x2="55" y2="80" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-mono text-xs tracking-widest text-[#7c3aed]">E-BOOK · FREE DOWNLOAD</div>
+                  <h3 className="font-mono text-sm font-bold text-foreground tracking-wide">
+                    Neuroscience of the Dark
+                  </h3>
+                </div>
+              </div>
+              <p className="font-mono text-xs leading-relaxed text-muted-foreground">
+                Five-chapter research synthesis: bipolar oscillation, environmental trauma, ritual neuroscience, suicidality convergence, and the creative brain. Read in-browser or download as text.
+              </p>
+              <div className="mt-4 font-mono text-xs text-[#7c3aed] group-hover:text-[#9b5cf0] transition-colors">
+                READ / DOWNLOAD →
               </div>
             </div>
           </Link>

@@ -217,7 +217,7 @@ function CrossCanvas3D() {
 function GematriaTable({
   letters, total, isHebrew,
 }: {
-  letters: { letter: string; roman: string; value: number; word: string }[]
+  letters: { letter: string; roman?: string; value: number; word: string }[]
   total: number
   isHebrew: boolean
 }) {

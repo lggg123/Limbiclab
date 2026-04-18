@@ -10,6 +10,9 @@ const NAV_LINKS = [
   { href: '/case-analysis',     label: 'Case Analysis'},
   { href: '/profile',           label: 'Profile'      },
   { href: '/satanism-research', label: 'Satanism'     },
+  { href: '/bipolar',           label: 'Bipolar'      },
+  { href: '/environmental-disorders', label: 'Environ.'  },
+  { href: '/ebook',             label: 'E-Book'       },
 ]
 
 export function Navbar() {
