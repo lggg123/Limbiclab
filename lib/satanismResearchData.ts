@@ -524,3 +524,281 @@ export const BIBLIOGRAPHY: SatanismReference[] = [
 ]
 
 export const EVIDENCE_CAVEAT = `IMPORTANT METHODOLOGICAL NOTE: Research specifically on Satanism and neuroscience is sparse. Section 4 draws partly from the "Satanic Panic" era (1980s–1990s), during which many SRA claims were later found to be products of suggestive therapeutic techniques and moral panic rather than verified events (Lanning, 1992). The neurological and epigenetic mechanisms described are well-established in the general trauma and stress literature; their application to Satanic-specific contexts is extrapolated from those foundations. Where studies directly sample Satanists (e.g., Laythe et al., 2011; Šram, 2017), sample sizes are small. Readers should treat this as a theoretical framework and clinical hypothesis generator, not definitive epidemiology.`
+
+// ── Section 8: Rituals ────────────────────────────────────────────────────────
+
+export type RitualCategory = 'hate' | 'sense' | 'seance' | 'invocation' | 'pact' | 'sabbat' | 'necromantic' | 'mass'
+export type DangerLevel = 'extreme' | 'high' | 'moderate' | 'low'
+
+export interface RitualSense {
+  sense: string
+  stimulus: string
+  neurological: string
+}
+
+export interface RitualEntry {
+  id: string
+  name: string
+  category: RitualCategory
+  tradition: string
+  dangerLevel: DangerLevel
+  overview: string
+  historicalOrigin: string
+  howPerformed: string[]
+  sensoricProfile: RitualSense[]
+  neurologicalEffects: string
+  psychologicalFunction: string
+  documentedHarms: string
+  evidenceLevel: 'strong' | 'moderate' | 'limited' | 'contested'
+  sources: string[]
+  tags: string[]
+}
+
+export const RITUALS: RitualEntry[] = [
+  {
+    id: 'black-mass',
+    name: 'The Black Mass',
+    category: 'mass',
+    tradition: 'Theistic Satanism / Historical Occultism',
+    dangerLevel: 'high',
+    overview:
+      'The Black Mass is a deliberate inversion of the Catholic Tridentine Mass — every sacred element is perverted, reversed, or desecrated. Its documented history dates to 17th-century France. It functions as a structured deconstruction of the participant\'s internalized Judeo-Christian moral framework through ritualized transgression.',
+    historicalOrigin:
+      'Documented in the Affair of the Poisons (France, 1678–82) involving Catherine Monvoisin and reportedly performed for Madame de Montespan, mistress of Louis XIV. Crowley revived versions in the 20th century (Liber XV, the Gnostic Mass). LaVey incorporated psychodramatic elements. Contemporary O9A (Order of Nine Angles) practitioners conduct more extreme versions.',
+    howPerformed: [
+      'Ritual space is prepared inversely: altar faces West (toward the setting/dying sun) rather than East. A large inverted pentagram is displayed.',
+      'A "celebrant" plays the role of priest in black vestments or robes. A chalice (typically containing wine, occasionally blood in extreme variants) stands in for the Eucharist chalice.',
+      'The Lord\'s Prayer, Creed, and liturgical prayers are recited backward or in deliberate inversion. Latin phrases are reversed phonetically or semantically.',
+      'Desecration of consecrated hosts (Eucharist wafers) is the ritual climax in the traditional form — regarded as the ultimate transgression against Catholicism.',
+      'Sexual elements are frequently incorporated (historically; the celebrant\'s altar was a naked woman\'s body). In some variants, animal sacrifice or blood-letting concludes the rite.',
+      'The rite closes with an invocation of Satan or demonic entities, an oath of allegiance, and dismissal of participants.',
+    ],
+    sensoricProfile: [
+      { sense: 'Vision', stimulus: 'Inverted crosses, black candles, skulls, blood-red décor, inverted pentagram', neurological: 'Amygdala activation via threat-appraisal circuits; sustained dark imagery conditions threat-default perceptual set' },
+      { sense: 'Audition', stimulus: 'Backward speech, chanting in minor keys, bells tolled at the tritone (historically "diabolus in musica"), silence punctuated by sudden sound', neurological: 'Auditory cortex processes backward speech as novel/threatening; tritone activates mild acoustic startle reflex and noradrenergic arousal' },
+      { sense: 'Olfaction', stimulus: 'Sulfur (brimstone), black copal incense, decay-adjacent scents, sometimes blood', neurological: 'Olfaction bypasses the thalamus and directly activates the amygdala and hippocampus via the olfactory bulb — the most primitive and emotionally loaded sensory pathway; sulfur odor is a documented fear-conditioned stimulus' },
+      { sense: 'Taste', stimulus: 'Bitter herbs, wine, salt, sometimes blood', neurological: 'Gustatory cortex (insula) cross-activates with disgust circuitry; deliberate use of disgust-inducing tastes elevates cortisol and prepares participants for transgressive psychological territory' },
+      { sense: 'Touch', stimulus: 'Cold stone or metal surfaces, rough ritual robes, physical prostration, sometimes scarification', neurological: 'Somatosensory cortex activation; cold/pain stimuli trigger noradrenergic release; physical prostration activates the dorsal vagal complex, inducing submission-state phenomenology' },
+    ],
+    neurologicalEffects:
+      'The Black Mass is neurologically engineered — whether intentionally or through historical refinement — to maximize the disruption of the participant\'s moral-cognitive baseline. Inverted liturgy engages the PFC\'s cognitive dissonance circuitry, generating psychological discomfort that is then metabolized as "liberation." High arousal from transgression activates the mesolimbic dopamine system (transgression = reward). Olfactory sulfur directly activates amygdala fear memory. The cumulative effect across all senses is an altered state approximating drug-induced ego dissolution — the participant\'s internalized Catholic superego is structurally assaulted on every sensory channel simultaneously.',
+    psychologicalFunction:
+      'Primary function is identity deconstruction followed by re-inscription of a new identity. Participants who have internalized Catholic guilt are brought to the psychological edge of their most fundamental prohibitions, then cross them. If the experience is survived without immediate catastrophic consequence, it creates a powerful counter-conditioning effect against the original religious moral framework. Secondary function: group cohesion through shared transgression — the social psychology of in-group bonding is powerfully activated by collective law-breaking (shared deviance bonds).',
+    documentedHarms:
+      'Historical documentation includes psychological crisis, acute psychotic breaks in pre-disposed individuals, and trauma in coerced participants. Contemporary clinical literature documents PTSD-spectrum presentations in individuals who participated involuntarily. The desecration element specifically targets Catholic trauma survivors, making this ritual potentially re-traumatizing at a foundational level.',
+    evidenceLevel: 'moderate',
+    sources: ['Mandrou, R. (1968). Magistrats et Sorciers en France', 'Crowley, A. (1913). Liber XV — The Gnostic Mass', 'LaVey, A.S. (1969). The Satanic Rituals', 'Introvigne, M. (2016). Satanism: A Social History'],
+    tags: ['Theistic', 'Inversion', 'Catholic', 'Transgression', 'Historical', 'Sense Manipulation'],
+  },
+
+  {
+    id: 'destruction-ritual',
+    name: 'Destruction Ritual (The Hex / Curse)',
+    category: 'hate',
+    tradition: 'LaVeyan Satanism / Theistic Satanism',
+    dangerLevel: 'moderate',
+    overview:
+      'The Destruction Ritual is one of the three formal ritual types codified by Anton LaVey in The Satanic Bible (1969). It is a directed emotional working — a structured ceremony of hate — intended to bring harm, misfortune, or death to a specific enemy. LaVey framed it as "focused emotional catharsis channeled toward a target." In Theistic Satanism, it carries literal belief in demonic agency.',
+    historicalOrigin:
+      'Roots in ancient curse tablets (defixiones) documented across Greece, Rome, and Egypt (5th century BCE onward). Medieval European cursing magic (maleficium) served similar functions. LaVey systematized it philosophically: the destruction ritual is the formal enactment of "Do unto others as they do unto you — but do it first." O9A\'s "insight roles" sometimes include directed harm as spiritual practice.',
+    howPerformed: [
+      'The chamber is prepared with black candles arranged in an inverted pentagram configuration. The target\'s name, photograph, effigy (wax doll/poppet), or personal object is placed centrally on the altar.',
+      'The ritualist enters a state of maximum emotional intensity — the emotion of hatred, contempt, and desire for the target\'s destruction must be fully inhabited, not intellectualized. LaVey explicitly warns that half-hearted emotion produces no effect.',
+      'The Invocation of Destruction is recited — a formal address to Satan/the demonic hierarchy, specifying the target, the transgression, and the desired outcome.',
+      'The target\'s effigy or symbol may be stabbed, burned, or destroyed. Blood may be drawn from the ritualist as an offering.',
+      'Some practitioners write the target\'s name on parchment in blood or red ink, burn it, and scatter the ashes at a crossroads or the target\'s threshold.',
+      'The ritual closes with a formal declaration: "It is done. So it is." The emotional state is then deliberately released and the matter surrendered to the demonic.',
+    ],
+    sensoricProfile: [
+      { sense: 'Vision', stimulus: 'Target\'s photograph or effigy, black candles, inverted symbols, written curses', neurological: 'Visual cortex activates target-specific threat appraisal; sustained visual focus on target face activates fusiform face area + amygdala threat circuit, intensifying emotional activation' },
+      { sense: 'Audition', stimulus: 'Invocation spoken aloud with maximum emotional intensity, silence, bell tolled at end', neurological: 'Self-generated vocalization activates Broca\'s area and motor cortex; speaking hatred aloud increases emotional salience via auditory feedback loop to limbic system' },
+      { sense: 'Olfaction', stimulus: 'Black candle smoke, sulfur, iron (from blood)', neurological: 'Iron/blood scent activates atavistic predator-signaling circuits; paired with intense negative emotion, creates powerful conditioned olfactory-hatred association' },
+      { sense: 'Touch', stimulus: 'Burning or stabbing target effigy, heat from candles, blood-letting', neurological: 'Physical destruction of effigy engages motor cortex and may reduce cognitive inhibition on aggression via motor-emotional coupling; pain from blood-letting spikes norepinephrine and endorphin release simultaneously' },
+      { sense: 'Interoception', stimulus: 'Sustained rage state, elevated heart rate, physical trembling', neurological: 'Sustained emotional arousal elevates cortisol and epinephrine; interoceptive awareness of the body\'s rage state is interpreted as confirmation of ritual efficacy, creating a biofeedback loop' },
+    ],
+    neurologicalEffects:
+      'The destruction ritual is essentially a formalized procedure for maximally activating the threat-aggression circuit: amygdala → hypothalamus → periaqueductal gray → sympathetic nervous system. The ritual structure — preparation, invocation, climax, release — mirrors the neurological arousal cycle. The deliberate inhabiting of pure hatred produces one of the highest cortisol and norepinephrine spikes achievable through psychological means alone. LaVey\'s claim that the emotional release is cathartic is neurologically contested: catharsis theory has been largely refuted (Bushman, 2002) — expressing aggression tends to increase rather than decrease aggression pathways. Chronic use of destruction rituals likely sensitizes rather than purges the anger network.',
+    psychologicalFunction:
+      'Explicit function: directed aggression with perceived supernatural agency. The sensation that hatred has been given cosmic force provides psychological relief from powerlessness. Implicit function: the ritual externalizes responsibility — by directing harm through supernatural channels, the practitioner maintains ego-syntonic self-image ("I didn\'t harm them; the universe did"). This is a formalized externalization of locus of control for aggression.',
+    documentedHarms:
+      'For the ritualist: chronic activation of hatred circuitry has documented physical health consequences (elevated inflammatory markers, cardiovascular risk, immune suppression). No reliable evidence exists that destruction rituals cause harm to targets through supernatural means. Documented secondary harms: ritualists have committed actual physical violence against targets following ritual intensification of hatred, using the ritual narrative as psychological permission.',
+    evidenceLevel: 'moderate',
+    sources: ['LaVey, A.S. (1969). The Satanic Bible — Book of Belial', 'Bushman, B.J. (2002). Does venting anger feed or extinguish the flame? Personality and Social Psychology Bulletin', 'Stratford, L. (1988). Satan\'s Underground (SRA survivor account)'],
+    tags: ['LaVeyan', 'Hate Ritual', 'Directed Aggression', 'Cursing', 'Catharsis'],
+  },
+
+  {
+    id: 'seance',
+    name: 'Séance / Necromantic Communication Ritual',
+    category: 'seance',
+    tradition: 'Theistic Satanism / Luciferianism / Spiritualism (distinct but overlapping)',
+    dangerLevel: 'moderate',
+    overview:
+      'The séance (from French séance — "sitting") is a ritual attempt to communicate with the dead or with discarnate entities. In Satanic and dark occult contexts, séances specifically target demonic intelligences, deceased figures of power, or the practitioner\'s own ancestors for forbidden knowledge. The neurological literature documents clear altered-state and dissociative phenomena during séance conditions.',
+    historicalOrigin:
+      'Spiritualist séances were mainstreamed in 19th-century America following the Fox Sisters (1848). Dark occult séances diverged from Spiritualism by explicitly targeting demonic or malevolent entities. John Dee and Edward Kelley\'s Enochian communication sessions (1582–1587) — arguably the most documented pre-modern necromantic séance series — produced the Enochian language system. Aleister Crowley\'s Amalantrah Working and Liber 418 continue this tradition.',
+    howPerformed: [
+      'Participants form a circle, typically with linked hands, in near-total darkness or candlelight only. The circle is understood as both a protective boundary and a resonance chamber.',
+      'A "medium" or lead practitioner enters a light trance state via rhythmic breathing, chanting, or hyperventilation. In dark séances, the trance is deepened using sleep deprivation, fasting, or entheogenic substances in some traditions.',
+      'The target entity is named and invited. In Satanic variants this may be a specific demon (named from the Goetia or Ars Goetia hierarchies), a deceased occultist, or Satan himself.',
+      'Communication is sought through: automatic writing (the medium writes without conscious control), planchette/Ouija board movement, direct vocalization by the medium, or physical phenomena (table movement, rappings — historically associated with ideomotor effect).',
+      'The séance may include mirrors as "spirit gates" (black mirrors or obsidian scrying surfaces), which focus participant gaze and facilitate dissociation through Ganzfeld-like conditions.',
+      'Closing the session involves formally dismissing the entity, breaking the circle, and grounding participants through food, light, and physical sensation.',
+    ],
+    sensoricProfile: [
+      { sense: 'Vision', stimulus: 'Near darkness, single candle or black mirror, prolonged darkness adaptation, mirror gazing', neurological: 'Ganzfeld effect from uniform visual field causes visual cortex to generate endogenous imagery (hallucinations); dark adaptation shifts retinal processing; mirror-gazing produces facial pareidolia — perceived faces that activate the fusiform face area without external face stimulus' },
+      { sense: 'Audition', stimulus: 'Silence punctuated by rappings, chanting, breathing sounds of others, sudden sounds interpreted as entity communication', neurological: 'Sensory deprivation of auditory field causes auditory cortex to generate endogenous sounds; hypnagogic auditory hallucinations are well-documented in low-stimulation environments; sudden sounds in silence generate disproportionate startle and significance-attribution' },
+      { sense: 'Proprioception', stimulus: 'Linked hands creating physical feedback loop, stillness, dissociation from body position', neurological: 'Shared physical contact elevates oxytocin within the circle; prolonged stillness disrupts normal proprioceptive calibration; the ideomotor effect (unconscious movement) is misattributed to external agency during dissociative states' },
+      { sense: 'Interoception', stimulus: 'Hyperventilation (some traditions), held breath, altered breathing patterns', neurological: 'Hyperventilation reduces CO2 and causes cerebral vasoconstriction, producing tingling, light-headedness, and visual changes — all misattributed to supernatural phenomena; breath-holding elevates CO2 and produces altered consciousness via carbonic acid CNS effects' },
+    ],
+    neurologicalEffects:
+      'The séance environment is a scientifically tractable altered-state induction system. Darkness + silence = sensory deprivation → endogenous hallucination generation (well-documented in perceptual isolation research, Lilly, 1956; Mason & Brady, 2009). Shared physical contact elevates oxytocin → group bonding and reduced critical skepticism. The ideomotor effect (Carpenter, 1852; replicated across 150+ years of research) explains planchette and automatic writing movement without supernatural agency: unconscious motor impulses below conscious awareness produce movement that is genuinely experienced as externally driven. Hyperventilation produces genuine neurological symptoms (cerebral hypoxia, paresthesia) that are then attributed to spirit contact.',
+    psychologicalFunction:
+      'The séance externalizes internal unconscious material onto a supernatural framework. The messages received through automatic writing or entity communication are produced by the practitioner\'s own unconscious — the séance is essentially an elaborate projection system. Psychologically, this can function as a form of unconscious self-consultation or, in pathological cases, as an externalization of internal persecutory voices consistent with psychotic symptomatology.',
+    documentedHarms:
+      'Dissociative episodes following intense séance participation are documented clinically. Ouija board and automatic writing have been linked in case literature to the adoption of "entity alter" identities, consistent with dissociative identity formation. Particularly vulnerable are individuals with pre-existing dissociative tendencies, trauma histories, or psychotic spectrum vulnerabilities.',
+    evidenceLevel: 'moderate',
+    sources: ['Carpenter, W.B. (1852). On the Influence of Suggestion in Modifying and Directing Muscular Movement — Ideomotor Effect', 'Mason, O.J., & Brady, F. (2009). The psychotomimetic effects of short-term sensory deprivation. Journal of Nervous and Mental Disease', 'Wiseman, R. (2011). Paranormality. Macmillan'],
+    tags: ['Séance', 'Necromantic', 'Spirit Communication', 'Dissociation', 'Sensory Deprivation'],
+  },
+
+  {
+    id: 'sense-ritual',
+    name: 'Sense Ritual (LaVeyan Sensorium)',
+    category: 'sense',
+    tradition: 'LaVeyan Satanism',
+    dangerLevel: 'low',
+    overview:
+      'LaVey explicitly theorized a neurological basis for ritual efficacy in The Satanic Bible (1969) and The Satanic Rituals (1972). He identified the "Five Sense Conditioners" as the operational mechanism of all effective ritual: each sense must be deliberately engaged with specific stimuli to shift the practitioner\'s emotional state from ordinary consciousness into the "emotional sounding board" required for ritual to work. This is functionally equivalent to modern state-dependent learning theory.',
+    historicalOrigin:
+      'LaVey\'s sense ritual theory drew explicitly on psychology — specifically, the Pavlovian conditioning tradition and Gestalt psychology. He understood ritual as emotional technology: structured sensory environments that reliably produce target emotional states. His framework predates but parallels neuroscience findings on multi-sensory emotion induction. The Church of Satan\'s primary rituals (Compassion, Destruction, Lust) all use the same sense-conditioning protocol.',
+    howPerformed: [
+      'SIGHT (candles): Black candles are used exclusively — black absorbs all light frequencies, creating visual contrast and solemnity. The number and arrangement of candles signals the ritual type. The practitioner stares into the flame to induce mild visual trance via fixation.',
+      'SOUND (bell + music): A Tibetan-style bell is struck to mark ritual boundaries (opening/closing). Appropriate music is selected to induce the target emotional state — LaVey recommended music matching the desired mood (martial for anger, seductive for lust, funereal for destruction). Silence is used strategically as acoustic contrast.',
+      'SMELL (incense): Specific incense blends are assigned to each ritual type. Dragon\'s blood resin for power and protection, musk for lust, wormwood for destruction. The olfactory-amygdala pathway makes scent the most efficient emotional state-inducer available.',
+      'TASTE (chalice): Wine, elixirs, or potions are consumed as both physical and symbolic acts. The taste triggers gustatory-emotional memory associations and marks the transition into ritual consciousness.',
+      'TOUCH (ritual robe): A specific garment worn only during ritual creates a conditioned tactile trigger — over time, donning the robe becomes a conditioned stimulus that automatically shifts emotional state toward ritual-readiness, parallel to the effect of a uniform on psychological role-adoption.',
+    ],
+    sensoricProfile: [
+      { sense: 'Vision', stimulus: 'Black candles, darkness, focused flame gaze, ritual symbols', neurological: 'Foveal fixation on candle flame inhibits saccadic eye movement, reducing PFC activity and inducing mild trance via hypnagogic convergence; darkness activates melanopsin pathways affecting circadian and mood-regulating systems' },
+      { sense: 'Audition', stimulus: 'Bell strikes, emotionally congruent music, silence', neurological: 'Music activates limbic system and mesolimbic dopamine; emotionally matching music to desired ritual state is a form of mood induction confirmed across 200+ studies in music psychology; silence contrast amplifies subsequent stimuli' },
+      { sense: 'Olfaction', stimulus: 'Ritual-specific incense', neurological: 'Olfactory bulb projects directly to amygdala and entorhinal cortex without thalamic relay — the fastest and most direct route to emotional memory. Conditioned olfactory stimuli produce rapid, reliable emotional state shifts documented in fear conditioning research (Herz, 2007)' },
+      { sense: 'Taste', stimulus: 'Wine, ritual herbs', neurological: 'Gustatory insula activates; moderate ethanol lowers PFC inhibition; bitter compounds from ritual herbs (absinthe, wormwood, rue) engage adenosine receptor pathways affecting alertness' },
+      { sense: 'Touch', stimulus: 'Ritual robe, physical objects, temperature', neurological: 'Conditioned tactile stimuli can reliably elicit emotional states after repeated pairing — classical conditioning applied to proprioceptive/tactile channels; role-adoption via costume is documented in social psychology (Putting on the Cloak studies, Adam & Galinsky, 2012)' },
+    ],
+    neurologicalEffects:
+      'LaVey\'s sense ritual is the most scientifically defensible element of Satanic practice. Multi-sensory emotion induction is documented across neuroscience and psychology: each sense activates distinct limbic pathways that collectively shift the individual\'s emotional state. The five-sense protocol effectively creates a total-environment emotional induction chamber. From a neuroscience perspective, this is a sophisticated application of state-dependent memory and conditioning — the ritual state becomes a trained neurological configuration reliably accessible through the same sensory cues.',
+    psychologicalFunction:
+      'The sense ritual functions as a psychological state-change technology. By reliably inducing the target emotional state (lust, rage, sorrow), it enables the practitioner to access emotional material that is unavailable in ordinary inhibited consciousness. The ritual provides both permission and mechanism for full emotional inhabiting. LaVey\'s framework essentially psychologizes magic: the "supernatural" effect is the neurological effect of focused emotional state on attention, motivation, and subsequent behavior.',
+    documentedHarms:
+      'The sense ritual proper carries minimal direct harm risk when conducted by adults voluntarily. Indirect risks: conditioning the self to associate extreme emotional states (rage, lust) with specific sensory cues can create maladaptive emotional triggers in daily life. The practice can also be used manipulatively to condition others through environmental control.',
+    evidenceLevel: 'strong',
+    sources: ['LaVey, A.S. (1969). The Satanic Bible — Book of Belial: Ritualistic Use of the Senses', 'Herz, R.S. (2007). The Scent of Desire. William Morrow', 'Adam, H., & Galinsky, A.D. (2012). Enclothed cognition. Journal of Experimental Social Psychology', 'Husain, G., et al. (2002). Effects of musical tempo and mode on arousal, mood, and spatial abilities. Music Perception'],
+    tags: ['LaVeyan', 'Sense Conditioning', 'Emotional Technology', 'State Induction', 'Pavlovian'],
+  },
+
+  {
+    id: 'blood-pact',
+    name: 'Blood Pact Ritual',
+    category: 'pact',
+    tradition: 'Theistic Satanism / Medieval Occultism',
+    dangerLevel: 'extreme',
+    overview:
+      'The Blood Pact is a formal covenant between a human practitioner and Satan or a specific demonic entity, signed in the practitioner\'s blood. It represents the ultimate identity-commitment ritual: the total surrender of the self to a demonic patron in exchange for power, knowledge, or fulfillment of a specific desire. Historically it was the most feared and sought ritual in Western occultism.',
+    historicalOrigin:
+      'Earliest documented pacts appear in Christian apocrypha — the Theophilus legend (6th century) is the archetypal Western pact narrative. Faust legend (16th century, Marlowe and Goethe) established the cultural template. Historical inquisition records (Malleus Maleficarum, 1487) describe pact ceremonies. More recent: O9A traditions involve formal oaths of allegiance to demonic entities, sometimes sealed in blood.',
+    howPerformed: [
+      'A formal pact document is prepared — handwritten on parchment, specifying the terms: what is offered (soul, loyalty, years of life) and what is requested (power, wealth, knowledge, destruction of enemies).',
+      'The practitioner opens a vein or cuts the palm to produce blood, which is used to sign the document. Blood symbolically binds the biological self — not merely the conscious will — to the agreement.',
+      'The pact is read aloud at a crossroads (traditional liminal space associated with demonic activity) or before an altar, at midnight, during a new moon or specific astrological configuration.',
+      'The signed document is burned — in some traditions, the ashes are scattered at the crossroads; in others, preserved as a binding artifact.',
+      'Some traditions require the practitioner to renounce their baptism, reject all protective spiritual affiliations, and verbally invite total demonic possession of their person.',
+      'Modern O9A variants involve seven-fold initiatory paths where blood pact elements are embedded across multiple initiations over years.',
+    ],
+    sensoricProfile: [
+      { sense: 'Pain/Interoception', stimulus: 'Self-inflicted incision, blood flow', neurological: 'Acute pain triggers β-endorphin and enkephalin release via μ-opioid receptors — producing dissociative analgesia and euphoria; adrenaline spike simultaneously activates sympathetic system; the combination creates a powerful neuroendocrine state uniquely associated with this ritual act' },
+      { sense: 'Vision', stimulus: 'Own blood, written pact, flames consuming the document', neurological: 'Sight of own blood activates complex threat/fear circuitry with simultaneous self-preservation and self-harm conflict; burning document engages visual cortex and episodic memory encoding — the image is neurologically impressed with maximal emotional salience' },
+      { sense: 'Touch', stimulus: 'Blood warmth, pen on parchment, flame heat', neurological: 'Physical sensation during signing engages somatosensory cortex and proprioceptive pathways, grounding the psychological commitment in bodily experience — making it neurologically more "real" than a purely cognitive decision' },
+    ],
+    neurologicalEffects:
+      'The blood pact is neurologically a maximal commitment ritual. Behavioral economics research (Ariely et al.) demonstrates that signing a document dramatically increases commitment follow-through — the physical act of signing engages implicit memory systems that monitor consistency with signed commitments. When the signature is in blood with associated pain (endorphin release) and extreme emotional arousal (noradrenergic/dopaminergic spike), the neurological encoding of the commitment is as strong as the brain is capable of producing outside of trauma. The identity reorganization following a blood pact may be equivalent in neurological terms to a conversion experience — a sudden, total, and lasting restructuring of self-concept.',
+    psychologicalFunction:
+      'The blood pact serves as a final bridge-burning mechanism: it makes return to previous identity psychologically impossible within the belief framework. The irreversibility (reinforced by supernatural stakes) eliminates ambivalence and produces the unequivocal identity commitment that group dynamics research identifies as the most powerful predictor of sustained group membership. The pain element adds physical memory — the body literally carries the mark of the covenant.',
+    documentedHarms:
+      'Direct: self-harm injury, infection, blood-borne pathogen transmission. Psychological: identity foreclosure and cult-like commitment making exit extremely difficult. Severe cases documented in forensic literature where individuals committed serious crimes they attributed to fulfilling pact obligations to demonic entities. The combination of religious delusion, blood ritual, and pain-conditioning is documented in several violent offender profiles.',
+    evidenceLevel: 'limited',
+    sources: ['Stephens, W.O. (2002). Demon Lovers: Witchcraft, Sex, and the Crisis of Belief. University of Chicago Press', 'Introvigne, M. (2016). Satanism: A Social History', 'Ariely, D. (2008). Predictably Irrational — commitment and self-signaling research'],
+    tags: ['Pact', 'Blood', 'Identity Commitment', 'Theistic', 'Self-Harm', 'Irreversibility'],
+  },
+
+  {
+    id: 'sabbat',
+    name: 'The Sabbat (Dark Gathering Ritual)',
+    category: 'sabbat',
+    tradition: 'Theistic Satanism / Witchcraft / O9A',
+    dangerLevel: 'high',
+    overview:
+      'The Sabbat is a collective dark ritual gathering, historically associated with witches\' meetings and now practiced in various forms across Theistic Satanism and the O9A. It combines group altered-state induction, collective invocation, physical ecstasy (dancing, chanting, feasting), and initiatory ceremonies. The Sabbat\'s neurological power derives from group synchrony effects — neurological phenomena unique to collective ritual that exceed anything achievable in solitary practice.',
+    historicalOrigin:
+      'Historical Sabbat accounts come primarily from Inquisition torture-extracted confessions (Grand Sabbat at Blokula, etc.) — their factual content is unreliable. However, collective dark ritual gatherings have been documented in O9A texts (the Hebdomadry tradition), in certain Theistic Satanic orders, and in LaVey\'s original Church of Satan rituals, which were explicitly social ceremonies conducted in the Black House, San Francisco.',
+    howPerformed: [
+      'Participants gather at a liminal location — traditionally crossroads, forests, or caves; modern variants use private ritual chambers.',
+      'The Sabbat typically occurs at astrologically significant times: Walpurgisnacht (April 30), Samhain (October 31), winter and summer solstices.',
+      'Collective chanting and drumming are used to induce synchronized trance. Rhythmic percussion at 4–7 Hz entrains theta brainwaves via neural entrainment.',
+      'The Feast: ritual consumption of food and drink — symbolically transgressive foods, wine, sometimes substances in extreme traditions. The shared meal activates collective oxytocin bonding.',
+      'Dancing and physical ecstasy build to an emotional peak — the climax of the Sabbat — at which point collective invocation is performed with all participants in maximum arousal state.',
+      'Initiations, pact renewals, and sexual rites may be incorporated in extreme variants. The Sabbat concludes with collective exhaustion and grounding.',
+    ],
+    sensoricProfile: [
+      { sense: 'Audition', stimulus: 'Collective drumming at theta frequency (4–7 Hz), chanting, call-and-response', neurological: 'Neural entrainment: the auditory cortex synchronizes firing to rhythmic beat frequency; 4-7 Hz drumming drives theta brainwave entrainment across the group, producing collective altered states and reducing PFC inhibitory control' },
+      { sense: 'Proprioception', stimulus: 'Rhythmic dancing, collective movement, physical contact', neurological: 'Synchronous movement between individuals activates mirror neuron systems and elevates oxytocin; the social pain threshold is elevated during synchronized movement (Dunbar, 2012) — group members feel collective euphoria and reduced individual pain sensitivity' },
+      { sense: 'Vision', stimulus: 'Firelight (flickering at 8–12 Hz), darkness beyond the firelight, collective ritual imagery', neurological: 'Firelight flickering can entrain alpha brainwaves; the contrast between lit center and dark periphery creates a perceptual "ritual world" vs. "outside world" boundary that reinforces cognitive separation from ordinary reality' },
+      { sense: 'Olfaction', stimulus: 'Incense, fire smoke, body heat of others, night air', neurological: 'Collective olfactory environment creates shared neurological anchoring — participants\' amygdalas are simultaneously activated by the same olfactory stimuli, contributing to group synchrony and memory encoding' },
+    ],
+    neurologicalEffects:
+      'The Sabbat produces neurological effects impossible to replicate in solitary practice. Synchronized movement elevates pain thresholds and elevates oxytocin across the group (Dunbar et al., 2012 — evolutionary psychology of synchronized movement). Collective drumming at theta frequencies produces group-wide brainwave entrainment — participants literally synchronize their neural oscillations, producing a group-level altered state. Research on collective effervescence (Durkheim) has been neurologically validated: shared ritual arousal produces what Whitehouse (2004) calls "high-arousal" ritual effects — extreme emotional intensity encoding the experience in episodic memory with extraordinary salience and durability.',
+    psychologicalFunction:
+      'The Sabbat is primarily a group cohesion and identity-bonding ritual. The shared altered state creates a collective identity experience that transcends individual psychology — participants feel genuinely merged with the group at a neurological level. This is the primary mechanism of high-control group membership: after a Sabbat-type experience, leaving the group means losing access to a neurological state that has become deeply valued. The Sabbat is also an initiation amplifier: commitments made during collective high-arousal are neurologically encoded with greater durability than those made in ordinary consciousness.',
+    documentedHarms:
+      'Group disinhibition: individual moral constraints are reduced in group ritual contexts (deindividuation). Acts that would not be committed alone become possible in collective high-arousal states. Documented in cult literature. Coercive initiation elements in some Sabbats constitute assault. The extreme oxytocin-driven in-group bonding creates corresponding out-group dehumanization.',
+    evidenceLevel: 'moderate',
+    sources: ['Dunbar, R.I.M., et al. (2012). Performance of music elevates pain threshold and positive affect. Evolutionary Psychology', 'Whitehouse, H. (2004). Modes of Religiosity. AltaMira Press', 'Rouget, G. (1985). Music and Trance. University of Chicago Press'],
+    tags: ['Collective', 'Sabbat', 'Group Ritual', 'Neural Entrainment', 'Oxytocin', 'Theta Wave'],
+  },
+
+  {
+    id: 'invocation',
+    name: 'Demonic Invocation / Goetic Summoning',
+    category: 'invocation',
+    tradition: 'Theistic Satanism / Goetia / Theurgic Occultism',
+    dangerLevel: 'high',
+    overview:
+      'Goetic invocation is the ritual summoning of specific named demons from the classical demonological hierarchies — primarily the Ars Goetia (72 demons of Solomon), the Pseudomonarchia Daemonum, or the Grimorium Verum. Each demon has a specific sigil, title, rank, and domain of power. The invocation aims to compel the demon\'s presence and service. In Satanic practice, this is the highest-stakes ritual: a direct confrontation with a claimed malevolent supernatural intelligence.',
+    historicalOrigin:
+      'Solomonic magic traditions (Key of Solomon, 13th century) codified the 72 demon hierarchies. The Lesser Key of Solomon (Lemegeton, 17th century) remains the primary operational text. Crowley\'s Moonchild (1929) and Liber 418 document extended Goetic workings. Contemporary O9A and Temple of Set practitioners maintain active Goetic traditions. The Ars Goetia names include Bael, Agares, Vassago, Gamigin... through to Vine, Bifrons, and Decarabia.',
+    howPerformed: [
+      'Triangle of Manifestation: a triangle is inscribed on the floor outside the protective circle. The demon is summoned to appear within the triangle — never within the circle where the practitioner stands.',
+      'The demon\'s sigil (unique geometric symbol) is inscribed on a brass or copper plate and placed within the triangle. The practitioner gazes at the sigil to "charge" it with concentrated attention.',
+      'The Conjuration is spoken — a formal command using the demon\'s name, titles, and binding language derived from Solomonic tradition. It is repeated in escalating intensity if the demon does not appear.',
+      'Evidence of presence is typically auditory (voices, sounds), visual (distortions, shadows), temperature changes (cold spots — cold is classically demonic in occult tradition), or psychological (thoughts/images attributed to the entity).',
+      'The practitioner gives their request or command. The demon\'s compliance is secured through formal license — binding language from the Solomonic tradition that the demon is compelled to obey.',
+      'The demon is formally dismissed through a dismissal conjuration and the circle is closed. Failure to properly close is considered extremely dangerous within the tradition.',
+    ],
+    sensoricProfile: [
+      { sense: 'Vision', stimulus: 'Sigil gazing, darkness, smoke, scrying mirror, candle flame', neurological: 'Extended sigil gazing produces after-image effects and visual hypersaturation at the sigil\'s geometric form; combined with low-light and incense smoke, induces pareidolic perception of shapes in smoke/shadows misattributed to demonic manifestation' },
+      { sense: 'Audition', stimulus: 'Silence, own voice reciting conjurations, expectation of response', neurological: 'Hyper-vigilant auditory attention in silence produces auditory pareidolia — the brain\'s pattern-recognition systems generate perceived sounds from background noise; expectation priming (knowing a demon should speak) dramatically increases false-positive auditory detection' },
+      { sense: 'Temperature', stimulus: 'Cold sensations classically associated with demonic presence', neurological: 'Heightened attention and anxiety increase sensitivity to ambient temperature changes; vasomotor effects of fear response (peripheral vasoconstriction to redirect blood to core) create genuine subjective sensations of cold attributable to fear physiology, not supernatural cause' },
+    ],
+    neurologicalEffects:
+      'Goetic invocation is a structured procedure for maximizing the conditions under which the brain generates hallucinations and misattributes them to external agents. The sigil-gazing produces controlled visual hallucination conditions (after-images, visual persistence). The extreme fear-arousal state activates threat-detection hypersensitivity — at peak cortisol and norepinephrine, the brain\'s signal-to-noise detection threshold is dramatically lowered, meaning random sensory events (sounds, drafts, shadows) are experienced as highly meaningful signals. This is the neuroscience of why people "see" and "hear" things during intense ritual: the ritual creates optimal neurological conditions for pattern-detection false positives.',
+    psychologicalFunction:
+      'Invocation serves the psychological function of externalizing inner psychological material onto a powerful supernatural figure. The demon contacted is consistently described as embodying qualities the practitioner fears, desires, or wishes to deploy. This is functionally identical to active imagination (Jung\'s technique) but without the integrative intent — the material is not processed and integrated but attributed to and commanded as an external intelligence.',
+    documentedHarms:
+      'Acute psychotic breaks following intense Goetic workings are documented in occult literature and clinical case reports. The fear arousal system pushed to sustained maximum activation can trigger genuine psychotic episodes in predisposed individuals. The belief structure (demonic contracts, possession, failure to close) creates chronic paranoid ideation. Documented in forensic psychiatry as a context for psychotic violence.',
+    evidenceLevel: 'limited',
+    sources: ['Peterson, J.H. (Ed.). (2001). The Lesser Key of Solomon. Weiser Books', 'Reed, G. (1988). The Psychology of Anomalous Experience. Prometheus Books', 'Sutter, J.D., et al. (2014). Paranormal belief and psychopathology. Journal of Nervous and Mental Disease'],
+    tags: ['Goetia', 'Invocation', 'Demonology', 'Hallucination', 'Psychosis Risk', 'Theistic'],
+  },
+]
+
+export const RITUAL_DANGER_NOTE = `Danger levels reflect the assessed psychological and physical harm potential based on clinical literature, forensic documentation, and neurological mechanisms. "Extreme" indicates documented irreversible psychological or physical harm. "High" indicates significant risk of trauma, psychosis, or self-harm. "Moderate" indicates manageable risk in consenting adults with psychological stability. "Low" indicates minimal direct harm risk. All ratings are clinical assessments, not supernatural evaluations.`

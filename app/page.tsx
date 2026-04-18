@@ -64,7 +64,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Feature Cards ──────────────────────────────────────────────────── */}
-      <section className="mx-auto grid max-w-5xl gap-6 px-6 pb-24 sm:grid-cols-3">
+      <section className="mx-auto grid max-w-5xl gap-6 px-6 pb-10 sm:grid-cols-3">
         <Card className="flex flex-col gap-3 p-6">
           <div className="text-3xl">🧬</div>
           <h2 className="text-lg font-semibold text-foreground">
@@ -97,6 +97,84 @@ export default function HomePage() {
             Post&apos;s electrophysiological kindling hypothesis.
           </p>
         </Card>
+      </section>
+
+      {/* ── Deep Research Cards ────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-5xl px-6 pb-24">
+        <div className="mb-6 flex items-center gap-3">
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-xs font-mono tracking-widest text-muted-foreground uppercase">
+            Deep Research Modules
+          </span>
+          <div className="h-px flex-1 bg-border" />
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2">
+          {/* Psychological Profile Card */}
+          <Link href="/profile" className="group block no-underline">
+            <div className="relative overflow-hidden rounded-none border border-border bg-card p-6 transition-all duration-300 group-hover:border-[#8A0303]/60 group-hover:bg-[#0d0505]">
+              {/* Background symbol */}
+              <div className="pointer-events-none absolute right-4 top-4 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#8A0303" strokeWidth="0.8">
+                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </div>
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center border border-[#8A0303]/40 bg-[#8A0303]/10">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A0303" strokeWidth="1.5" strokeLinecap="round">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                    <circle cx="12" cy="12" r="3" fill="#8A0303" fillOpacity="0.3" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-mono text-xs tracking-widest text-[#8A0303]">FORENSIC LOG</div>
+                  <h3 className="font-mono text-sm font-bold text-foreground tracking-wide">
+                    Psychological Profile
+                  </h3>
+                </div>
+              </div>
+              <p className="font-mono text-xs leading-relaxed text-muted-foreground">
+                Calculated indifference analysis. Interactive subject frame with convulsive glitch states, devaluation metrics, and forensic copy block. Visualizes the neurological architecture of tactical shutdown.
+              </p>
+              <div className="mt-4 font-mono text-xs text-[#8A0303] group-hover:text-[#c00] transition-colors">
+                OPEN PROFILE →
+              </div>
+            </div>
+          </Link>
+
+          {/* Satanism Research Card */}
+          <Link href="/satanism-research" className="group block no-underline">
+            <div className="relative overflow-hidden rounded-none border border-border bg-card p-6 transition-all duration-300 group-hover:border-[#8A0303]/60 group-hover:bg-[#0d0505]">
+              {/* Background symbol — inverted pentagram */}
+              <div className="pointer-events-none absolute right-4 top-4 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" stroke="#8A0303" strokeWidth="1">
+                  <polygon points="50,5 20,90 95,35 5,35 80,90" strokeLinejoin="round" />
+                  <circle cx="50" cy="50" r="48" />
+                </svg>
+              </div>
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center border border-[#8A0303]/40 bg-[#8A0303]/10">
+                  <svg width="20" height="20" viewBox="0 0 100 100" fill="none" stroke="#8A0303" strokeWidth="5">
+                    <polygon points="50,5 20,90 95,35 5,35 80,90" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-mono text-xs tracking-widest text-[#8A0303]">RESEARCH ANALYSIS</div>
+                  <h3 className="font-mono text-sm font-bold text-foreground tracking-wide">
+                    Satanism — Neuro Profile
+                  </h3>
+                </div>
+              </div>
+              <p className="font-mono text-xs leading-relaxed text-muted-foreground">
+                Graduate-level analysis across 9 sections: taxonomy, receptor mapping, epigenetics, ritual neuroscience (Black Mass, hate rituals, sense rituals, séance, blood pacts), psychological disorders, and recovery pathways. 21+ citations.
+              </p>
+              <div className="mt-4 font-mono text-xs text-[#8A0303] group-hover:text-[#c00] transition-colors">
+                OPEN RESEARCH →
+              </div>
+            </div>
+          </Link>
+        </div>
       </section>
 
       {/* ── Footer ─────────────────────────────────────────────────────────── */}

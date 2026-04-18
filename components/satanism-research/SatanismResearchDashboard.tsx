@@ -14,6 +14,9 @@ import {
   RECOVERY_PHASES,
   BIBLIOGRAPHY,
   EVIDENCE_CAVEAT,
+  RITUALS,
+  RITUAL_DANGER_NOTE,
+  type RitualEntry,
 } from '@/lib/satanismResearchData'
 
 // ── Colour tokens ─────────────────────────────────────────────────────────────
@@ -35,15 +38,23 @@ const C = {
 }
 
 const SECTION_NAV = [
-  { id: 'taxonomy',     label: '01 Taxonomy',        short: '01' },
-  { id: 'neuroscience', label: '02 Ritual Neuro',     short: '02' },
-  { id: 'receptors',   label: '03 Neuroreceptors',   short: '03' },
-  { id: 'disorders',   label: '04 Disorders',        short: '04' },
-  { id: 'metaphysical',label: '05 Soul / Metaphysical', short: '05' },
-  { id: 'genes',       label: '06 Epigenetics',      short: '06' },
-  { id: 'recovery',    label: '07 Recovery',         short: '07' },
-  { id: 'bibliography',label: '08 Bibliography',     short: '08' },
+  { id: 'taxonomy',     label: '01 Taxonomy'           },
+  { id: 'neuroscience', label: '02 Ritual Neuro'        },
+  { id: 'receptors',   label: '03 Neuroreceptors'      },
+  { id: 'disorders',   label: '04 Disorders'           },
+  { id: 'metaphysical',label: '05 Soul / Metaphysical' },
+  { id: 'genes',       label: '06 Epigenetics'         },
+  { id: 'recovery',    label: '07 Recovery'            },
+  { id: 'rituals',     label: '08 Rituals'             },
+  { id: 'bibliography',label: '09 Bibliography'        },
 ]
+
+const DANGER_COLORS: Record<string, string> = {
+  extreme: '#8A0303',
+  high:    '#a84b00',
+  moderate:'#b8860b',
+  low:     '#2a9d9d',
+}
 
 // ── Shared primitives ─────────────────────────────────────────────────────────
 
@@ -619,7 +630,7 @@ function BibliographySection() {
     <div>
       <SectionHeader
         id="bibliography"
-        number="08"
+        number="09"
         title="BIBLIOGRAPHY"
         subtitle="Primary sources cited throughout this analysis. Peer-reviewed where available. Evidence quality varies — see Section 04 methodological caveat."
       />
@@ -637,6 +648,218 @@ function BibliographySection() {
           ))}
         </div>
       </Panel>
+    </div>
+  )
+}
+
+// ── Section 8: Rituals ────────────────────────────────────────────────────────
+
+const CATEGORY_LABELS: Record<string, string> = {
+  hate:        'HATE / DESTRUCTION',
+  sense:       'SENSE CONDITIONING',
+  seance:      'SÉANCE / NECROMANTIC',
+  invocation:  'DEMONIC INVOCATION',
+  pact:        'BLOOD PACT',
+  sabbat:      'SABBAT / GATHERING',
+  necromantic: 'NECROMANTIC',
+  mass:        'BLACK MASS',
+}
+
+function RitualCard({ ritual, isOpen, onToggle }: { ritual: RitualEntry; isOpen: boolean; onToggle: () => void }) {
+  const dangerColor = DANGER_COLORS[ritual.dangerLevel]
+
+  return (
+    <div>
+      <button
+        onClick={onToggle}
+        style={{
+          width: '100%', textAlign: 'left', background: C.surface,
+          border: `1px solid ${isOpen ? dangerColor : C.border}`,
+          padding: '16px 20px', cursor: 'pointer',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12,
+        }}
+      >
+        <div style={{ flex: 1 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center', marginBottom: 6 }}>
+            <span style={{ fontFamily: 'monospace', fontSize: 14, fontWeight: 700, color: C.text }}>
+              {ritual.name}
+            </span>
+            <Tag label={CATEGORY_LABELS[ritual.category] ?? ritual.category} color={dangerColor} />
+            <Tag label={`DANGER: ${ritual.dangerLevel.toUpperCase()}`} color={dangerColor} />
+            <EvidenceBadge level={ritual.evidenceLevel} />
+          </div>
+          <div style={{ fontFamily: 'monospace', fontSize: 11, color: C.textDim }}>{ritual.tradition}</div>
+        </div>
+        <span style={{ fontFamily: 'monospace', fontSize: 14, color: dangerColor, flexShrink: 0 }}>
+          {isOpen ? '−' : '+'}
+        </span>
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div style={{
+              background: C.surface2,
+              border: `1px solid ${C.borderAccent}`, borderTop: 'none',
+              padding: '20px 22px', display: 'grid', gap: 20,
+            }}>
+
+              {/* Overview + Historical Origin */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 14 }}>
+                <div>
+                  <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, letterSpacing: '0.15em', marginBottom: 6 }}>OVERVIEW</div>
+                  <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.8 }}>{ritual.overview}</p>
+                </div>
+                <div>
+                  <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, letterSpacing: '0.15em', marginBottom: 6 }}>HISTORICAL ORIGIN</div>
+                  <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.8 }}>{ritual.historicalOrigin}</p>
+                </div>
+              </div>
+
+              {/* How Performed */}
+              <div>
+                <div style={{ fontFamily: 'monospace', fontSize: 10, color: dangerColor, letterSpacing: '0.15em', marginBottom: 8 }}>
+                  ◈ HOW PERFORMED — STEP BY STEP
+                </div>
+                <div style={{ display: 'grid', gap: 6 }}>
+                  {ritual.howPerformed.map((step, i) => (
+                    <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                      <span style={{ fontFamily: 'monospace', fontSize: 10, color: dangerColor, flexShrink: 0, paddingTop: 2 }}>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.8, margin: 0 }}>{step}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Sensory Profile */}
+              <div>
+                <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.goldLight, letterSpacing: '0.15em', marginBottom: 8 }}>
+                  ◈ SENSORY PROFILE — NEUROLOGICAL MAPPING
+                </div>
+                <div style={{ display: 'grid', gap: 8 }}>
+                  {ritual.sensoricProfile.map((s) => (
+                    <div key={s.sense} style={{
+                      background: C.surface,
+                      border: `1px solid ${C.border}`,
+                      padding: '10px 14px',
+                      display: 'grid',
+                      gridTemplateColumns: '80px 1fr 1fr',
+                      gap: 12,
+                      alignItems: 'start',
+                    }}>
+                      <div style={{ fontFamily: 'monospace', fontSize: 11, fontWeight: 700, color: C.goldLight }}>{s.sense}</div>
+                      <div>
+                        <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.textDim, letterSpacing: '0.12em', marginBottom: 3 }}>STIMULUS</div>
+                        <p style={{ fontFamily: 'monospace', fontSize: 10, color: C.textMid, lineHeight: 1.7, margin: 0 }}>{s.stimulus}</p>
+                      </div>
+                      <div>
+                        <div style={{ fontFamily: 'monospace', fontSize: 9, color: C.tealLight, letterSpacing: '0.12em', marginBottom: 3 }}>NEUROLOGICAL EFFECT</div>
+                        <p style={{ fontFamily: 'monospace', fontSize: 10, color: C.textMid, lineHeight: 1.7, margin: 0 }}>{s.neurological}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Neurological + Psychological + Harms */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14 }}>
+                <div>
+                  <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.crimson, letterSpacing: '0.15em', marginBottom: 6 }}>NEUROLOGICAL EFFECTS</div>
+                  <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.8 }}>{ritual.neurologicalEffects}</p>
+                </div>
+                <div>
+                  <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, letterSpacing: '0.15em', marginBottom: 6 }}>PSYCHOLOGICAL FUNCTION</div>
+                  <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.8 }}>{ritual.psychologicalFunction}</p>
+                </div>
+                <div style={{ borderLeft: `2px solid ${dangerColor}`, paddingLeft: 12 }}>
+                  <div style={{ fontFamily: 'monospace', fontSize: 10, color: dangerColor, letterSpacing: '0.15em', marginBottom: 6 }}>DOCUMENTED HARMS</div>
+                  <p style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.8 }}>{ritual.documentedHarms}</p>
+                </div>
+              </div>
+
+              {/* Sources */}
+              <div style={{ paddingTop: 6, borderTop: `1px solid ${C.border}` }}>
+                <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, letterSpacing: '0.15em', marginBottom: 6 }}>SOURCES</div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {ritual.sources.map((s) => (
+                    <span key={s} style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, border: `1px solid ${C.border}`, padding: '3px 8px' }}>
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+function RitualsSection() {
+  const [openId, setOpenId] = useState<string | null>(null)
+  const [filter, setFilter] = useState<string>('all')
+
+  const categories = ['all', 'hate', 'sense', 'seance', 'invocation', 'pact', 'sabbat', 'mass']
+  const filtered = filter === 'all' ? RITUALS : RITUALS.filter((r) => r.category === filter)
+
+  return (
+    <div>
+      <SectionHeader
+        id="rituals"
+        number="08"
+        title="HATE RITUALS, SENSE RITUALS & DARK CEREMONIES"
+        subtitle="Detailed analysis of specific Satanic ritual types: their historical origins, step-by-step performance, complete sensory profiles mapped to neurological mechanisms, psychological functions, and documented harms."
+      />
+
+      {/* Danger note */}
+      <div style={{
+        background: C.surface2, borderLeft: `3px solid ${C.crimson}`,
+        padding: '10px 14px', marginBottom: 16,
+      }}>
+        <p style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim, lineHeight: 1.7, margin: 0 }}>
+          {RITUAL_DANGER_NOTE}
+        </p>
+      </div>
+
+      {/* Category filter */}
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 16 }}>
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setFilter(cat)}
+            style={{
+              fontFamily: 'monospace', fontSize: 10, letterSpacing: '0.12em',
+              padding: '5px 12px',
+              border: `1px solid ${filter === cat ? C.crimson : C.border}`,
+              background: filter === cat ? C.crimsonDim : 'transparent',
+              color: filter === cat ? C.text : C.textDim,
+              cursor: 'pointer', textTransform: 'uppercase',
+            }}
+          >
+            {cat === 'all' ? 'ALL RITUALS' : (CATEGORY_LABELS[cat] ?? cat)}
+          </button>
+        ))}
+      </div>
+
+      <div style={{ display: 'grid', gap: 10 }}>
+        {filtered.map((ritual) => (
+          <RitualCard
+            key={ritual.id}
+            ritual={ritual}
+            isOpen={openId === ritual.id}
+            onToggle={() => setOpenId(openId === ritual.id ? null : ritual.id)}
+          />
+        ))}
+      </div>
     </div>
   )
 }
@@ -675,7 +898,7 @@ export default function SatanismResearchDashboard() {
               </h1>
             </div>
             <div style={{ textAlign: 'right' }}>
-              <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim }}>SECTIONS: 7 + BIBLIOGRAPHY</div>
+              <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim }}>SECTIONS: 8 + BIBLIOGRAPHY</div>
               <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim }}>CITATIONS: {BIBLIOGRAPHY.length}</div>
               <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim }}>ACADEMIC LEVEL: GRADUATE</div>
             </div>
@@ -728,6 +951,7 @@ export default function SatanismResearchDashboard() {
           <MetaphysicalSection />
           <GeneticsSection />
           <RecoverySection />
+          <RitualsSection />
           <BibliographySection />
         </div>
       </div>
