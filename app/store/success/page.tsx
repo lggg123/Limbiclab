@@ -49,7 +49,7 @@ export default async function StoreSuccessPage({
             marginBottom: 16,
           }}
         >
-          // ORDER CONFIRMED
+          {`// ORDER CONFIRMED`}
         </div>
 
         <div

@@ -242,7 +242,7 @@ export default function StorePage() {
               marginBottom: 12,
             }}
           >
-            // STORE
+            {`// STORE`}
           </div>
           <h1
             style={{
