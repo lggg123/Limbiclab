@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
             : {
                 price_data: {
                   currency: 'usd',
-                  product: 'prod_UMPGewjGqaN2VR',
+                  product_data: { name: 'LimbicLab Newsletter' },
                   recurring: { interval: 'month' },
                   unit_amount: 999,
                 },
@@ -61,6 +61,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid product' }, { status: 400 })
   } catch (err) {
     console.error('[stripe/checkout]', err)
-    return NextResponse.json({ error: 'Checkout failed' }, { status: 500 })
+    return NextResponse.json(
+      { error: err instanceof Error ? err.message : 'Checkout failed' },
+      { status: 500 }
+    )
   }
 }
