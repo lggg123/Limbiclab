@@ -5,10 +5,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-03-25.dahlia',
 })
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-
 export async function POST(req: NextRequest) {
   try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || req.nextUrl.origin
     const { product, email } = await req.json()
 
     if (product === 'guide') {
@@ -27,8 +26,8 @@ export async function POST(req: NextRequest) {
                 quantity: 1,
               },
         ],
-        success_url: `${BASE_URL}/store/success?type=guide`,
-        cancel_url: `${BASE_URL}/store`,
+        success_url: `${baseUrl}/store/success?type=guide`,
+        cancel_url: `${baseUrl}/store`,
       })
       return NextResponse.json({ url: session.url })
     }
@@ -52,8 +51,8 @@ export async function POST(req: NextRequest) {
                 quantity: 1,
               },
         ],
-        success_url: `${BASE_URL}/store/success?type=newsletter`,
-        cancel_url: `${BASE_URL}/store`,
+        success_url: `${baseUrl}/store/success?type=newsletter`,
+        cancel_url: `${baseUrl}/store`,
       })
       return NextResponse.json({ url: session.url })
     }
