@@ -1,4 +1,9 @@
+'use client'
+
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
+import { trackPurchaseConversion } from '@/lib/gtag'
 
 const C = {
   bg: '#0a0a0a',
@@ -11,15 +16,22 @@ const C = {
   tealLight: '#2a9d9d',
 }
 
-export default async function StoreSuccessPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ type?: string }>
-}) {
-  const { type } = await searchParams
+const PRICES: Record<string, number> = {
+  guide: 9.99,
+  newsletter: 0,
+  membership: 29.99,
+}
+
+export default function StoreSuccessPage() {
+  const searchParams = useSearchParams()
+  const type = searchParams.get('type') ?? ''
   const isGuide = type === 'guide'
   const isMembership = type === 'membership'
   const isNewsletter = type === 'newsletter'
+
+  useEffect(() => {
+    trackPurchaseConversion(PRICES[type], 'USD')
+  }, [type])
 
   return (
     <main

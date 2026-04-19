@@ -17,6 +17,19 @@ export async function POST(req: NextRequest) {
     const db = getLeadsClient()
     let ebookToken: string | null = null
 
+    if (source === 'ebook' && db) {
+      const max = parseInt(process.env.EBOOK_MAX_CLAIMS ?? '0', 10)
+      if (max > 0) {
+        const { count } = await db
+          .from('leads')
+          .select('*', { count: 'exact', head: true })
+          .eq('source', 'ebook')
+        if ((count ?? 0) >= max) {
+          return NextResponse.json({ error: 'EBOOK_CAP_REACHED' }, { status: 410 })
+        }
+      }
+    }
+
     if (db) {
       const cleanEmail = email.toLowerCase().trim()
 

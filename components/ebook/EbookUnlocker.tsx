@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import EbookReader from './EbookReader'
 import { trackLead } from '@/lib/fbq'
+import { trackEbookConversion } from '@/lib/gtag'
 
 const C = {
   bg: '#030305',
@@ -22,6 +23,7 @@ export default function EbookUnlocker() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [capReached, setCapReached] = useState(false)
 
   useEffect(() => {
     async function checkAccess() {
@@ -40,10 +42,16 @@ export default function EbookUnlocker() {
           const { valid } = await res.json()
           if (valid) {
             localStorage.setItem(STORAGE_KEY, '1')
+            trackEbookConversion()
             setUnlocked(true)
+            setChecked(true)
+            return
           }
         }
       }
+
+      const avail = await fetch('/api/ebook/availability').then(r => r.json()).catch(() => ({ available: true }))
+      if (!avail.available) setCapReached(true)
 
       setChecked(true)
     }
@@ -65,6 +73,10 @@ export default function EbookUnlocker() {
 
       if (!res.ok) {
         const data = await res.json()
+        if (data.error === 'EBOOK_CAP_REACHED') {
+          setCapReached(true)
+          return
+        }
         setError(data.error || 'Something went wrong.')
         return
       }
@@ -83,6 +95,43 @@ export default function EbookUnlocker() {
 
   if (!checked) return null
   if (unlocked) return <EbookReader />
+
+  if (capReached) return (
+    <div style={{
+      background: C.bg, minHeight: '100vh', display: 'flex',
+      alignItems: 'center', justifyContent: 'center',
+      fontFamily: 'monospace', padding: '24px',
+    }}>
+      <div style={{
+        maxWidth: 480, width: '100%',
+        border: `1px solid ${C.border}`,
+        background: 'rgba(7,7,14,0.95)',
+        padding: '48px 40px', textAlign: 'center',
+      }}>
+        <div style={{
+          fontSize: 9, letterSpacing: '0.28em', color: '#8A0303',
+          border: '1px solid rgba(138,3,3,0.25)', display: 'inline-block',
+          padding: '4px 14px', marginBottom: 28,
+        }}>
+          E-BOOK · CLOSED
+        </div>
+        <h1 style={{ fontSize: 18, fontWeight: 700, color: C.text, letterSpacing: '0.04em', marginBottom: 12 }}>
+          Free Access Has Closed
+        </h1>
+        <p style={{ fontSize: 11, color: C.textMid, lineHeight: 1.75, marginBottom: 32 }}>
+          The free ebook has reached its claim limit. Subscribe to the newsletter to get access in your welcome email.
+        </p>
+        <a href="/store" style={{
+          display: 'inline-block', background: C.accent,
+          color: '#030305', fontFamily: 'monospace',
+          fontSize: 11, fontWeight: 700, letterSpacing: '0.2em',
+          padding: '13px 32px', textDecoration: 'none',
+        }}>
+          START FREE TRIAL →
+        </a>
+      </div>
+    </div>
+  )
 
   return (
     <div style={{
