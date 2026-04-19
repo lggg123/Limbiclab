@@ -21,6 +21,11 @@
       "sourceType": "github",
       "computedHash": "08211f0d39f95cce43b7380aa43a89e0fb1af5da26f7607be3c2d1025cf222dd"
     },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "063a0e6448123cd359ad0044cc46b0e490cc7964d45ef4bb9fd842bd2ffbca67"
+    },
     "getting-started": {
       "source": "crewaiinc/skills",
       "sourceType": "github",

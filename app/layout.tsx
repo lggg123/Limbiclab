@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Navbar } from "@/components/ui/Navbar";
+import MetaPixel from "@/components/meta/MetaPixel";
 import "./globals.css";
 
 const lato = localFont({
@@ -66,6 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${lato.variable} ${liberationMono.variable}`}>
       <body className="min-h-screen bg-background font-sans antialiased">
+        <MetaPixel />
         <Navbar />
         {children}
       </body>

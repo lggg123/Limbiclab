@@ -1,4 +1,4 @@
-import EbookReader from '@/components/ebook/EbookReader'
+import EbookUnlocker from '@/components/ebook/EbookUnlocker'
 
 export const metadata = {
   title: 'The Neuroscience of the Dark — E-Book | LimbicLab',
@@ -11,5 +11,5 @@ export const metadata = {
 }
 
 export default function EbookPage() {
-  return <EbookReader />
+  return <EbookUnlocker />
 }
