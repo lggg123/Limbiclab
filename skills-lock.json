@@ -30,6 +30,11 @@
       "source": "crewaiinc/skills",
       "sourceType": "github",
       "computedHash": "3128b91809cca7605d69c0a352137e253f95caf5b175adf4c8cdb1fc5e21e8a2"
+    },
+    "youtube-ads": {
+      "source": "kostja94/marketing-skills",
+      "sourceType": "github",
+      "computedHash": "16f915195a15893a38aefc9d243a64b2acc56474d48296a43e76e196d63cd2b2"
     }
   }
 }
