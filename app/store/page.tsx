@@ -83,6 +83,16 @@ export default function StorePage() {
 
   return (
     <main style={{ background: C.bg, minHeight: '100vh', padding: '60px 24px 80px' }}>
+      <style>{`
+        @media (max-width: 600px) {
+          .store-feature-grid { grid-template-columns: 1fr !important; }
+          .store-email-row { flex-direction: column !important; }
+          .store-email-row input { border-right: 1px solid #1a3a3a !important; border-bottom: none !important; }
+          .store-email-row button { width: 100% !important; }
+          .store-guide-card { flex-direction: column !important; }
+          .store-guide-price { align-items: flex-start !important; flex-direction: row !important; align-items: center !important; }
+        }
+      `}</style>
       <div style={{ maxWidth: 860, margin: '0 auto' }}>
 
         {/* Header */}
@@ -129,7 +139,7 @@ export default function StorePage() {
           </p>
 
           {/* Features */}
-          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 24px' }}>
+          <ul className="store-feature-grid" style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 24px' }}>
             {NEWSLETTER_FEATURES.map((f) => (
               <li key={f} style={{ fontFamily: 'monospace', fontSize: 12, color: C.textMid, lineHeight: 1.6, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
                 <span style={{ color: C.tealLight, flexShrink: 0, marginTop: 1 }}>◈</span>
@@ -139,7 +149,7 @@ export default function StorePage() {
           </ul>
 
           {/* Email + CTA */}
-          <div style={{ display: 'flex', gap: 0, maxWidth: 520 }}>
+          <div className="store-email-row" style={{ display: 'flex', gap: 0, maxWidth: 520 }}>
             <input
               type="email"
               placeholder="your@email.com"
@@ -200,7 +210,7 @@ export default function StorePage() {
 
         {/* Guide card */}
         <div style={{ background: C.surface, border: `1px solid ${C.borderAccent}`, padding: '28px 32px 28px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 24, flexWrap: 'wrap' }}>
+          <div className="store-guide-card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 24, flexWrap: 'wrap' }}>
             <div style={{ flex: 1, minWidth: 260 }}>
               <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.tealLight, letterSpacing: '0.22em', border: `1px solid ${C.tealLight}`, display: 'inline-block', padding: '2px 8px', marginBottom: 14 }}>
                 ONE-TIME PURCHASE
@@ -211,7 +221,7 @@ export default function StorePage() {
               <p style={{ fontFamily: 'monospace', fontSize: 12, color: C.textDim, lineHeight: 1.7, marginBottom: 18 }}>
                 A field manual for recognizing covert manipulation, narcissistic abuse patterns, and dark triad behavior — grounded in neuroscience and clinical psychology research.
               </p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 20px' }}>
+              <ul className="store-feature-grid" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 20px' }}>
                 {GUIDE_FEATURES.map((f) => (
                   <li key={f} style={{ fontFamily: 'monospace', fontSize: 11, color: C.textMid, lineHeight: 1.6, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
                     <span style={{ color: C.tealLight, flexShrink: 0 }}>◈</span>{f}
