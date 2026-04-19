@@ -1,7 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 const C = {
   bg: '#0a0a0a',
@@ -34,9 +36,17 @@ const GUIDE_FEATURES = [
   'Instant PDF download after purchase',
 ]
 
-export default function StorePage() {
+function StoreContent() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
   const [email, setEmail] = useState('')
   const [language, setLanguage] = useState<'en' | 'es'>('en')
+
+  useEffect(() => {
+    const lang = searchParams.get('lang')
+    if (lang === 'es') setLanguage('es')
+    else setLanguage('en')
+  }, [searchParams])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [guideLoading, setGuideLoading] = useState(false)
@@ -159,7 +169,7 @@ export default function StorePage() {
             {(['en', 'es'] as const).map((lang) => (
               <button
                 key={lang}
-                onClick={() => setLanguage(lang)}
+                onClick={() => { setLanguage(lang); router.replace(`?lang=${lang}`, { scroll: false }) }}
                 style={{
                   fontFamily: 'monospace', fontSize: 10, letterSpacing: '0.18em',
                   padding: '4px 14px',
@@ -284,5 +294,13 @@ export default function StorePage() {
         </div>
       </div>
     </main>
+  )
+}
+
+export default function StorePage() {
+  return (
+    <Suspense>
+      <StoreContent />
+    </Suspense>
   )
 }
