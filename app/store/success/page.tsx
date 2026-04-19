@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { trackPurchaseConversion } from '@/lib/gtag'
 
 const C = {
@@ -22,7 +22,7 @@ const PRICES: Record<string, number> = {
   membership: 29.99,
 }
 
-export default function StoreSuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams()
   const type = searchParams.get('type') ?? ''
   const isGuide = type === 'guide'
@@ -233,5 +233,13 @@ export default function StoreSuccessPage() {
         </div>
       </div>
     </main>
+  )
+}
+
+export default function StoreSuccessPage() {
+  return (
+    <Suspense>
+      <SuccessContent />
+    </Suspense>
   )
 }
