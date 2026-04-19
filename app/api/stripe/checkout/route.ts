@@ -14,6 +14,7 @@ export async function POST(req: NextRequest) {
       const priceId = process.env.STRIPE_PRICE_GUIDE
       const session = await stripe.checkout.sessions.create({
         mode: 'payment',
+        allow_promotion_codes: true,
         line_items: [
           priceId
             ? { price: priceId, quantity: 1 }
@@ -36,6 +37,7 @@ export async function POST(req: NextRequest) {
       const priceId = process.env.STRIPE_PRICE_NEWSLETTER
       const session = await stripe.checkout.sessions.create({
         mode: 'subscription',
+        allow_promotion_codes: true,
         ...(email ? { customer_email: email } : {}),
         subscription_data: { trial_period_days: 14 },
         line_items: [
