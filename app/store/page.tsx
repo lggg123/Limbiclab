@@ -36,6 +36,7 @@ const GUIDE_FEATURES = [
 
 export default function StorePage() {
   const [email, setEmail] = useState('')
+  const [language, setLanguage] = useState<'en' | 'es'>('en')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [guideLoading, setGuideLoading] = useState(false)
@@ -49,6 +50,11 @@ export default function StorePage() {
     setLoading(true)
     setError(null)
     try {
+      await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim(), source: 'newsletter', language }),
+      })
       const res = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -147,6 +153,26 @@ export default function StorePage() {
               </li>
             ))}
           </ul>
+
+          {/* Language toggle */}
+          <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+            {(['en', 'es'] as const).map((lang) => (
+              <button
+                key={lang}
+                onClick={() => setLanguage(lang)}
+                style={{
+                  fontFamily: 'monospace', fontSize: 10, letterSpacing: '0.18em',
+                  padding: '4px 14px',
+                  border: `1px solid ${language === lang ? C.tealLight : C.border}`,
+                  background: language === lang ? 'rgba(42,157,157,0.1)' : 'transparent',
+                  color: language === lang ? C.tealLight : C.textDim,
+                  cursor: 'pointer',
+                }}
+              >
+                {lang === 'en' ? 'EN — English' : 'ES — Español'}
+              </button>
+            ))}
+          </div>
 
           {/* Email + CTA */}
           <div className="store-email-row" style={{ display: 'flex', gap: 0, maxWidth: 520 }}>

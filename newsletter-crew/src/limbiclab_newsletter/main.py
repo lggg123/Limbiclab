@@ -20,8 +20,8 @@ TOPICS = [
 class NewsletterFlowState(BaseModel):
     topic: str = ""
     research: str = ""
-    newsletter_html: str = ""
-    newsletter_html_es: str = ""
+    newsletter_en: str = ""
+    newsletter_es: str = ""
     week_number: int = 0
     store_url: str = ""
 
@@ -61,20 +61,26 @@ class LimbicLabNewsletterFlow(Flow[NewsletterFlowState]):
 
     @listen(run_newsletter_crew)
     def finalize(self):
-        # Tasks write their own output files via output_file config.
-        # Log both paths for confirmation.
         en_path = os.path.join("output", "newsletter_en.html")
         es_path = os.path.join("output", "newsletter_es.html")
-        print(f"[LimbicLab Newsletter] English output: {en_path}")
-        print(f"[LimbicLab Newsletter] Spanish output: {es_path}")
-        return self.state.newsletter_html
+
+        # Read task output files into state so app.py can access both
+        for path, attr in ((en_path, "newsletter_en"), (es_path, "newsletter_es")):
+            if os.path.exists(path):
+                with open(path, "r", encoding="utf-8") as f:
+                    setattr(self.state, attr, f.read())
+                print(f"[LimbicLab Newsletter] Loaded: {path}")
+            else:
+                print(f"[LimbicLab Newsletter] Warning: {path} not found")
+
+        return self.state.newsletter_en, self.state.newsletter_es
 
 
-def kickoff(topic: str | None = None) -> str:
+def kickoff(topic: str | None = None) -> tuple[str, str]:
     payload = {"topic": topic} if topic else None
     flow = LimbicLabNewsletterFlow()
     flow.kickoff(inputs=payload)
-    return flow.state.newsletter_html
+    return flow.state.newsletter_en, flow.state.newsletter_es
 
 
 def plot():

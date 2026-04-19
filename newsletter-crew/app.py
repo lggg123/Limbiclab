@@ -10,13 +10,13 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
-# Track generation state without a DB
 _state = {
-    "status": "idle",       # idle | running | done | error
+    "status": "idle",
     "topic": None,
     "started_at": None,
     "finished_at": None,
-    "newsletter_html": None,
+    "newsletter_en": None,
+    "newsletter_es": None,
     "error": None,
 }
 
@@ -25,12 +25,13 @@ def _run_crew(topic: str | None):
     _state["status"] = "running"
     _state["started_at"] = datetime.utcnow().isoformat()
     _state["error"] = None
-    _state["newsletter_html"] = None
+    _state["newsletter_en"] = None
+    _state["newsletter_es"] = None
     try:
-        # Import here so Flask starts fast even if crewai is slow to import
         from src.limbiclab_newsletter.main import kickoff
-        html = kickoff(topic=topic)
-        _state["newsletter_html"] = html
+        en_html, es_html = kickoff(topic=topic)
+        _state["newsletter_en"] = en_html
+        _state["newsletter_es"] = es_html
         _state["status"] = "done"
         _state["finished_at"] = datetime.utcnow().isoformat()
         logger.info("Newsletter generation complete.")
@@ -41,6 +42,54 @@ def _run_crew(topic: str | None):
         logger.exception("Newsletter generation failed.")
 
 
+def _send_newsletters():
+    """Send EN and ES newsletters to subscribers grouped by language preference."""
+    import resend
+    from supabase import create_client
+
+    resend.api_key = os.environ["RESEND_API_KEY"]
+    from_addr = os.getenv("RESEND_FROM_EMAIL", "LimbicLab <onboarding@resend.dev>")
+
+    supabase_url = os.environ["NEXT_PUBLIC_SUPABASE_URL"]
+    supabase_key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+    db = create_client(supabase_url, supabase_key)
+
+    subject_en = f"LimbicLab · {_state['topic'] or 'Weekly Dispatch'}"
+    subject_es = f"LimbicLab · {_state['topic'] or 'Despacho Semanal'}"
+
+    for lang in ("en", "es"):
+        html = _state["newsletter_en"] if lang == "en" else _state["newsletter_es"]
+        subject = subject_en if lang == "en" else subject_es
+        if not html:
+            logger.warning(f"No HTML for language '{lang}' — skipping.")
+            continue
+
+        result = db.from_("leads") \
+            .select("email") \
+            .eq("source", "newsletter") \
+            .eq("language", lang) \
+            .execute()
+
+        emails = [row["email"] for row in (result.data or [])]
+        if not emails:
+            logger.info(f"No {lang.upper()} subscribers found.")
+            continue
+
+        logger.info(f"Sending to {len(emails)} {lang.upper()} subscribers.")
+        for email in emails:
+            try:
+                resend.Emails.send({
+                    "from": from_addr,
+                    "to": email,
+                    "subject": subject,
+                    "html": html,
+                })
+            except Exception as e:
+                logger.error(f"Failed to send to {email}: {e}")
+
+    logger.info("Send complete.")
+
+
 @app.get("/health")
 def health():
     return jsonify({"status": "ok", "service": "limbiclab-newsletter"})
@@ -48,15 +97,9 @@ def health():
 
 @app.post("/generate")
 def generate():
-    """
-    Trigger newsletter generation.
-    Optional JSON body: {"topic": "bipolar disorder neuroscience"}
-    Protected by WEBHOOK_SECRET env var if set.
-    """
     secret = os.getenv("WEBHOOK_SECRET")
     if secret:
-        provided = request.headers.get("X-Webhook-Secret", "")
-        if provided != secret:
+        if request.headers.get("X-Webhook-Secret", "") != secret:
             return jsonify({"error": "Unauthorized"}), 401
 
     if _state["status"] == "running":
@@ -76,6 +119,26 @@ def generate():
     }), 202
 
 
+@app.post("/send")
+def send():
+    """Send the latest generated newsletters to subscribers by language."""
+    secret = os.getenv("WEBHOOK_SECRET")
+    if secret:
+        if request.headers.get("X-Webhook-Secret", "") != secret:
+            return jsonify({"error": "Unauthorized"}), 401
+
+    if _state["status"] != "done":
+        return jsonify({"error": f"Newsletter not ready — status: {_state['status']}"}), 409
+
+    if not _state["newsletter_en"] and not _state["newsletter_es"]:
+        return jsonify({"error": "No newsletter content available"}), 404
+
+    thread = threading.Thread(target=_send_newsletters, daemon=True)
+    thread.start()
+
+    return jsonify({"message": "Sending started — EN and ES dispatched by language preference"}), 202
+
+
 @app.get("/status")
 def status():
     return jsonify({
@@ -84,33 +147,35 @@ def status():
         "started_at": _state["started_at"],
         "finished_at": _state["finished_at"],
         "error": _state["error"],
-        "has_output": _state["newsletter_html"] is not None,
+        "has_en": _state["newsletter_en"] is not None,
+        "has_es": _state["newsletter_es"] is not None,
     })
 
 
+@app.get("/latest/<lang>")
+def latest(lang: str):
+    """Return the latest generated newsletter HTML for 'en' or 'es'."""
+    if lang not in ("en", "es"):
+        return jsonify({"error": "Use /latest/en or /latest/es"}), 400
+    html = _state["newsletter_en"] if lang == "en" else _state["newsletter_es"]
+    if html is None:
+        return jsonify({"error": f"No {lang.upper()} newsletter generated yet"}), 404
+    return app.response_class(response=html, status=200, mimetype="text/html")
+
+
 @app.get("/latest")
-def latest():
-    """Return the latest generated newsletter HTML."""
-    if _state["newsletter_html"] is None:
+def latest_default():
+    """Backwards-compatible — returns EN newsletter."""
+    if _state["newsletter_en"] is None:
         return jsonify({"error": "No newsletter generated yet"}), 404
-    return app.response_class(
-        response=_state["newsletter_html"],
-        status=200,
-        mimetype="text/html",
-    )
+    return app.response_class(response=_state["newsletter_en"], status=200, mimetype="text/html")
 
 
 @app.post("/cron")
 def cron():
-    """
-    Railway cron endpoint — called weekly by Railway's cron service.
-    Uses auto topic rotation (no body needed).
-    Requires WEBHOOK_SECRET header for security.
-    """
     secret = os.getenv("WEBHOOK_SECRET")
     if secret:
-        provided = request.headers.get("X-Webhook-Secret", "")
-        if provided != secret:
+        if request.headers.get("X-Webhook-Secret", "") != secret:
             return jsonify({"error": "Unauthorized"}), 401
 
     if _state["status"] == "running":

@@ -4,15 +4,17 @@ import { resend } from '@/lib/resend'
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, name, source } = await req.json()
+    const { email, name, source, language } = await req.json()
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: 'Valid email required' }, { status: 400 })
     }
 
-    if (!source || !['ebook', 'giveaway'].includes(source)) {
+    if (!source || !['ebook', 'giveaway', 'newsletter'].includes(source)) {
       return NextResponse.json({ error: 'Invalid source' }, { status: 400 })
     }
+
+    const lang = language === 'es' ? 'es' : 'en'
 
     const db = getLeadsClient()
     let ebookToken: string | null = null
@@ -38,7 +40,7 @@ export async function POST(req: NextRequest) {
         const { error } = await db
           .from('leads')
           .upsert(
-            { email: cleanEmail, name: name?.trim() || null, source, ebook_token: ebookToken },
+            { email: cleanEmail, name: name?.trim() || null, source, language: lang, ebook_token: ebookToken },
             { onConflict: 'email,source', ignoreDuplicates: false }
           )
         if (error) console.error('[leads] Supabase error:', error)
@@ -46,7 +48,7 @@ export async function POST(req: NextRequest) {
         const { error } = await db
           .from('leads')
           .upsert(
-            { email: cleanEmail, name: name?.trim() || null, source },
+            { email: cleanEmail, name: name?.trim() || null, source, language: lang },
             { onConflict: 'email,source', ignoreDuplicates: true }
           )
         if (error) console.error('[leads] Supabase error:', error)
