@@ -1,8 +1,8 @@
 # LimbicLab — YouTube Ads Marketing Strategy
 
-> Skill: `youtube-ads` v1.0.1 · Generated 2026-04-19
+> Skill: `youtube-ads` v1.0.1 · Updated 2026-04-19
 
-This strategy covers paid YouTube advertising for LimbicLab's three conversion goals: ebook lead capture, newsletter trial sign-ups, and store purchases. It incorporates existing video assets and a Playa del Rey filming plan.
+This strategy covers paid YouTube advertising across two parallel funnels: free ebook lead capture and free newsletter trial sign-ups. Both use the same video creative with different end cards and CTAs.
 
 ---
 
@@ -11,187 +11,211 @@ This strategy covers paid YouTube advertising for LimbicLab's three conversion g
 | Stage | Goal | Primary Metric |
 |-------|------|----------------|
 | **Top of Funnel** | Awareness — dark psychology / neuroscience content | Views, Watch Time |
-| **Middle of Funnel** | Consideration — free ebook sign-up | Leads, CPL |
-| **Bottom of Funnel** | Conversion — newsletter trial / store | Trials started, ROAS |
+| **Middle of Funnel — Funnel A** | Free ebook sign-up (200 cap) | Leads, CPL |
+| **Middle of Funnel — Funnel B** | Free newsletter trial (14 days) | Trials started, CPT |
+| **Bottom of Funnel** | Newsletter paid conversion / store purchase | Revenue, ROAS |
 
 ---
 
-## 2. Audience Targeting
+## 2. Dual CTA Strategy
 
-### Core Audiences
-- **Interest targeting**: Mental health, psychiatry, psychology, neuroscience, cannabis & CBD, self-improvement, dark academia
-- **Custom intent**: People searching "bipolar disorder neuroscience", "dark psychology explained", "cannabis bipolar", "trauma neuroscience", "DSM-5 explained"
-- **In-market**: Health & Fitness > Mental Health, Education > Science
-- **Life events**: College students, people researching mental health diagnoses
+**One video. Two exports. Two campaigns.**
 
-### Remarketing Layers
-- YouTube channel viewers (existing subscribers + watch history)
-- Website visitors (limbiclab.xyz) — retarget with newsletter/store CTA
-- Ebook page visitors who did not convert
+The same 2-minute combined video (church + Russian Satanist + Playa Del Rey interview) is exported twice in CapCut with different end cards:
 
-### Exclusions
-- Children's content
-- Ages under 18
-- Audiences in crisis-intervention categories (brand safety)
+| Export | End Card | CTA | URL |
+|--------|----------|-----|-----|
+| **Version A** | `THE NEUROSCIENCE OF THE DARK — FREE` | `GET FREE EBOOK →` | `/ebook` |
+| **Version B** | `WEEKLY RESEARCH BRIEF — 14 DAYS FREE` | `START FREE TRIAL →` | `/store` |
+
+Never run both CTAs in the same ad. Keep them in separate campaigns so Google optimizes each independently.
 
 ---
 
-## 3. Ad Format Strategy
+## 3. Video Structure — Combined Cut
 
-### Top of Funnel — Bumper (6 sec)
-**Goal**: Brand recall in dark psychology / neuroscience space
-
-**Script template**:
-> *[0–2s]* Striking visual — brain scan, crime scene, ritual imagery
-> *[2–5s]* "Your brain on [bipolar / cannabis / trauma]."
-> *[5–6s]* "LimbicLab.xyz"
-
-**When to use**: Run alongside competitor content (true crime, psychology channels, Joe Rogan clips)
-
----
-
-### Middle of Funnel — TrueView Skippable (60–90 sec)
-**Goal**: Ebook lead capture
-
-**Hook (first 5 sec — must earn the skip)**:
-> "The number 666 isn't a Satanic symbol. It's a first-century political assassination code — and the neuroscience of why you believe otherwise is more disturbing than the myth."
-
-**Structure**:
-1. *[0–5s]* Provocative hook — pattern interrupt
-2. *[5–25s]* Credibility + content preview (mention 21+ citations, graduate-level research)
-3. *[25–50s]* Deliver one high-value insight (e.g., gematria / Nero, bipolar kindling model)
-4. *[50–70s]* CTA: "Get the free ebook — limbiclab.xyz/ebook"
-
-**CTA overlay**: "Download Free Ebook →" linking to `/ebook`
+| Timestamp | Clip | Voiceover / Overlay |
+|-----------|------|---------------------|
+| 0–5s | Church expulsion — cold open | Silent |
+| 5–18s | Church clip finishes | Satan etymology — institutional rejection angle |
+| 18–28s | Playa Del Rey interview — *"how much do you know about Satan?"* | Let her answer play natural |
+| 28–35s | Her answer lands | Text overlay: `Most people don't.` |
+| 35–55s | Russian Satanist / bus | Dissociation + ritual neuroscience angle |
+| 55–1:20 | Playa Del Rey — 5 sec slowed to 0.5x | Voiceover tying all three clips together |
+| 1:20–1:50 | Text overlays, citations, site b-roll | Ebook/newsletter pitch |
+| 1:50–2:00 | **Version A end card** OR **Version B end card** | Static CTA frame |
 
 ---
 
-### Bottom of Funnel — TrueView for Action (30–60 sec)
-**Goal**: Newsletter trial conversions
+## 4. A/B Test Structure
 
-**Targeting**: Remarketing to ebook page visitors + channel subscribers
+Run three hook variants as separate ads within each campaign. Same targeting, same budget split. Let Google optimize after 500 impressions per ad.
 
-**Hook**:
-> "You read the ebook. Now get the research delivered weekly — bipolar disorder, trauma, dark psychology, cited and sourced. 14 days free."
+| Hook | Opening Clip | Angle |
+|------|-------------|-------|
+| **A** | Church expulsion + dog | Institutional rejection / Satan etymology |
+| **B** | Russian Satanist / bus | Dissociation + ritual neuroscience |
+| **C** | Hollywood — coercive language clip | Compliance neuroscience / command framing |
 
-**CTA**: "Start Free Trial →" linking to `/store`
-
----
-
-### Discovery (In-Feed)
-**Goal**: Appear in search results alongside organic neuroscience/psychology content
-
-**Thumbnail strategy**:
-- High contrast, dark aesthetic matching site brand
-- Text overlay: "WHAT YOUR BRAIN ACTUALLY DOES" / "666 — THE REAL NEUROSCIENCE"
-- Face or dramatic visual (brain scans, inverted cross, Playa del Rey ocean footage)
-
-**Headline examples**:
-- "The Neuroscience of the Dark — Free"
-- "Bipolar + Cannabis: The Real Data"
-- "Why Your Brain Creates Belief in Evil"
+**Rule**: Don't manually kill a variant before 500 impressions. Let the data decide.
 
 ---
 
-## 4. Creative Direction — Playa del Rey Shoots
+## 5. Ad Scripts
 
-Playa del Rey provides high-value production context: coastal isolation, dramatic skies, liminal atmosphere — consistent with the dark academic / scientific-terminal brand aesthetic.
+### Script A — Church / Hollywood
 
-### Shot List
+> "That man just got removed from a church in Hollywood. With his dog.
+> And the reason is more neurologically interesting than you think.
+>
+> The word 'Satan' — the original Aramaic — doesn't mean a demon.
+> It means adversary. Someone who opposes the established order.
+> Yeshua used it on his closest disciple. Not as an insult. As a diagnosis.
+>
+> LimbicLab is a computational neuroscience platform.
+> We study what institutions actually do to the brains they reject —
+> the kindling model, the stress-diathesis framework,
+> the epigenetics of repeated social exclusion.
+>
+> The free ebook is called The Neuroscience of the Dark.
+> Five chapters. Bipolar oscillation, trauma, ritual neuroscience,
+> suicidality, and the creative brain. 21 peer citations.
+>
+> Link is in the description. It's free. Read it."
 
-| Shot | Description | Ad Use |
-|------|-------------|--------|
-| **Walking toward camera on beach at dusk** | Monologue delivery, moody light | TrueView hook |
-| **Ocean horizon, static** | B-roll — "the mind under pressure" metaphor | Bumper background |
-| **Tide pulling back on sand** | Symbolic: kindling model, wave metaphor for mania | TrueView b-roll |
-| **Overhead drone — isolated figure on beach** | Scale, isolation, psychiatric themes | Discovery thumbnail |
-| **Close-up: face lit by phone screen, dark surroundings** | "Most people never question what their brain tells them" hook | TrueView opener |
-| **Sunset time-lapse** | Visual interest for stats/data overlays | Mid-roll b-roll |
+### Script B — Russian Satanist / Bus
 
-### Brand Consistency on Location
-- Wear dark, minimal clothing (black / charcoal) — no logos
-- Shoot magic hour (golden hour / blue hour) for cinematic quality
-- Handheld feels authentic; gimbal for controlled product-forward shots
-- Add subtle monospace text overlays in post matching site aesthetic (`#e0e0e0` on `#0a0a0a`)
+> "She told me she was going to Russia. She's on the bus home.
+>
+> What you just watched is a dissociation loop —
+> the brain constructing a narrative that protects identity
+> even when the behavior directly contradicts it.
+> Sex rituals, initiation ceremonies, coercive group dynamics —
+> they all run through the same neurological architecture.
+> Oxytocin. Dopamine. Fear conditioning. Repetition.
+>
+> It's not mysticism. It's receptor pharmacology.
+>
+> LimbicLab documents the neuroscience behind belief systems
+> that operate at the edge of human psychology.
+> Ritual. Trauma. Dark psychology. The biology of extremity.
+>
+> The free ebook breaks it down in five chapters.
+> Graduate-level research. Plain language. Fully cited.
+>
+> Link in the description. First 200 copies are free. After that it's gone."
 
-### Audio
-- Ambient ocean under voiceover (low in mix)
-- No upbeat music — use low-frequency drone or silence with selective SFX
-- Voiceover: direct, clinical, measured pace — not hype
+### Delivery Notes
+- Pace slower than feels natural — leave 1 full second after punchy lines
+- Tone: researcher talking to a colleague, not influencer to camera
+- *"After that it's gone"* — deliver flat, no inflection
+- Record 2–3 takes, use the one where you sound least like you're reading
 
 ---
 
-## 5. Budget Recommendations
+## 6. CapCut Checklist
 
-| Campaign | Daily Budget | Format | Estimated CPV |
-|----------|-------------|--------|---------------|
-| Awareness (Bumper) | $15–25/day | Bumper | $0.01–0.03 |
-| Ebook Lead Gen | $30–50/day | TrueView Skippable | $0.03–0.08 |
-| Newsletter Retargeting | $15–20/day | TrueView for Action | $0.10–0.25 |
-| Discovery | $20–30/day | In-Feed | $0.05–0.15 |
-| **Total** | **$80–125/day** | — | — |
-
-**Starting recommendation**: $50/day on TrueView Skippable (ebook) + $20/day Discovery. Scale what converts.
+- [ ] Aspect ratio: 16:9 (not 9:16)
+- [ ] Color grade: desaturate slightly, push shadows dark — match `#0a0a0a`
+- [ ] Text style: white monospace, tight letter spacing — match site aesthetic
+- [ ] Audio: ambient sound at 20%, low drone underneath, voiceover clean on top
+- [ ] Beep/mute any explicit audio (YouTube policy)
+- [ ] Auto-caption → style monospace white (boosts watch time)
+- [ ] Playa Del Rey clip: slow to 0.5x speed for cinematic stretch
+- [ ] Export twice — Version A (ebook CTA) and Version B (newsletter CTA)
+- [ ] End card: static last 5 seconds with URL + cap reminder
 
 ---
 
-## 6. Campaign Structure in Google Ads
+## 7. Campaign Structure in Google Ads
 
 ```
-Campaign: LimbicLab — Ebook Lead Gen
-  └── Ad Group: Dark Psychology Interest
-        └── TrueView Skippable — Hook A (Nero/666)
-        └── TrueView Skippable — Hook B (Bipolar kindling)
-  └── Ad Group: Mental Health In-Market
-        └── TrueView Skippable — Hook C (Cannabis + bipolar)
+Campaign A: LimbicLab — Free Ebook
+  Budget: $15/day
+  └── Ad Group: Dark Psychology Cold Audience
+        └── Hook A — Church (Version A end card)
+        └── Hook B — Russian Satanist (Version A end card)
+        └── Hook C — Hollywood command (Version A end card)
 
-Campaign: LimbicLab — Newsletter Retargeting
-  └── Ad Group: Ebook Page Visitors
-        └── TrueView for Action — "14 Days Free"
-  └── Ad Group: Channel Subscribers
+Campaign B: LimbicLab — Free Newsletter Trial
+  Budget: $10/day
+  └── Ad Group: Dark Psychology Cold Audience
+        └── Hook A — Church (Version B end card)
+        └── Hook B — Russian Satanist (Version B end card)
+        └── Hook C — Hollywood command (Version B end card)
+
+Campaign C: LimbicLab — Retargeting
+  Budget: $10/day
+  └── Ad Group: Ebook page visitors (no sign-up)
+        └── TrueView for Action — newsletter CTA
+  └── Ad Group: Channel subscribers
         └── TrueView for Action — "You watched. Now subscribe."
 
-Campaign: LimbicLab — Awareness
-  └── Ad Group: Competitor / Adjacent Content
-        └── Bumper — Brand stamp
+Campaign D: LimbicLab — Awareness
+  Budget: $5/day
+  └── Ad Group: Adjacent content (true crime, psychology channels)
+        └── Bumper 6 sec — brand stamp
 ```
 
----
-
-## 7. Pre-Launch Checklist
-
-- [ ] Google Ads account linked to YouTube channel
-- [ ] Conversion tracking set up (ebook sign-up, newsletter trial start)
-- [ ] Remarketing audiences created (site visitors, ebook page, channel viewers)
-- [ ] At least 2 hook variants per TrueView ad (A/B test)
-- [ ] Bumper cut from existing long-form video
-- [ ] Discovery thumbnails designed (dark aesthetic, high contrast)
-- [ ] UTM parameters on all CTA URLs (`?utm_source=youtube&utm_medium=paid&utm_campaign=ebook`)
-- [ ] Brand safety exclusions applied
-- [ ] Playa del Rey shoot scheduled (aim for 2–3 hour golden hour window)
+**Total starting budget: $40/day.** Scale Campaign A or B once one proves lower CPL.
 
 ---
 
-## 8. KPIs & Optimization Triggers
+## 8. UTM Parameters
+
+| Campaign | URL |
+|----------|-----|
+| Ebook ads | `limbiclab.xyz/ebook?utm_source=youtube&utm_medium=paid&utm_campaign=ebook` |
+| Newsletter ads | `limbiclab.xyz/store?utm_source=youtube&utm_medium=paid&utm_campaign=newsletter` |
+| Retargeting | `limbiclab.xyz/store?utm_source=youtube&utm_medium=retargeting&utm_campaign=newsletter` |
+
+---
+
+## 9. Budget Table
+
+| Campaign | Daily Budget | Format | Est. CPV | Goal |
+|----------|-------------|--------|----------|------|
+| Free Ebook | $15/day | TrueView Skippable | $0.03–0.08 | <$4 CPL |
+| Free Newsletter | $10/day | TrueView Skippable | $0.03–0.08 | <$12 CPT |
+| Retargeting | $10/day | TrueView for Action | $0.10–0.25 | Paid conversions |
+| Awareness | $5/day | Bumper | $0.01–0.03 | Brand recall |
+| **Total** | **$40/day** | — | — | — |
+
+---
+
+## 10. KPIs & Optimization Triggers
 
 | Metric | Target | Action if Below |
 |--------|--------|-----------------|
 | View-through rate (VTR) | >30% | Rewrite hook — first 5 sec failing |
 | Click-through rate (CTR) | >1.5% | Test new CTA overlay text |
-| Cost per lead (ebook) | <$4.00 | Scale budget if at target |
+| Cost per ebook lead | <$4.00 | Scale Campaign A budget |
 | Cost per trial start | <$12.00 | Tighten retargeting audience |
-| Discovery CTR | >3% | Test new thumbnails |
+| Ebook → trial conversion | >10% | Fix email sequence, not the ads |
 
 ---
 
-## 9. Content Calendar — First 30 Days
+## 11. Pre-Launch Checklist
+
+- [ ] Google Ads account linked to YouTube channel
+- [ ] Conversion tracking live — ebook sign-up + newsletter checkout (gtag installed ✓)
+- [ ] Ebook cap set to 200 (`EBOOK_MAX_CLAIMS=200` in Vercel ✓)
+- [ ] Remarketing audiences created: site visitors, ebook page, channel viewers
+- [ ] Both video exports done in CapCut (Version A + Version B)
+- [ ] UTM parameters on all CTA URLs
+- [ ] Brand safety exclusions applied (no children's content, no crisis categories)
+- [ ] Monthly budget hard cap set in Google Ads account settings
+
+---
+
+## 12. 30-Day Content Calendar
 
 | Week | Action |
 |------|--------|
-| Week 1 | Launch Discovery + Bumper with existing video assets |
-| Week 2 | Film Playa del Rey content (hook A: Nero/666; hook B: bipolar kindling) |
-| Week 3 | Launch TrueView Skippable with new Playa del Rey footage |
-| Week 4 | Analyze VTR/CTR, kill underperforming hooks, scale winner |
+| **Week 1** | Edit combined video tonight. Export Version A + B. Launch Campaign A + B at $25/day total. |
+| **Week 2** | Check VTR at 500 impressions per hook. Kill lowest performer. Film more Hollywood/Playa Del Rey for Hook C. |
+| **Week 3** | Launch Hook C. Launch retargeting campaign against ebook page visitors. |
+| **Week 4** | Compare ebook CPL vs newsletter CPT. Double budget on winning campaign. |
 
 ---
 
