@@ -90,6 +90,11 @@ def _send_newsletters():
     logger.info("Send complete.")
 
 
+@app.get("/")
+def root():
+    return jsonify({"status": "ok", "service": "limbiclab-newsletter", "endpoints": ["/health", "/generate", "/send", "/status", "/cron"]})
+
+
 @app.get("/health")
 def health():
     return jsonify({"status": "ok", "service": "limbiclab-newsletter"})

@@ -3,7 +3,7 @@ name: Weekly Newsletter
 on:
   schedule:
     - cron: '0 9 * * 1'   # Every Monday at 9am UTC
-  workflow_dispatch:        # Allow manual trigger from GitHub UI
+  workflow_dispatch:
     inputs:
       topic:
         description: 'Newsletter topic (leave blank for auto rotation)'
@@ -11,12 +11,13 @@ on:
         type: string
 
 jobs:
-  trigger-newsletter:
-    name: Trigger Newsletter Generation
+  send-newsletter:
+    name: Generate and Send Newsletter
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
-      - name: Trigger Railway newsletter crew
+      - name: Trigger generation
         run: |
           TOPIC="${{ github.event.inputs.topic }}"
           if [ -n "$TOPIC" ]; then
@@ -31,5 +32,31 @@ jobs:
             -H "X-Webhook-Secret: ${{ secrets.WEBHOOK_SECRET }}" \
             -d "$BODY"
 
-      - name: Log result
-        run: echo "Newsletter generation triggered successfully."
+      - name: Poll until done
+        run: |
+          echo "Waiting for newsletter generation..."
+          for i in $(seq 1 40); do
+            sleep 30
+            STATUS=$(curl --silent \
+              "${{ secrets.RAILWAY_NEWSLETTER_URL }}/status" \
+              | python3 -c "import sys,json; print(json.load(sys.stdin)['status'])")
+            echo "Attempt $i — status: $STATUS"
+            if [ "$STATUS" = "done" ]; then
+              echo "Generation complete."
+              exit 0
+            fi
+            if [ "$STATUS" = "error" ]; then
+              echo "Generation failed."
+              exit 1
+            fi
+          done
+          echo "Timed out waiting for generation."
+          exit 1
+
+      - name: Send to subscribers
+        run: |
+          curl --fail --silent --show-error \
+            -X POST "${{ secrets.RAILWAY_NEWSLETTER_URL }}/send" \
+            -H "Content-Type: application/json" \
+            -H "X-Webhook-Secret: ${{ secrets.WEBHOOK_SECRET }}"
+          echo "Newsletter dispatched to EN and ES subscribers."
