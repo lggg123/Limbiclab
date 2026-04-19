@@ -1370,7 +1370,7 @@ function PeterMediaSection() {
               ◈ RECORD 02 — THE REQUEST
             </div>
             <div style={{ fontFamily: 'monospace', fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 2 }}>
-              Peter Instructs the Guard
+              Nero Instructs the Guard
             </div>
             <div style={{ fontFamily: 'monospace', fontSize: 10, color: C.textDim }}>
               The deliberate inversion · Rome · c. 64–68 CE
