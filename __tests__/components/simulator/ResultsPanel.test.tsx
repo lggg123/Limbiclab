@@ -9,6 +9,9 @@ function makeResult(overrides: Partial<SimulationResult> = {}): SimulationResult
       { timeDay: 0, valence: 0.1, arousal: 0.5, label: "euthymic" },
       { timeDay: 1, valence: 0.2, arousal: 0.6, label: "euthymic" },
     ],
+    neurochemistry: [
+      { timeDay: 0, dopamine: 0.5, serotonin: 0.5, gaba: 0.5, substanceLoad: 0 },
+    ],
     episodes: {
       manic: 1,
       hypomanic: 2,
@@ -17,6 +20,7 @@ function makeResult(overrides: Partial<SimulationResult> = {}): SimulationResult
       total: 7,
     },
     riskScore: 45,
+    riskBreakdown: { prs: 10, kindling: 10, episodes: 10, cannabis: 10, alcohol: 5 },
     kindlingIndex: 0.3,
     finalDopamine: 0.52,
     finalSerotonin: 0.48,

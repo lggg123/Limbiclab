@@ -30,6 +30,9 @@ const BASE_PARAMS: SimulationParams = {
   thcPotency: 0,
   cbdPotency: 0,
   cannabisDaysElapsed: 0,
+  alcoholFrequency: 0,
+  alcoholIntensity: 0,
+  alcoholDaysElapsed: 0,
   geneticLoci: [],
   polygenicRiskScore: 0,
   priorEpisodes: 0,
@@ -167,6 +170,8 @@ describe("computeRiskScore", () => {
     episodeCount: 0,
     cannabisFrequency: 0,
     thcPotency: 0,
+    alcoholFrequency: 0,
+    alcoholIntensity: 0,
   };
 
   it("returns 0 when all inputs are zero", () => {
@@ -174,13 +179,15 @@ describe("computeRiskScore", () => {
   });
 
   it("returns 100 when all components are maxed out", () => {
-    // prs=1 → 30pts, kindling=1 → 25pts, episodeCount≥10 → 20pts, freq=4 & thc=1 → 25pts = 100
+    // prs=1 → 25pts, kindling=1 → 25pts, episodeCount≥10 → 20pts, freq=4 & thc=1 → 15pts, alcohol → 15pts = 100
     const maxInputs = {
       prs: 1,
       kindlingIndex: 1,
       episodeCount: 10,
       cannabisFrequency: 4,
       thcPotency: 1,
+      alcoholFrequency: 6,
+      alcoholIntensity: 1,
     };
     expect(computeRiskScore(maxInputs)).toBe(100);
   });
@@ -243,6 +250,8 @@ describe("computeRiskScore", () => {
       episodeCount: 1000,
       cannabisFrequency: 100,
       thcPotency: 100,
+      alcoholFrequency: 100,
+      alcoholIntensity: 100,
     });
     expect(score).toBeLessThanOrEqual(100);
     expect(score).toBeGreaterThanOrEqual(0);
@@ -483,13 +492,15 @@ describe("risk summary categories (via runSimulation)", () => {
 
   it("score >= 80: computeRiskScore returns a score that maps to 'Very high risk'", () => {
     // Build a scenario that guarantees riskScore >= 80 via computeRiskScore directly.
-    // prs=1 (30pts) + kindlingIndex=1 (25pts) + episodeCount=10 (20pts) + freq=4, thc=1 (25pts) = 100
+    // prs=1 (25pts) + kindlingIndex=1 (25pts) + episodeCount=10 (20pts) + freq=4, thc=1 (15pts) + alcohol (15pts) = 100
     const score = computeRiskScore({
       prs: 1,
       kindlingIndex: 1,
       episodeCount: 10,
       cannabisFrequency: 4,
       thcPotency: 1,
+      alcoholFrequency: 6,
+      alcoholIntensity: 1,
     });
     expect(score).toBeGreaterThanOrEqual(80);
     // Verify the riskSummary returned by runSimulation at max static factors is not Low risk
@@ -515,6 +526,8 @@ describe("risk summary categories (via runSimulation)", () => {
       episodeCount: 15,
       cannabisFrequency: 4,
       thcPotency: 1,
+      alcoholFrequency: 6,
+      alcoholIntensity: 1,
     });
     expect(highRisk).toBe(100);
     // riskSummaryFromScore(100) should be "Very high risk" — verified via runSimulation
