@@ -255,7 +255,7 @@ export default function LandingES() {
         {/* Pie de página */}
         <div style={{ marginTop: 40, fontFamily: 'monospace', fontSize: 11, color: C.textDim, lineHeight: 1.7, textAlign: 'center' }}>
           <Link href="/lp/en" style={{ color: C.textDim, textDecoration: 'underline', marginRight: 20 }}>View in English</Link>
-          <Link href="/" style={{ color: C.textDim, textDecoration: 'underline' }}>← limbiclab.com</Link>
+          <Link href="/" style={{ color: C.textDim, textDecoration: 'underline' }}>← limbiclab.xyz</Link>
         </div>
       </div>
     </main>

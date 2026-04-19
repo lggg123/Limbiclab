@@ -18,11 +18,11 @@ Resend's default `onboarding@resend.dev` sender **only delivers to the email add
 ## Step 1 — Verify your domain in Resend
 
 1. Go to **resend.com/domains** → Add Domain
-2. Enter `limbiclab.com`
+2. Enter `limbiclab.xyz`
 3. Resend gives you DNS records (SPF, DKIM, DMARC) — add them in your DNS provider (Cloudflare, Namecheap, etc.)
 4. Click **Verify** — takes 5–30 minutes to propagate
 
-Once verified, emails send from `hello@limbiclab.com` (or any `@limbiclab.com` address).
+Once verified, emails send from `hello@limbiclab.xyz` (or any `@limbiclab.xyz` address).
 
 ---
 
@@ -31,10 +31,10 @@ Once verified, emails send from `hello@limbiclab.com` (or any `@limbiclab.com` a
 `.env.local` and Vercel already have this set:
 
 ```
-RESEND_FROM_EMAIL=LimbicLab <hello@limbiclab.com>
+RESEND_FROM_EMAIL=LimbicLab <hello@limbiclab.xyz>
 ```
 
-Change `hello@limbiclab.com` to whatever inbox you want replies going to (e.g. `research@limbiclab.com`).
+Change `hello@limbiclab.xyz` to whatever inbox you want replies going to (e.g. `research@limbiclab.xyz`).
 
 **Also add this to Vercel** — Settings → Environment Variables → `RESEND_FROM_EMAIL`.
 
@@ -47,8 +47,8 @@ Make sure all three are set in Vercel (Settings → Environment Variables):
 | Key | Value |
 |-----|-------|
 | `RESEND_API_KEY` | `re_9kyGwyAf_...` (already in `.env.local`) |
-| `RESEND_FROM_EMAIL` | `LimbicLab <hello@limbiclab.com>` |
-| `NEXT_PUBLIC_BASE_URL` | `https://www.limbiclab.com` |
+| `RESEND_FROM_EMAIL` | `LimbicLab <hello@limbiclab.xyz>` |
+| `NEXT_PUBLIC_BASE_URL` | `https://www.limbiclab.xyz` |
 
 ---
 
@@ -56,13 +56,13 @@ Make sure all three are set in Vercel (Settings → Environment Variables):
 
 ### Ebook confirmation
 - **Subject:** `Your Ebook: The Neuroscience of the Dark`
-- **From:** `LimbicLab <hello@limbiclab.com>`
+- **From:** `LimbicLab <hello@limbiclab.xyz>`
 - **Content:** Link to `/ebook`, newsletter free trial CTA
 - **Fires when:** User submits email on the ebook gate
 
 ### Giveaway confirmation
 - **Subject:** `You're entered — LimbicLab Giveaway`
-- **From:** `LimbicLab <hello@limbiclab.com>`
+- **From:** `LimbicLab <hello@limbiclab.xyz>`
 - **Content:** Entry confirmed, prize list, newsletter free trial CTA
 - **Fires when:** User submits form on `/giveaway`
 

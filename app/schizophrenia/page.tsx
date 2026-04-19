@@ -6,7 +6,7 @@ export const metadata = {
   openGraph: {
     title: 'Schizophrenia — Deep Research | LimbicLab',
     description: 'GWAS genetics, GABA system collapse, social defeat hypothesis, and schizoaffective disorder.',
-    url: 'https://limbiclab.com/schizophrenia',
+    url: 'https://limbiclab.xyz/schizophrenia',
   },
 }
 

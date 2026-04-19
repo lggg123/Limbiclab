@@ -10,7 +10,7 @@
 
 ## Ad Set A — Free Ebook (Free Guide)
 
-**Landing page:** https://www.limbiclab.com/ebook  
+**Landing page:** https://www.limbiclab.xyz/ebook  
 **Lead magnet:** "The Neuroscience of the Dark" — free ebook, instant access  
 **Conversion event:** Lead (fires on email submit)
 
@@ -50,7 +50,7 @@ Tap to unlock it →
 
 ## Ad Set B — Giveaway
 
-**Landing page:** https://www.limbiclab.com/giveaway  
+**Landing page:** https://www.limbiclab.xyz/giveaway  
 **Lead magnet:** Win 3-month newsletter + ebook + Dark Psychology Guide bundle  
 **Conversion event:** Lead (fires on form submit)
 
@@ -106,7 +106,7 @@ No subscription required. No catch.
 ```
 
 **CTA Button:** Get Free Access  
-**Landing page:** https://www.limbiclab.com/ebook
+**Landing page:** https://www.limbiclab.xyz/ebook
 
 ---
 

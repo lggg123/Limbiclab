@@ -197,7 +197,7 @@ export default function OGImage() {
           }}
         >
           <div style={{ fontSize: 11, color: '#333', letterSpacing: '0.2em' }}>
-            limbiclab.com
+            limbiclab.xyz
           </div>
           <div style={{ display: 'flex', gap: 24 }}>
             {['SIMULATOR', 'BRAIN ATLAS', 'SATANISM RESEARCH', 'PSYCH PROFILE'].map((item) => (

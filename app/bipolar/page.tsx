@@ -6,7 +6,7 @@ export const metadata = {
   openGraph: {
     title: 'Bipolar Disorder — Deep Research | LimbicLab',
     description: 'Neuroimaging, circadian biology, lithium mechanism, genetics, creativity link, and suicidality in bipolar disorder.',
-    url: 'https://limbiclab.com/bipolar',
+    url: 'https://limbiclab.xyz/bipolar',
   },
 }
 

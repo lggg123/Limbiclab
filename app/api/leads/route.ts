@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
     }
 
     const FROM = process.env.RESEND_FROM_EMAIL ?? 'LimbicLab <onboarding@resend.dev>'
-    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.limbiclab.com'
+    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.limbiclab.xyz'
 
     if (source === 'ebook') {
       const ebookUrl = ebookToken ? `${BASE_URL}/ebook?token=${ebookToken}` : `${BASE_URL}/ebook`
@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
               </a>
             </div>
             <p style="font-size:10px;color:#3a3a52;margin-top:36px;letter-spacing:0.08em;line-height:1.6;">
-              You received this because you signed up at limbiclab.com.<br/>
+              You received this because you signed up at limbiclab.xyz.<br/>
               No spam. Unsubscribe anytime.
             </p>
           </div>

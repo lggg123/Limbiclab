@@ -117,7 +117,7 @@ export default function OGImage() {
         {/* Bottom bar */}
         <div style={{ position: 'absolute', bottom: 40, left: 44, right: 44, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ fontSize: 11, color: '#8A0303', letterSpacing: '0.18em' }}>LIMBICLAB</div>
-          <div style={{ fontSize: 11, color: '#333', letterSpacing: '0.15em' }}>limbiclab.com/satanism-research</div>
+          <div style={{ fontSize: 11, color: '#333', letterSpacing: '0.15em' }}>limbiclab.xyz/satanism-research</div>
         </div>
       </div>
     ),

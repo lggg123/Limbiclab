@@ -45,7 +45,7 @@ newsletter_task:
        LimbicLab newsletter free trial with a styled button or link to {store_url}
        using action-oriented copy such as "Start your 14-day free trial"
     6. THIS WEEK'S CITATION — one paper, properly formatted
-    7. Footer: "LimbicLab · limbiclab.com · <a href="{{UNSUBSCRIBE_URL}}">Unsubscribe</a>"
+    7. Footer: "LimbicLab · limbiclab.xyz · <a href="{{UNSUBSCRIBE_URL}}">Unsubscribe</a>"
 
     Format the final output as clean HTML email, using inline styles only
     (no external CSS — email clients strip it). Dark background #0a0a0a,

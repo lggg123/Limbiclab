@@ -6,7 +6,7 @@ export const metadata = {
   openGraph: {
     title: 'The Neuroscience of the Dark | LimbicLab',
     description: 'Bipolar disorder, environmental trauma, ritual neuroscience, suicidality, and the creative brain — a unified research synthesis.',
-    url: 'https://limbiclab.com/ebook',
+    url: 'https://limbiclab.xyz/ebook',
   },
 }
 

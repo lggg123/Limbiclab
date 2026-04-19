@@ -6,7 +6,7 @@ export const metadata = {
   openGraph: {
     title: 'Environmental Mental Disorders & Suicidal Tendencies | LimbicLab',
     description: 'Environmental psychiatry: ACEs, racial trauma, climate grief, urban density, and the neuroscience of suicidality.',
-    url: 'https://limbiclab.com/environmental-disorders',
+    url: 'https://limbiclab.xyz/environmental-disorders',
   },
 }
 
