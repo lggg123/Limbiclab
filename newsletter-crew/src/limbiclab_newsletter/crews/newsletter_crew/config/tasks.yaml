@@ -1,0 +1,111 @@
+research_task:
+  description: >
+    Conduct thorough research about {topic} in the context of neuroscience
+    and psychiatry. Search for:
+    - Recent peer-reviewed studies (2023–2026)
+    - Clinical findings and mechanistic discoveries
+    - Emerging treatments or research directions
+    - Relevant statistics and epidemiological data
+    - Named researchers or institutions doing notable work
+
+    The current year is 2026. Focus on what is new, surprising, or
+    mechanistically important — not just what is well-known.
+  expected_output: >
+    A structured research brief in markdown with:
+    1. HEADLINE FINDING — the single most important new development
+    2. KEY RESEARCH — 3-5 specific studies or findings with details
+    3. MECHANISM — the biological/neurological mechanism at the core
+    4. STATISTICS — relevant numbers, prevalence, effect sizes
+    5. IMPLICATIONS — what this means clinically or scientifically
+    6. SOURCES — every claim linked to a named study or institution
+
+    Aim for 600-900 words. No fabricated citations.
+  agent: researcher
+  output_file: output/research_brief.md
+
+newsletter_task:
+  description: >
+    Using the research brief provided, write this week's LimbicLab
+    newsletter dispatch on the topic: {topic}.
+
+    VOICE AND STYLE:
+    - Graduate-level — assume the reader has a science background
+    - Dark, precise, clinical — like a forensic scientist writing prose
+    - Every major claim must have a citation in parentheses
+    - Open with a single striking sentence that reframes the topic
+    - Use section headers in ALL CAPS
+    - End with a "THIS WEEK'S CITATION" — one key paper formatted properly
+
+    STRUCTURE:
+    1. Opening hook (1-2 sentences — the most surprising finding)
+    2. THE BIOLOGY — mechanistic explanation (150-200 words)
+    3. WHAT THE RESEARCH SHOWS — 2-3 key findings with citations (200-250 words)
+    4. CLINICAL IMPLICATIONS — what this means for treatment or understanding (100-150 words)
+    5. CALL TO ACTION — a short conversion section inviting the reader to start the
+       LimbicLab newsletter free trial with a styled button or link to {store_url}
+       using action-oriented copy such as "Start your 14-day free trial"
+    6. THIS WEEK'S CITATION — one paper, properly formatted
+    7. Footer: "LimbicLab · limbiclab.com · Unsubscribe"
+
+    Format the final output as clean HTML email, using inline styles only
+    (no external CSS — email clients strip it). Dark background #0a0a0a,
+    text #e0e0e0, accent color #2a9d9d, monospace font stack.
+  expected_output: >
+    A complete HTML email newsletter, ready to send via Resend or SendGrid.
+    Inline styles only. Dark theme. 500-700 words of body content.
+    Proper HTML structure with <html>, <head>, <body> tags.
+    Must include a clickable CTA link to {store_url} and the LimbicLab footer
+    with unsubscribe link placeholder.
+  agent: newsletter_writer
+  context:
+    - research_task
+  output_file: output/newsletter_en.html
+
+spanish_localization_task:
+  description: >
+    You will receive a complete English HTML newsletter dispatch from the
+    newsletter_writer. Produce a Spanish version that meets ALL of the
+    following requirements:
+
+    LANGUAGE:
+    - Latin American Spanish only — no Spain-specific vocabulary (use
+      "computadora" not "ordenador", "celular" not "móvil", etc.)
+    - Reads as native, not translated — restructure sentences where needed
+      to sound natural in Spanish
+    - Never add phrases like "N. del T." or "(traducido)" or any translator note
+
+    CLINICAL TERMINOLOGY — use these exact terms, never anglicise:
+    - bipolar disorder → trastorno bipolar
+    - HPA axis → eje HPA
+    - prefrontal cortex → corteza prefrontal
+    - epigenetics → epigenética
+    - neurotransmitter → neurotransmisor
+    - dopamine → dopamina
+    - cortisol → cortisol (unchanged)
+    - hippocampus → hipocampo
+    - amygdala → amígdala
+    - kindling model → modelo de kindling (keep "kindling" as it is the
+      established clinical term with no accepted Spanish equivalent)
+    - stress-diathesis → estrés-diátesis
+
+    PRESERVE EXACTLY:
+    - All citations, author names, journal names, years, and statistics
+    - All HTML structure and inline styles — output must be valid HTML email
+    - All section headers (translate their content but keep ALL CAPS format)
+    - The CTA link and store URL
+    - The LimbicLab footer
+    - The dark, graduate-level tone — do not simplify or soften
+
+    OUTPUT:
+    - Complete HTML email in Spanish, same structure as the English version
+    - No English text remaining anywhere in the output
+    - No translator notes or commentary
+  expected_output: >
+    A complete HTML email newsletter in Latin American Spanish. Same inline
+    styles, same dark theme, same structure as the English version. All
+    clinical terms accurate. All citations identical. All statistics preserved.
+    Reads natively — not like a translation.
+  agent: spanish_localizer
+  context:
+    - newsletter_task
+  output_file: output/newsletter_es.html

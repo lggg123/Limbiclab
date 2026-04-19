@@ -1,0 +1,23 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "limbiclab-newsletter"
+version = "0.1.0"
+description = "LimbicLab weekly neuroscience newsletter — CrewAI Flow + Flask"
+authors = ["LimbicLab Research"]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+crewai = {extras = ["tools"], version = ">=0.119.0,<1.0.0"}
+flask = ">=3.0.0,<4.0.0"
+gunicorn = ">=22.0.0"
+python-dotenv = ">=1.0.0"
+
+[tool.crewai]
+type = "flow"
+
+[tool.poetry.scripts]
+kickoff = "limbiclab_newsletter.main:kickoff"
+plot    = "limbiclab_newsletter.main:plot"

@@ -1,0 +1,245 @@
+'use client'
+
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
+import { useEffect, Suspense } from 'react'
+import { trackPurchaseConversion } from '@/lib/gtag'
+
+const C = {
+  bg: '#0a0a0a',
+  surface: '#111111',
+  border: '#1e1e1e',
+  borderAccent: '#1a3a3a',
+  text: '#e0e0e0',
+  textDim: '#777777',
+  textMid: '#aaaaaa',
+  tealLight: '#2a9d9d',
+}
+
+const PRICES: Record<string, number> = {
+  guide: 9.99,
+  newsletter: 0,
+  membership: 29.99,
+}
+
+function SuccessContent() {
+  const searchParams = useSearchParams()
+  const type = searchParams.get('type') ?? ''
+  const isGuide = type === 'guide'
+  const isMembership = type === 'membership'
+  const isNewsletter = type === 'newsletter'
+
+  useEffect(() => {
+    trackPurchaseConversion(PRICES[type], 'USD')
+  }, [type])
+
+  return (
+    <main
+      style={{
+        background: C.bg,
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '40px 24px',
+      }}
+    >
+      <div
+        style={{
+          background: C.surface,
+          border: `1px solid ${C.borderAccent}`,
+          padding: '40px 36px',
+          maxWidth: 520,
+          width: '100%',
+        }}
+      >
+        <div
+          style={{
+            fontFamily: 'monospace',
+            fontSize: 11,
+            color: C.tealLight,
+            letterSpacing: '0.22em',
+            marginBottom: 16,
+          }}
+        >
+          {`// ORDER CONFIRMED`}
+        </div>
+
+        <div
+          style={{
+            fontFamily: 'monospace',
+            fontSize: 36,
+            color: C.tealLight,
+            marginBottom: 20,
+          }}
+        >
+          ◈
+        </div>
+
+        {isGuide && (
+          <>
+            <h1
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 20,
+                fontWeight: 700,
+                color: C.text,
+                letterSpacing: '0.06em',
+                marginBottom: 14,
+              }}
+            >
+              YOUR PDF IS ON ITS WAY
+            </h1>
+            <p
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 12,
+                color: C.textDim,
+                lineHeight: 1.8,
+                marginBottom: 28,
+              }}
+            >
+              The Dark Psychology Defense Guide will be delivered to your email shortly.
+              Check your inbox — and your spam folder if you don&apos;t see it within a few minutes.
+            </p>
+          </>
+        )}
+
+        {isMembership && (
+          <>
+            <h1
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 20,
+                fontWeight: 700,
+                color: C.text,
+                letterSpacing: '0.06em',
+                marginBottom: 14,
+              }}
+            >
+              WELCOME TO LIMBIC INTEL
+            </h1>
+            <p
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 12,
+                color: C.textDim,
+                lineHeight: 1.8,
+                marginBottom: 28,
+              }}
+            >
+              Your membership is active. Expect your first briefing at the start of the next cycle.
+              We&apos;ll reach out to your email with onboarding details.
+            </p>
+          </>
+        )}
+
+        {isNewsletter && (
+          <>
+            <h1
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 20,
+                fontWeight: 700,
+                color: C.text,
+                letterSpacing: '0.06em',
+                marginBottom: 14,
+              }}
+            >
+              YOU&apos;RE SUBSCRIBED
+            </h1>
+            <p
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 12,
+                color: C.textDim,
+                lineHeight: 1.8,
+                marginBottom: 28,
+              }}
+            >
+              Welcome to the LimbicLab Newsletter. Your first dispatch will arrive next week.
+              Check your inbox for a confirmation email.
+            </p>
+          </>
+        )}
+
+        {!isGuide && !isMembership && !isNewsletter && (
+          <>
+            <h1
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 20,
+                fontWeight: 700,
+                color: C.text,
+                letterSpacing: '0.06em',
+                marginBottom: 14,
+              }}
+            >
+              PAYMENT SUCCESSFUL
+            </h1>
+            <p
+              style={{
+                fontFamily: 'monospace',
+                fontSize: 12,
+                color: C.textDim,
+                lineHeight: 1.8,
+                marginBottom: 28,
+              }}
+            >
+              Your order has been received. Check your email for confirmation and next steps.
+            </p>
+          </>
+        )}
+
+        <div
+          style={{
+            display: 'flex',
+            gap: 16,
+            flexWrap: 'wrap',
+          }}
+        >
+          <Link
+            href="/"
+            style={{
+              fontFamily: 'monospace',
+              fontSize: 11,
+              letterSpacing: '0.18em',
+              color: C.bg,
+              background: C.tealLight,
+              border: `1px solid ${C.tealLight}`,
+              padding: '9px 20px',
+              textDecoration: 'none',
+              display: 'inline-block',
+            }}
+          >
+            ← BACK TO HOME
+          </Link>
+          <Link
+            href="/store"
+            style={{
+              fontFamily: 'monospace',
+              fontSize: 11,
+              letterSpacing: '0.18em',
+              color: C.textMid,
+              background: 'transparent',
+              border: `1px solid ${C.border}`,
+              padding: '9px 20px',
+              textDecoration: 'none',
+              display: 'inline-block',
+            }}
+          >
+            VIEW STORE
+          </Link>
+        </div>
+      </div>
+    </main>
+  )
+}
+
+export default function StoreSuccessPage() {
+  return (
+    <Suspense>
+      <SuccessContent />
+    </Suspense>
+  )
+}

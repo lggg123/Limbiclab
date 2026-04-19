@@ -39,6 +39,28 @@ export interface MoodState {
   label: MoodStateLabel;
 }
 
+/** Neurochemical state snapshot used for over-time charts. */
+export interface NeurochemistryPoint {
+  /** Simulation time in days */
+  timeDay: number;
+  /** Dopamine level (0-1) */
+  dopamine: number;
+  /** Serotonin level (0-1) */
+  serotonin: number;
+  /** GABA level (0-1) */
+  gaba: number;
+  /** Combined psychoactive exposure pressure (0-1) */
+  substanceLoad: number;
+}
+
+export interface RiskBreakdown {
+  prs: number;
+  kindling: number;
+  episodes: number;
+  cannabis: number;
+  alcohol: number;
+}
+
 // ─── Episode Counts ──────────────────────────────────────────────────────────
 
 /** Accumulated count of mood episodes over a simulation run. */
@@ -69,6 +91,14 @@ export interface SimulationParams {
   cbdPotency: number;
   /** Days since cannabis onset (0 = starting now) */
   cannabisDaysElapsed: number;
+
+  // --- Alcohol exposure ---
+  /** Daily alcohol use frequency (drinks per day, 0 = none) */
+  alcoholFrequency: number;
+  /** Relative alcohol intensity/excess level (0-1) */
+  alcoholIntensity: number;
+  /** Days since alcohol onset (0 = starting now) */
+  alcoholDaysElapsed: number;
 
   // --- Polygenic risk ---
   /** Array of risk-contributing loci. Leave empty for no genetic risk. */
@@ -103,10 +133,14 @@ export interface SimulationParams {
 export interface SimulationResult {
   /** Ordered time-series of mood states */
   trajectory: MoodState[];
+  /** Ordered time-series of neurotransmitter and substance-load values */
+  neurochemistry: NeurochemistryPoint[];
   /** Aggregated episode counts */
   episodes: EpisodeCount;
   /** Composite risk score in [0, 100] */
   riskScore: number;
+  /** Contribution of each component to the risk score */
+  riskBreakdown: RiskBreakdown;
   /** Kindling severity index accumulated over the run (0 = none, 1 = maximal) */
   kindlingIndex: number;
   /** Final dopamine level at end of simulation */
@@ -117,4 +151,79 @@ export interface SimulationResult {
   finalGaba: number;
   /** Human-readable summary of risk level */
   riskSummary: string;
+}
+
+// ─── Learn Content Types ────────────────────────────────────────────────────
+
+export interface LearnConcept {
+  emoji: string;
+  title: string;
+  summary: string;
+  detail: string;
+}
+
+export interface DsmCategory {
+  emoji: string;
+  family: string;
+  focus: string;
+  examples: string[];
+}
+
+export interface DisorderProfile {
+  name: string;
+  family: string;
+  keyFeatures: string;
+  typicalOnset: string;
+  contextNote: string;
+  citations: string[];
+}
+
+export interface GlossaryEntry {
+  term: string;
+  definition: string;
+}
+
+export interface PsychoticDomain {
+  domain: string;
+  description: string;
+  examples: string[];
+  clinicalImportance: string;
+}
+
+export interface NeurotransmitterProfile {
+  name: string;
+  primaryRole: string;
+  whenLow: string;
+  whenHighOrDysregulated: string;
+  learningNote: string;
+}
+
+export interface GeneProfile {
+  symbol: string;
+  fullName: string;
+  whatItDoes: string;
+  whyStudiedInPsychiatry: string;
+  plainLanguageTakeaway: string;
+}
+
+export interface WorldviewTaxonomyEntry {
+  name: string;
+  summary: string;
+  worldview: string;
+  psychologicalProfile: string;
+  evidenceNote: string;
+}
+
+export interface BrainAtlasComparison {
+  region: string;
+  atlasHash: string;
+  role: string;
+  positiveRitualPattern: string;
+  threatRitualPattern: string;
+}
+
+export interface MechanismPanel {
+  title: string;
+  detail: string;
+  clinicalMeaning: string;
 }

@@ -18,6 +18,8 @@ import type {
   MoodStateLabel,
   EpisodeCount,
   GeneticLocus,
+  NeurochemistryPoint,
+  RiskBreakdown,
 } from "./types";
 
 // ─── Seeded PRNG (Mulberry32) ────────────────────────────────────────────────
@@ -94,14 +96,32 @@ interface NTState {
  */
 function derivatives(
   state: NTState,
-  params: SimulationParams
+  params: SimulationParams,
+  timeDay: number
 ): NTState {
   const { D, S, G } = state;
-  const { cannabisFrequency, thcPotency, cbdPotency } = params;
+  const {
+    cannabisFrequency,
+    thcPotency,
+    cbdPotency,
+    cannabisDaysElapsed,
+    alcoholFrequency,
+    alcoholIntensity,
+    alcoholDaysElapsed,
+  } = params;
+
+  const cannabisRamp = clamp((cannabisDaysElapsed + timeDay) / 30, 0, 1);
+  const alcoholRamp = clamp((alcoholDaysElapsed + timeDay) / 30, 0, 1);
+  const alcoholChronic = clamp((alcoholDaysElapsed + timeDay) / 180, 0, 1);
 
   // Cannabis effect magnitude (session-weighted, CBD-modulated)
-  const thcEffect = cannabisFrequency * thcPotency * (1 - 0.4 * cbdPotency);
-  const cbdEffect = cannabisFrequency * cbdPotency;
+  const thcEffect =
+    cannabisFrequency * thcPotency * (1 - 0.4 * cbdPotency) * cannabisRamp;
+  const cbdEffect = cannabisFrequency * cbdPotency * cannabisRamp;
+
+  // Alcohol effect: acute effects can differ from chronic adaptation burden.
+  const alcoholAcute = alcoholFrequency * alcoholIntensity * alcoholRamp;
+  const alcoholLongTerm = alcoholAcute * alcoholChronic;
 
   // Mean-reversion rates
   const kD = 0.3;
@@ -109,9 +129,24 @@ function derivatives(
   const kG = 0.35;
 
   // Set-points (homeostasis)
-  const D0 = 0.5 + 0.25 * thcEffect - 0.1 * cbdEffect;
-  const S0 = 0.5 - 0.08 * thcEffect + 0.05 * cbdEffect;
-  const G0 = 0.5 - 0.15 * thcEffect + 0.1 * cbdEffect;
+  const D0 =
+    0.5 +
+    0.25 * thcEffect -
+    0.1 * cbdEffect +
+    0.1 * alcoholAcute -
+    0.12 * alcoholLongTerm;
+  const S0 =
+    0.5 -
+    0.08 * thcEffect +
+    0.05 * cbdEffect -
+    0.05 * alcoholAcute -
+    0.06 * alcoholLongTerm;
+  const G0 =
+    0.5 -
+    0.15 * thcEffect +
+    0.1 * cbdEffect +
+    0.14 * alcoholAcute -
+    0.1 * alcoholLongTerm;
 
   // Cross-coupling: high dopamine suppresses serotonin slightly; GABA inhibits D
   const dD = kD * (D0 - D) - 0.1 * G * D + 0.02 * S;
@@ -178,6 +213,7 @@ export function runSimulation(params: SimulationParams): SimulationResult {
 
   const steps = Math.round(durationDays / dt);
   const trajectory: MoodState[] = [];
+  const neurochemistry: NeurochemistryPoint[] = [];
   const episodes: EpisodeCount = {
     manic: 0,
     hypomanic: 0,
@@ -193,7 +229,7 @@ export function runSimulation(params: SimulationParams): SimulationResult {
     const timeDay = i * dt;
 
     // Euler step
-    const d = derivatives(state, params);
+    const d = derivatives(state, params, timeDay);
     const noise = (): number => noiseLevel * randGaussian();
 
     state = {
@@ -249,30 +285,54 @@ export function runSimulation(params: SimulationParams): SimulationResult {
 
     // Store every step (or thin for long simulations)
     if (i % Math.max(1, Math.round(1 / dt)) === 0 || i === steps) {
+      const cannabisLoad =
+        params.cannabisFrequency * params.thcPotency * (1 - 0.4 * params.cbdPotency);
+      const alcoholLoad = params.alcoholFrequency * params.alcoholIntensity;
+      const combinedLoad = clamp(
+        0.55 * Math.min(cannabisLoad / 4, 1) + 0.45 * Math.min(alcoholLoad / 6, 1),
+        0,
+        1
+      );
+
       trajectory.push({
         timeDay,
         valence: parseFloat(adjustedValence.toFixed(4)),
         arousal: parseFloat(arousalN.toFixed(4)),
         label,
       });
+
+      neurochemistry.push({
+        timeDay,
+        dopamine: parseFloat(state.D.toFixed(4)),
+        serotonin: parseFloat(state.S.toFixed(4)),
+        gaba: parseFloat(state.G.toFixed(4)),
+        substanceLoad: parseFloat(combinedLoad.toFixed(4)),
+      });
     }
   }
 
   // ─── Composite Risk Score (0–100) ─────────────────────────────────────────
-  const riskScore = computeRiskScore({
+  const riskInputs = {
     prs,
     kindlingIndex,
     episodeCount: episodes.total,
     cannabisFrequency: params.cannabisFrequency,
     thcPotency: params.thcPotency,
-  });
+    alcoholFrequency: params.alcoholFrequency,
+    alcoholIntensity: params.alcoholIntensity,
+  };
+
+  const riskScore = computeRiskScore(riskInputs);
+  const riskBreakdown = computeRiskBreakdown(riskInputs);
 
   const riskSummary = riskSummaryFromScore(riskScore);
 
   return {
     trajectory,
+    neurochemistry,
     episodes,
     riskScore,
+    riskBreakdown,
     kindlingIndex,
     finalDopamine: parseFloat(state.D.toFixed(4)),
     finalSerotonin: parseFloat(state.S.toFixed(4)),
@@ -289,34 +349,48 @@ interface RiskInputs {
   episodeCount: number;
   cannabisFrequency: number;
   thcPotency: number;
+  alcoholFrequency: number;
+  alcoholIntensity: number;
 }
 
-/**
- * Combines multiple risk factors into a single 0–100 score.
- *
- * Weights (approximate clinical importance):
- *   – Polygenic risk score:  30 %
- *   – Kindling index:        25 %
- *   – Episode count:         20 %
- *   – Cannabis × THC:        25 %
- */
-export function computeRiskScore(inputs: RiskInputs): number {
+function computeRiskBreakdown(inputs: RiskInputs): RiskBreakdown {
   const {
     prs,
     kindlingIndex,
     episodeCount,
     cannabisFrequency,
     thcPotency,
+    alcoholFrequency,
+    alcoholIntensity,
   } = inputs;
 
-  const prsComponent = prs * 30;
-  const kindlingComponent = kindlingIndex * 25;
-  const episodeComponent = Math.min(episodeCount / 10, 1) * 20;
-  const cannabisComponent =
-    Math.min(cannabisFrequency / 4, 1) * thcPotency * 25;
+  return {
+    prs: prs * 25,
+    kindling: kindlingIndex * 25,
+    episodes: Math.min(episodeCount / 10, 1) * 20,
+    cannabis: Math.min(cannabisFrequency / 4, 1) * thcPotency * 15,
+    alcohol: Math.min(alcoholFrequency / 6, 1) * alcoholIntensity * 15,
+  };
+}
 
+/**
+ * Combines multiple risk factors into a single 0–100 score.
+ *
+ * Weights (approximate clinical importance):
+ *   – Polygenic risk score:  25 %
+ *   – Kindling index:        25 %
+ *   – Episode count:         20 %
+ *   – Cannabis × THC:        15 %
+ *   – Alcohol load:          15 %
+ */
+export function computeRiskScore(inputs: RiskInputs): number {
+  const breakdown = computeRiskBreakdown(inputs);
   const raw =
-    prsComponent + kindlingComponent + episodeComponent + cannabisComponent;
+    breakdown.prs +
+    breakdown.kindling +
+    breakdown.episodes +
+    breakdown.cannabis +
+    breakdown.alcohol;
   return parseFloat(clamp(raw, 0, 100).toFixed(1));
 }
 
