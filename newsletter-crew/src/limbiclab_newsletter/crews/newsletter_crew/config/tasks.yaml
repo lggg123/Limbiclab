@@ -45,7 +45,7 @@ newsletter_task:
        LimbicLab newsletter free trial with a styled button or link to {store_url}
        using action-oriented copy such as "Start your 14-day free trial"
     6. THIS WEEK'S CITATION — one paper, properly formatted
-    7. Footer: "LimbicLab · limbiclab.com · Unsubscribe"
+    7. Footer: "LimbicLab · limbiclab.com · <a href="{{UNSUBSCRIBE_URL}}">Unsubscribe</a>"
 
     Format the final output as clean HTML email, using inline styles only
     (no external CSS — email clients strip it). Dark background #0a0a0a,
@@ -55,7 +55,7 @@ newsletter_task:
     Inline styles only. Dark theme. 500-700 words of body content.
     Proper HTML structure with <html>, <head>, <body> tags.
     Must include a clickable CTA link to {store_url} and the LimbicLab footer
-    with unsubscribe link placeholder.
+    with {{UNSUBSCRIBE_URL}} placeholder in the footer unsubscribe link.
   agent: newsletter_writer
   context:
     - research_task

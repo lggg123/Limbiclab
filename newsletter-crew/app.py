@@ -42,6 +42,14 @@ def _run_crew(topic: str | None):
         logger.exception("Newsletter generation failed.")
 
 
+def _make_unsubscribe_url(email: str) -> str:
+    import hmac, hashlib, urllib.parse
+    secret = os.environ.get("WEBHOOK_SECRET", "")
+    sig = hmac.new(secret.encode(), email.encode(), hashlib.sha256).hexdigest()
+    base_url = os.getenv("LIMBICLAB_SITE_URL") or os.getenv("NEXT_PUBLIC_BASE_URL") or "https://limbiclab.com"
+    return f"{base_url.rstrip('/')}/api/unsubscribe?email={urllib.parse.quote(email)}&sig={sig}"
+
+
 def _send_newsletters():
     """Send EN and ES newsletters to subscribers grouped by language preference."""
     import resend
@@ -78,11 +86,14 @@ def _send_newsletters():
         logger.info(f"Sending to {len(emails)} {lang.upper()} subscribers.")
         for email in emails:
             try:
+                unsubscribe_url = _make_unsubscribe_url(email)
+                personalized_html = html.replace("{{UNSUBSCRIBE_URL}}", unsubscribe_url)
                 resend.Emails.send({
                     "from": from_addr,
                     "to": email,
                     "subject": subject,
-                    "html": html,
+                    "html": personalized_html,
+                    "headers": {"List-Unsubscribe": f"<{unsubscribe_url}>"},
                 })
             except Exception as e:
                 logger.error(f"Failed to send to {email}: {e}")
