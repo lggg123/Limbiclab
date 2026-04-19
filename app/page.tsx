@@ -1,295 +1,387 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "LimbicLab — Computational Psychiatry Simulator",
 };
 
+const TOOLS = [
+  {
+    href: "/simulator",
+    label: "Neural Simulator",
+    tag: "INTERACTIVE",
+    color: "#7c3aed",
+    bg: "rgba(124,58,237,0.06)",
+    border: "rgba(124,58,237,0.25)",
+    desc: "Stochastic ODE engine modeling cannabis × bipolar vulnerability across polygenic risk in real time.",
+    svg: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round">
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+        <path d="M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M19.1 4.9l-2.1 2.1M7.1 16.9l-2.1 2.1" />
+      </svg>
+    ),
+  },
+  {
+    href: "/brain",
+    label: "Brain Atlas",
+    tag: "VISUAL",
+    color: "#2a9d9d",
+    bg: "rgba(42,157,157,0.06)",
+    border: "rgba(42,157,157,0.25)",
+    desc: "Interactive anatomical map of neural structures with clinical overlays and research annotations.",
+    svg: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24A2.5 2.5 0 0 1 9.5 2Z" />
+        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24A2.5 2.5 0 0 0 14.5 2Z" />
+      </svg>
+    ),
+  },
+  {
+    href: "/learn",
+    label: "Neuroscience Explainer",
+    tag: "EDUCATION",
+    color: "#7c3aed",
+    bg: "rgba(124,58,237,0.06)",
+    border: "rgba(124,58,237,0.25)",
+    desc: "Plain-language synthesis of neurotransmitters, genetics, DSM-5 criteria, and computational models.",
+    svg: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+      </svg>
+    ),
+  },
+  {
+    href: "/case-analysis",
+    label: "Case Analysis",
+    tag: "FORENSIC",
+    color: "#8A0303",
+    bg: "rgba(138,3,3,0.06)",
+    border: "rgba(138,3,3,0.25)",
+    desc: "Clinical case dissection with differential diagnosis tools and neuropsychological frameworks.",
+    svg: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8A0303" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    ),
+  },
+];
+
+const RESEARCH = [
+  {
+    href: "/profile",
+    tag: "FORENSIC LOG",
+    label: "Psychological Profile",
+    color: "#8A0303",
+    hoverBg: "#0d0505",
+    desc: "Calculated indifference analysis. Interactive subject frame with convulsive glitch states, devaluation metrics, and forensic copy block.",
+  },
+  {
+    href: "/satanism-research",
+    tag: "RESEARCH ANALYSIS",
+    label: "Satanism — Neuro Profile",
+    color: "#8A0303",
+    hoverBg: "#0d0505",
+    desc: "Graduate-level analysis: taxonomy, receptor mapping, epigenetics, ritual neuroscience, 9 sections, 21+ citations.",
+  },
+  {
+    href: "/bipolar",
+    tag: "DEEP RESEARCH",
+    label: "Bipolar Disorder",
+    color: "#2a9d9d",
+    hoverBg: "#030c0c",
+    desc: "Neuroimaging, circadian clock biology, lithium mechanism (GSK-3β), CACNA1C genetics, the creativity-bipolar link, and suicidality.",
+  },
+  {
+    href: "/environmental-disorders",
+    tag: "DEEP RESEARCH",
+    label: "Environmental Disorders",
+    color: "#d4a017",
+    hoverBg: "#0c0a02",
+    desc: "ACEs, poverty neuroscience, racial trauma, climate grief, epigenetics of inherited trauma, and evidence-based interventions.",
+  },
+  {
+    href: "/ebook",
+    tag: "E-BOOK · FREE",
+    label: "Neuroscience of the Dark",
+    color: "#7c3aed",
+    hoverBg: "#080412",
+    desc: "Five-chapter synthesis: bipolar oscillation, environmental trauma, ritual neuroscience, suicidality convergence, and the creative brain.",
+  },
+];
+
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col">
-      {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <section className="relative flex flex-col items-center justify-center px-6 py-32 text-center">
-        {/* Background glow */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-        >
-          <div className="absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl" />
+    <main style={{ background: "#0a0a0a", minHeight: "100vh" }}>
+      <style>{`
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 0.4; }
+          50%       { opacity: 0.7; }
+        }
+        @keyframes scan {
+          0%   { transform: translateY(-100%); }
+          100% { transform: translateY(100vh); }
+        }
+        .hero-anim { animation: fadeUp 0.7s ease both; }
+        .hero-anim-1 { animation-delay: 0.05s; }
+        .hero-anim-2 { animation-delay: 0.15s; }
+        .hero-anim-3 { animation-delay: 0.25s; }
+        .hero-anim-4 { animation-delay: 0.4s; }
+        .hero-anim-5 { animation-delay: 0.55s; }
+
+        .tool-card {
+          transition: border-color 0.2s, background 0.2s, transform 0.2s;
+        }
+        .tool-card:hover { transform: translateY(-2px); }
+
+        .research-card {
+          transition: border-color 0.2s, background 0.2s;
+        }
+
+        @media (max-width: 640px) {
+          .tools-grid { grid-template-columns: 1fr !important; }
+          .research-grid { grid-template-columns: 1fr !important; }
+          .hero-title { font-size: 52px !important; }
+          .stats-bar { flex-wrap: wrap; gap: 16px !important; }
+          .cta-row { flex-direction: column !important; }
+        }
+      `}</style>
+
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
+      <section style={{ position: "relative", overflow: "hidden", padding: "80px 24px 72px", textAlign: "center" }}>
+
+        {/* Grid background */}
+        <div aria-hidden style={{
+          position: "absolute", inset: 0, zIndex: 0,
+          backgroundImage: "linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }} />
+
+        {/* Radial glow */}
+        <div aria-hidden style={{
+          position: "absolute", top: "-20%", left: "50%", transform: "translateX(-50%)",
+          width: 700, height: 500, borderRadius: "50%",
+          background: "radial-gradient(ellipse, rgba(124,58,237,0.12) 0%, transparent 70%)",
+          animation: "pulse-glow 4s ease-in-out infinite", zIndex: 0,
+        }} />
+
+        {/* Scanline */}
+        <div aria-hidden style={{
+          position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none", overflow: "hidden",
+        }}>
+          <div style={{
+            position: "absolute", left: 0, right: 0, height: 120,
+            background: "linear-gradient(transparent, rgba(124,58,237,0.03), transparent)",
+            animation: "scan 8s linear infinite",
+          }} />
         </div>
 
-        <Badge variant="outline" className="mb-6">
-          Computational Psychiatry · Open Science
-        </Badge>
+        <div style={{ position: "relative", zIndex: 2, maxWidth: 860, margin: "0 auto" }}>
 
-        <h1 className="mb-6 max-w-3xl text-5xl font-bold leading-tight text-foreground sm:text-6xl lg:text-7xl">
-          <span className="text-primary">LimbicLab</span>
-        </h1>
+          <div className="hero-anim hero-anim-1" style={{
+            fontFamily: "monospace", fontSize: 11, letterSpacing: "0.28em",
+            color: "#7c3aed", marginBottom: 24, display: "inline-block",
+            border: "1px solid rgba(124,58,237,0.3)", padding: "4px 16px",
+          }}>
+            COMPUTATIONAL PSYCHIATRY · OPEN SCIENCE
+          </div>
 
-        <p className="mb-8 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-          Model how cannabis interacts with bipolar vulnerability across polygenic
-          risk. Stochastic ODE engine, kindling model, and plain-language
-          neuroscience — all in your browser.
-        </p>
+          <h1 className="hero-anim hero-anim-2 hero-title" style={{
+            fontFamily: "monospace", fontWeight: 800, fontSize: 72,
+            color: "#e0e0e0", letterSpacing: "-0.02em", lineHeight: 1,
+            marginBottom: 8,
+          }}>
+            Limbic<span style={{ color: "#7c3aed" }}>Lab</span>
+          </h1>
 
-        <p className="mb-8 max-w-2xl text-sm text-muted-foreground">
-          LimbicLab uses a stress-diathesis framing: vulnerability is widely
-          distributed across people, and sustained stress can increase the chance of
-          mood-disorder expression.
-        </p>
+          <div className="hero-anim hero-anim-2" style={{
+            fontFamily: "monospace", fontSize: 11, letterSpacing: "0.2em",
+            color: "#333", marginBottom: 32,
+          }}>
+            ████████████████████████████
+          </div>
 
-        <div className="flex flex-col gap-4 sm:flex-row">
-          <Button asChild size="lg">
-            <Link href="/simulator">Launch Simulator</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/learn">Neuroscience Explainer</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/brain">Creative Brain Atlas</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/case-analysis#dissociative-deafness">Dissociative Deafness</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/profile">Psychological Profile</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/satanism-research">Satanism — Neuro Profile</Link>
-          </Button>
+          <p className="hero-anim hero-anim-3" style={{
+            fontFamily: "monospace", fontSize: 16, color: "#aaa",
+            lineHeight: 1.75, maxWidth: 580, margin: "0 auto 16px",
+          }}>
+            Model how cannabis interacts with bipolar vulnerability across polygenic risk.
+            Stochastic ODE engine, kindling model, and plain-language neuroscience — all in your browser.
+          </p>
+
+          <p className="hero-anim hero-anim-3" style={{
+            fontFamily: "monospace", fontSize: 12, color: "#555",
+            lineHeight: 1.7, maxWidth: 480, margin: "0 auto 40px",
+          }}>
+            Stress-diathesis framing: vulnerability is widely distributed across people,
+            and sustained stress can increase the chance of mood-disorder expression.
+          </p>
+
+          <div className="hero-anim hero-anim-4 cta-row" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+            <Link href="/simulator" style={{
+              fontFamily: "monospace", fontSize: 12, letterSpacing: "0.18em",
+              color: "#0a0a0a", background: "#7c3aed",
+              border: "1px solid #7c3aed", padding: "13px 32px",
+              textDecoration: "none", fontWeight: 700,
+              transition: "all 0.15s", display: "inline-block",
+            }}
+              onMouseOver={(e) => { (e.currentTarget as HTMLElement).style.background = "#6d28d9"; }}
+              onMouseOut={(e) => { (e.currentTarget as HTMLElement).style.background = "#7c3aed"; }}
+            >
+              LAUNCH SIMULATOR →
+            </Link>
+            <Link href="/store" style={{
+              fontFamily: "monospace", fontSize: 12, letterSpacing: "0.18em",
+              color: "#777", background: "transparent",
+              border: "1px solid #2a2a2a", padding: "13px 32px",
+              textDecoration: "none", transition: "all 0.15s", display: "inline-block",
+            }}
+              onMouseOver={(e) => { const el = e.currentTarget as HTMLElement; el.style.color = "#e0e0e0"; el.style.borderColor = "#555"; }}
+              onMouseOut={(e) => { const el = e.currentTarget as HTMLElement; el.style.color = "#777"; el.style.borderColor = "#2a2a2a"; }}
+            >
+              NEWSLETTER
+            </Link>
+          </div>
+
+          {/* Stats bar */}
+          <div className="hero-anim hero-anim-5 stats-bar" style={{
+            display: "flex", justifyContent: "center", gap: 40,
+            marginTop: 56, paddingTop: 32,
+            borderTop: "1px solid #1a1a1a",
+          }}>
+            {[
+              { n: "10", label: "Research Modules" },
+              { n: "21+", label: "Peer Citations" },
+              { n: "5", label: "Interactive Tools" },
+              { n: "100%", label: "Open Access" },
+            ].map(({ n, label }) => (
+              <div key={label} style={{ textAlign: "center" }}>
+                <div style={{ fontFamily: "monospace", fontSize: 26, fontWeight: 700, color: "#7c3aed" }}>{n}</div>
+                <div style={{ fontFamily: "monospace", fontSize: 10, letterSpacing: "0.15em", color: "#444", marginTop: 4 }}>{label.toUpperCase()}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── Feature Cards ──────────────────────────────────────────────────── */}
-      <section className="mx-auto grid max-w-5xl gap-6 px-6 pb-10 sm:grid-cols-3">
-        <Card className="flex flex-col gap-3 p-6">
-          <div className="text-3xl">🧬</div>
-          <h2 className="text-lg font-semibold text-foreground">
-            Polygenic Risk
-          </h2>
-          <p className="text-sm text-muted-foreground">
-            Input your own GWAS loci or use preset risk profiles. Watch how
-            genetic loading shifts the manic-episode threshold in real time.
-          </p>
-        </Card>
-
-        <Card className="flex flex-col gap-3 p-6">
-          <div className="text-3xl">🌿</div>
-          <h2 className="text-lg font-semibold text-foreground">
-            Cannabis Exposure
-          </h2>
-          <p className="text-sm text-muted-foreground">
-            Adjust THC/CBD potency and use frequency. The ODE engine models
-            dopamine, serotonin, and GABA dynamics with CB1 receptor kinetics.
-          </p>
-        </Card>
-
-        <Card className="flex flex-col gap-3 p-6">
-          <div className="text-3xl">⚡</div>
-          <h2 className="text-lg font-semibold text-foreground">
-            Kindling Model
-          </h2>
-          <p className="text-sm text-muted-foreground">
-            Each simulated episode lowers the threshold for the next — mirroring
-            Post&apos;s electrophysiological kindling hypothesis.
-          </p>
-        </Card>
-      </section>
-
-      {/* ── Deep Research Cards ────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-5xl px-6 pb-24">
-        <div className="mb-6 flex items-center gap-3">
-          <div className="h-px flex-1 bg-border" />
-          <span className="text-xs font-mono tracking-widest text-muted-foreground uppercase">
-            Deep Research Modules
-          </span>
-          <div className="h-px flex-1 bg-border" />
+      {/* ── Tools ─────────────────────────────────────────────────────────── */}
+      <section style={{ padding: "0 24px 72px", maxWidth: 1080, margin: "0 auto" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 32 }}>
+          <div style={{ flex: 1, height: 1, background: "#1a1a1a" }} />
+          <span style={{ fontFamily: "monospace", fontSize: 10, letterSpacing: "0.28em", color: "#444" }}>INTERACTIVE TOOLS</span>
+          <div style={{ flex: 1, height: 1, background: "#1a1a1a" }} />
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2">
-          {/* Psychological Profile Card */}
-          <Link href="/profile" className="group block no-underline">
-            <div className="relative overflow-hidden rounded-none border border-border bg-card p-6 transition-all duration-300 group-hover:border-[#8A0303]/60 group-hover:bg-[#0d0505]">
-              {/* Background symbol */}
-              <div className="pointer-events-none absolute right-4 top-4 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#8A0303" strokeWidth="0.8">
-                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-              </div>
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center border border-[#8A0303]/40 bg-[#8A0303]/10">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A0303" strokeWidth="1.5" strokeLinecap="round">
-                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                    <circle cx="12" cy="12" r="3" fill="#8A0303" fillOpacity="0.3" />
-                  </svg>
+        <div className="tools-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}>
+          {TOOLS.map((t) => (
+            <Link key={t.href} href={t.href} style={{ textDecoration: "none" }}>
+              <div className="tool-card" style={{
+                background: t.bg,
+                border: `1px solid ${t.border}`,
+                padding: "28px 28px 24px",
+                height: "100%",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
+                  <div style={{
+                    width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center",
+                    border: `1px solid ${t.border}`, background: `rgba(0,0,0,0.4)`, flexShrink: 0,
+                  }}>
+                    {t.svg}
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: "monospace", fontSize: 9, letterSpacing: "0.22em", color: t.color, marginBottom: 3 }}>{t.tag}</div>
+                    <div style={{ fontFamily: "monospace", fontSize: 14, fontWeight: 700, color: "#e0e0e0", letterSpacing: "0.04em" }}>{t.label}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-mono text-xs tracking-widest text-[#8A0303]">FORENSIC LOG</div>
-                  <h3 className="font-mono text-sm font-bold text-foreground tracking-wide">
-                    Psychological Profile
-                  </h3>
-                </div>
+                <p style={{ fontFamily: "monospace", fontSize: 12, color: "#666", lineHeight: 1.7, margin: 0 }}>{t.desc}</p>
+                <div style={{ fontFamily: "monospace", fontSize: 11, color: t.color, marginTop: 16, letterSpacing: "0.12em" }}>OPEN →</div>
               </div>
-              <p className="font-mono text-xs leading-relaxed text-muted-foreground">
-                Calculated indifference analysis. Interactive subject frame with convulsive glitch states, devaluation metrics, and forensic copy block. Visualizes the neurological architecture of tactical shutdown.
-              </p>
-              <div className="mt-4 font-mono text-xs text-[#8A0303] group-hover:text-[#c00] transition-colors">
-                OPEN PROFILE →
-              </div>
-            </div>
-          </Link>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-          {/* Satanism Research Card */}
-          <Link href="/satanism-research" className="group block no-underline">
-            <div className="relative overflow-hidden rounded-none border border-border bg-card p-6 transition-all duration-300 group-hover:border-[#8A0303]/60 group-hover:bg-[#0d0505]">
-              <div className="pointer-events-none absolute right-4 top-4 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
-                <svg width="80" height="80" viewBox="0 0 200 300">
-                  <defs><linearGradient id="lc1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style={{ stopColor: '#888888' }} /><stop offset="40%" style={{ stopColor: '#cccccc' }} /><stop offset="100%" style={{ stopColor: '#555555' }} /></linearGradient></defs>
-                  <rect x="85" y="40" width="30" height="220" fill="url(#lc1)" rx="2" />
-                  <rect x="30" y="190" width="140" height="30" fill="url(#lc1)" rx="2" />
-                </svg>
-              </div>
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center border border-[#8A0303]/40 bg-[#8A0303]/10">
-                  <svg width="18" height="28" viewBox="0 0 200 300">
-                    <defs><linearGradient id="lc2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style={{ stopColor: '#888888' }} /><stop offset="40%" style={{ stopColor: '#cccccc' }} /><stop offset="100%" style={{ stopColor: '#555555' }} /></linearGradient></defs>
-                    <rect x="85" y="40" width="30" height="220" fill="url(#lc2)" rx="2" />
-                    <rect x="30" y="190" width="140" height="30" fill="url(#lc2)" rx="2" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-mono text-xs tracking-widest text-[#8A0303]">RESEARCH ANALYSIS</div>
-                  <h3 className="font-mono text-sm font-bold text-foreground tracking-wide">
-                    Satanism — Neuro Profile
-                  </h3>
-                </div>
-              </div>
-              <p className="font-mono text-xs leading-relaxed text-muted-foreground">
-                Graduate-level analysis across 9 sections: taxonomy, receptor mapping, epigenetics, ritual neuroscience (Black Mass, hate rituals, sense rituals, séance, blood pacts), psychological disorders, and recovery pathways. 21+ citations.
-              </p>
-              <div className="mt-4 font-mono text-xs text-[#8A0303] group-hover:text-[#c00] transition-colors">
-                OPEN RESEARCH →
-              </div>
-            </div>
-          </Link>
+      {/* ── Research Modules ─────────────────────────────────────────────── */}
+      <section style={{ padding: "0 24px 72px", maxWidth: 1080, margin: "0 auto" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 32 }}>
+          <div style={{ flex: 1, height: 1, background: "#1a1a1a" }} />
+          <span style={{ fontFamily: "monospace", fontSize: 10, letterSpacing: "0.28em", color: "#444" }}>DEEP RESEARCH MODULES</span>
+          <div style={{ flex: 1, height: 1, background: "#1a1a1a" }} />
+        </div>
 
-          {/* Bipolar Disorder Card */}
-          <Link href="/bipolar" className="group block no-underline">
-            <div className="relative overflow-hidden rounded-none border border-border bg-card p-6 transition-all duration-300 group-hover:border-[#2a9d9d]/60 group-hover:bg-[#030c0c]">
-              <div className="pointer-events-none absolute right-4 top-4 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" stroke="#2a9d9d" strokeWidth="1">
-                  <ellipse cx="50" cy="50" rx="45" ry="28" />
-                  <ellipse cx="50" cy="50" rx="28" ry="45" />
-                  <circle cx="50" cy="50" r="8" fill="#2a9d9d" fillOpacity="0.3" />
-                </svg>
+        <div className="research-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }}>
+          {RESEARCH.map((r) => (
+            <Link key={r.href} href={r.href} className="group" style={{ textDecoration: "none" }}>
+              <div className="research-card" style={{
+                background: "#111", border: "1px solid #1e1e1e",
+                padding: "22px 24px", height: "100%",
+              }}
+                onMouseOver={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = r.color + "60"; el.style.background = r.hoverBg; }}
+                onMouseOut={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = "#1e1e1e"; el.style.background = "#111"; }}
+              >
+                <div style={{ fontFamily: "monospace", fontSize: 9, letterSpacing: "0.22em", color: r.color, marginBottom: 6 }}>{r.tag}</div>
+                <h3 style={{ fontFamily: "monospace", fontSize: 13, fontWeight: 700, color: "#e0e0e0", letterSpacing: "0.04em", marginBottom: 10 }}>{r.label}</h3>
+                <p style={{ fontFamily: "monospace", fontSize: 11, color: "#555", lineHeight: 1.7, margin: 0 }}>{r.desc}</p>
+                <div style={{ fontFamily: "monospace", fontSize: 10, color: r.color, marginTop: 14, letterSpacing: "0.12em" }}>OPEN RESEARCH →</div>
               </div>
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center border border-[#2a9d9d]/40 bg-[#2a9d9d]/10">
-                  <svg width="20" height="20" viewBox="0 0 100 100" fill="none" stroke="#2a9d9d" strokeWidth="6">
-                    <path d="M10 50 Q25 20 50 50 Q75 80 90 50" strokeLinecap="round" />
-                    <circle cx="50" cy="50" r="6" fill="#2a9d9d" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-mono text-xs tracking-widest text-[#2a9d9d]">DEEP RESEARCH</div>
-                  <h3 className="font-mono text-sm font-bold text-foreground tracking-wide">
-                    Bipolar Disorder
-                  </h3>
-                </div>
-              </div>
-              <p className="font-mono text-xs leading-relaxed text-muted-foreground">
-                Neuroimaging, circadian clock biology, lithium mechanism (GSK-3β), extended genetics (CACNA1C, ANK3), the creativity-bipolar link, and suicidality including Joiner&apos;s Interpersonal Theory.
-              </p>
-              <div className="mt-4 font-mono text-xs text-[#2a9d9d] group-hover:text-[#3bbfbf] transition-colors">
-                OPEN RESEARCH →
-              </div>
-            </div>
-          </Link>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-          {/* Environmental Disorders Card */}
-          <Link href="/environmental-disorders" className="group block no-underline">
-            <div className="relative overflow-hidden rounded-none border border-border bg-card p-6 transition-all duration-300 group-hover:border-[#d4a017]/60 group-hover:bg-[#0c0a02]">
-              <div className="pointer-events-none absolute right-4 top-4 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" stroke="#d4a017" strokeWidth="1">
-                  <path d="M50 10 L50 90 M10 50 L90 50" />
-                  <circle cx="50" cy="50" r="40" />
-                  <circle cx="50" cy="50" r="20" />
-                </svg>
-              </div>
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center border border-[#d4a017]/40 bg-[#d4a017]/10">
-                  <svg width="20" height="20" viewBox="0 0 100 100" fill="none" stroke="#d4a017" strokeWidth="6">
-                    <path d="M20 80 Q50 20 80 80" strokeLinecap="round" />
-                    <circle cx="50" cy="52" r="8" fill="#d4a017" fillOpacity="0.4" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-mono text-xs tracking-widest text-[#d4a017]">DEEP RESEARCH</div>
-                  <h3 className="font-mono text-sm font-bold text-foreground tracking-wide">
-                    Environmental Disorders
-                  </h3>
-                </div>
-              </div>
-              <p className="font-mono text-xs leading-relaxed text-muted-foreground">
-                ACEs, poverty neuroscience, racial trauma, climate grief, urban density, epigenetics of inherited trauma, suicidology, and evidence-based interventions (TF-CBT, EMDR, DBT, safety planning).
-              </p>
-              <div className="mt-4 font-mono text-xs text-[#d4a017] group-hover:text-[#f0b820] transition-colors">
-                OPEN RESEARCH →
-              </div>
+      {/* ── Newsletter CTA ───────────────────────────────────────────────── */}
+      <section style={{ padding: "0 24px 80px", maxWidth: 1080, margin: "0 auto" }}>
+        <div style={{
+          background: "linear-gradient(135deg, rgba(42,157,157,0.06) 0%, rgba(42,157,157,0.02) 100%)",
+          border: "1px solid rgba(42,157,157,0.2)",
+          padding: "40px 40px",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          gap: 32, flexWrap: "wrap",
+        }}>
+          <div>
+            <div style={{ fontFamily: "monospace", fontSize: 10, letterSpacing: "0.25em", color: "#2a9d9d", marginBottom: 10 }}>
+              WEEKLY NEWSLETTER · 14 DAYS FREE
             </div>
-          </Link>
-
-          {/* E-Book Card */}
-          <Link href="/ebook" className="group block no-underline">
-            <div className="relative overflow-hidden rounded-none border border-border bg-card p-6 transition-all duration-300 group-hover:border-[#7c3aed]/60 group-hover:bg-[#080412]">
-              <div className="pointer-events-none absolute right-4 top-4 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" stroke="#7c3aed" strokeWidth="1">
-                  <rect x="15" y="10" width="70" height="80" rx="2" />
-                  <line x1="30" y1="30" x2="70" y2="30" />
-                  <line x1="30" y1="45" x2="70" y2="45" />
-                  <line x1="30" y1="60" x2="55" y2="60" />
-                </svg>
-              </div>
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center border border-[#7c3aed]/40 bg-[#7c3aed]/10">
-                  <svg width="18" height="22" viewBox="0 0 100 120" fill="none" stroke="#7c3aed" strokeWidth="7">
-                    <rect x="15" y="10" width="70" height="100" rx="3" />
-                    <line x1="30" y1="40" x2="70" y2="40" />
-                    <line x1="30" y1="60" x2="70" y2="60" />
-                    <line x1="30" y1="80" x2="55" y2="80" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-mono text-xs tracking-widest text-[#7c3aed]">E-BOOK · FREE DOWNLOAD</div>
-                  <h3 className="font-mono text-sm font-bold text-foreground tracking-wide">
-                    Neuroscience of the Dark
-                  </h3>
-                </div>
-              </div>
-              <p className="font-mono text-xs leading-relaxed text-muted-foreground">
-                Five-chapter research synthesis: bipolar oscillation, environmental trauma, ritual neuroscience, suicidality convergence, and the creative brain. Read in-browser or download as text.
-              </p>
-              <div className="mt-4 font-mono text-xs text-[#7c3aed] group-hover:text-[#9b5cf0] transition-colors">
-                READ / DOWNLOAD →
-              </div>
-            </div>
+            <h2 style={{ fontFamily: "monospace", fontSize: 20, fontWeight: 700, color: "#e0e0e0", letterSpacing: "0.04em", marginBottom: 8 }}>
+              Neuroscience Research, Delivered Weekly
+            </h2>
+            <p style={{ fontFamily: "monospace", fontSize: 12, color: "#555", lineHeight: 1.7, maxWidth: 460, margin: 0 }}>
+              Graduate-level research on bipolar disorder, trauma, dark psychology, and the neuroscience of behavior — cited, sourced, and in your inbox every week.
+            </p>
+          </div>
+          <Link href="/store" style={{
+            fontFamily: "monospace", fontSize: 11, letterSpacing: "0.18em",
+            color: "#0a0a0a", background: "#2a9d9d",
+            border: "1px solid #2a9d9d", padding: "13px 28px",
+            textDecoration: "none", fontWeight: 700,
+            whiteSpace: "nowrap", flexShrink: 0,
+            transition: "all 0.15s", display: "inline-block",
+          }}
+            onMouseOver={(e) => { (e.currentTarget as HTMLElement).style.background = "#1a6b6b"; (e.currentTarget as HTMLElement).style.borderColor = "#1a6b6b"; }}
+            onMouseOut={(e) => { (e.currentTarget as HTMLElement).style.background = "#2a9d9d"; (e.currentTarget as HTMLElement).style.borderColor = "#2a9d9d"; }}
+          >
+            START FREE TRIAL →
           </Link>
         </div>
       </section>
 
-      {/* ── Footer ─────────────────────────────────────────────────────────── */}
-      <footer className="mt-auto border-t border-border py-8 text-center text-sm text-muted-foreground">
-        <p>
-          LimbicLab is an educational tool. It does{" "}
-          <span className="font-semibold text-foreground">not</span> constitute
-          medical advice.
+      {/* ── Footer ───────────────────────────────────────────────────────── */}
+      <footer style={{
+        borderTop: "1px solid #1a1a1a", padding: "28px 24px",
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        flexWrap: "wrap", gap: 12, maxWidth: 1080, margin: "0 auto",
+      }}>
+        <p style={{ fontFamily: "monospace", fontSize: 11, color: "#444", margin: 0 }}>
+          LimbicLab is an educational tool — not medical advice.
         </p>
-        <p className="mt-1">
-          Built with Next.js 15 · TypeScript · Tailwind CSS
+        <p style={{ fontFamily: "monospace", fontSize: 11, color: "#333", margin: 0 }}>
+          Next.js 15 · TypeScript · Tailwind
         </p>
       </footer>
     </main>
