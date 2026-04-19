@@ -15,26 +15,39 @@ export async function POST(req: NextRequest) {
     }
 
     const db = getLeadsClient()
+    let ebookToken: string | null = null
 
     if (db) {
-      const { error } = await db
-        .from('leads')
-        .upsert(
-          { email: email.toLowerCase().trim(), name: name?.trim() || null, source },
-          { onConflict: 'email,source', ignoreDuplicates: true }
-        )
+      const cleanEmail = email.toLowerCase().trim()
 
-      if (error) {
-        console.error('[leads] Supabase error:', error)
+      if (source === 'ebook') {
+        ebookToken = crypto.randomUUID()
+        const { error } = await db
+          .from('leads')
+          .upsert(
+            { email: cleanEmail, name: name?.trim() || null, source, ebook_token: ebookToken },
+            { onConflict: 'email,source', ignoreDuplicates: false }
+          )
+        if (error) console.error('[leads] Supabase error:', error)
+      } else {
+        const { error } = await db
+          .from('leads')
+          .upsert(
+            { email: cleanEmail, name: name?.trim() || null, source },
+            { onConflict: 'email,source', ignoreDuplicates: true }
+          )
+        if (error) console.error('[leads] Supabase error:', error)
       }
     } else {
       console.log('[leads] Supabase not configured — lead received:', { email, source })
+      if (source === 'ebook') ebookToken = crypto.randomUUID()
     }
 
     const FROM = process.env.RESEND_FROM_EMAIL ?? 'LimbicLab <onboarding@resend.dev>'
     const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.limbiclab.com'
 
     if (source === 'ebook') {
+      const ebookUrl = ebookToken ? `${BASE_URL}/ebook?token=${ebookToken}` : `${BASE_URL}/ebook`
       await resend.emails.send({
         from: FROM,
         to: email.toLowerCase().trim(),
@@ -51,7 +64,7 @@ export async function POST(req: NextRequest) {
               Five chapters. Bipolar oscillation, environmental trauma, ritual neuroscience,
               suicidality convergence, and the creative brain. 21+ citations.
             </p>
-            <a href="${BASE_URL}/ebook" style="display:inline-block;background:#2a9d9d;color:#030305;font-family:monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;padding:14px 32px;text-decoration:none;">
+            <a href="${ebookUrl}" style="display:inline-block;background:#2a9d9d;color:#030305;font-family:monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;padding:14px 32px;text-decoration:none;">
               READ THE EBOOK →
             </a>
             <div style="border-top:1px solid #161625;margin-top:36px;padding-top:28px;">

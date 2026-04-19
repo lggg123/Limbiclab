@@ -24,10 +24,30 @@ export default function EbookUnlocker() {
   const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY) === '1') {
-      setUnlocked(true)
+    async function checkAccess() {
+      if (localStorage.getItem(STORAGE_KEY) === '1') {
+        setUnlocked(true)
+        setChecked(true)
+        return
+      }
+
+      const params = new URLSearchParams(window.location.search)
+      const token = params.get('token')
+
+      if (token) {
+        const res = await fetch(`/api/ebook/verify?token=${encodeURIComponent(token)}`)
+        if (res.ok) {
+          const { valid } = await res.json()
+          if (valid) {
+            localStorage.setItem(STORAGE_KEY, '1')
+            setUnlocked(true)
+          }
+        }
+      }
+
+      setChecked(true)
     }
-    setChecked(true)
+    checkAccess()
   }, [])
 
   async function handleSubmit(e: React.FormEvent) {
