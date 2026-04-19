@@ -150,6 +150,22 @@ export default function HomePageClient() {
         }
       `}</style>
 
+      {/* ── Giveaway Banner ──────────────────────────────────────────────── */}
+      <div style={{
+        background: "linear-gradient(90deg, rgba(124,58,237,0.15) 0%, rgba(42,157,157,0.1) 100%)",
+        borderBottom: "1px solid rgba(124,58,237,0.2)",
+        padding: "10px 24px",
+        textAlign: "center",
+      }}>
+        <Link href="/giveaway" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 12 }}>
+          <span style={{ fontFamily: "monospace", fontSize: 9, letterSpacing: "0.25em", color: "#7c3aed", border: "1px solid rgba(124,58,237,0.4)", padding: "2px 8px" }}>GIVEAWAY</span>
+          <span style={{ fontFamily: "monospace", fontSize: 11, color: "#aaa", letterSpacing: "0.08em" }}>
+            Win 3-month newsletter + ebook + Dark Psychology Guide — Drawing May 19
+          </span>
+          <span style={{ fontFamily: "monospace", fontSize: 11, color: "#7c3aed", letterSpacing: "0.12em" }}>ENTER FREE →</span>
+        </Link>
+      </div>
+
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section style={{ position: "relative", overflow: "hidden", padding: "80px 24px 72px", textAlign: "center" }}>
 
@@ -230,6 +246,18 @@ export default function HomePageClient() {
             >
               LAUNCH SIMULATOR →
             </Link>
+            <Link href="/lp/en" style={{
+              fontFamily: "monospace", fontSize: 12, letterSpacing: "0.18em",
+              color: "#0a0a0a", background: "#2a9d9d",
+              border: "1px solid #2a9d9d", padding: "13px 32px",
+              textDecoration: "none", fontWeight: 700,
+              transition: "all 0.15s", display: "inline-block",
+            }}
+              onMouseOver={(e) => { (e.currentTarget as HTMLElement).style.background = "#1a6b6b"; (e.currentTarget as HTMLElement).style.borderColor = "#1a6b6b"; }}
+              onMouseOut={(e) => { (e.currentTarget as HTMLElement).style.background = "#2a9d9d"; (e.currentTarget as HTMLElement).style.borderColor = "#2a9d9d"; }}
+            >
+              FREE EBOOK →
+            </Link>
             <Link href="/store" style={{
               fontFamily: "monospace", fontSize: 12, letterSpacing: "0.18em",
               color: "#777", background: "transparent",
@@ -239,7 +267,7 @@ export default function HomePageClient() {
               onMouseOver={(e) => { const el = e.currentTarget as HTMLElement; el.style.color = "#e0e0e0"; el.style.borderColor = "#555"; }}
               onMouseOut={(e) => { const el = e.currentTarget as HTMLElement; el.style.color = "#777"; el.style.borderColor = "#2a2a2a"; }}
             >
-              NEWSLETTER
+              STORE
             </Link>
           </div>
 
@@ -344,38 +372,66 @@ export default function HomePageClient() {
             <h2 style={{ fontFamily: "monospace", fontSize: 20, fontWeight: 700, color: "#e0e0e0", letterSpacing: "0.04em", marginBottom: 8 }}>
               Neuroscience Research, Delivered Weekly
             </h2>
-            <p style={{ fontFamily: "monospace", fontSize: 12, color: "#555", lineHeight: 1.7, maxWidth: 460, margin: 0 }}>
+            <p style={{ fontFamily: "monospace", fontSize: 12, color: "#555", lineHeight: 1.7, maxWidth: 460, margin: "0 0 12px" }}>
               Graduate-level research on bipolar disorder, trauma, dark psychology, and the neuroscience of behavior — cited, sourced, and in your inbox every week.
             </p>
+            <p style={{ fontFamily: "monospace", fontSize: 11, color: "#444", margin: "0 0 6px" }}>
+              Use code <span style={{ color: "#2a9d9d", fontWeight: 700 }}>VENEZIA300</span> for 3 months free — 100 spots only.
+            </p>
+            <div style={{ display: "flex", gap: 16, marginTop: 4 }}>
+              <Link href="/lp/en" style={{ fontFamily: "monospace", fontSize: 10, color: "#555", letterSpacing: "0.15em", textDecoration: "underline" }}>EN — English</Link>
+              <Link href="/lp/es" style={{ fontFamily: "monospace", fontSize: 10, color: "#555", letterSpacing: "0.15em", textDecoration: "underline" }}>ES — Español</Link>
+            </div>
           </div>
-          <Link href="/store" style={{
-            fontFamily: "monospace", fontSize: 11, letterSpacing: "0.18em",
-            color: "#0a0a0a", background: "#2a9d9d",
-            border: "1px solid #2a9d9d", padding: "13px 28px",
-            textDecoration: "none", fontWeight: 700,
-            whiteSpace: "nowrap", flexShrink: 0,
-            transition: "all 0.15s", display: "inline-block",
-          }}
-            onMouseOver={(e) => { (e.currentTarget as HTMLElement).style.background = "#1a6b6b"; (e.currentTarget as HTMLElement).style.borderColor = "#1a6b6b"; }}
-            onMouseOut={(e) => { (e.currentTarget as HTMLElement).style.background = "#2a9d9d"; (e.currentTarget as HTMLElement).style.borderColor = "#2a9d9d"; }}
-          >
-            START FREE TRIAL →
-          </Link>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, flexShrink: 0 }}>
+            <Link href="/store" style={{
+              fontFamily: "monospace", fontSize: 11, letterSpacing: "0.18em",
+              color: "#0a0a0a", background: "#2a9d9d",
+              border: "1px solid #2a9d9d", padding: "13px 28px",
+              textDecoration: "none", fontWeight: 700,
+              whiteSpace: "nowrap",
+              transition: "all 0.15s", display: "inline-block", textAlign: "center",
+            }}
+              onMouseOver={(e) => { (e.currentTarget as HTMLElement).style.background = "#1a6b6b"; (e.currentTarget as HTMLElement).style.borderColor = "#1a6b6b"; }}
+              onMouseOut={(e) => { (e.currentTarget as HTMLElement).style.background = "#2a9d9d"; (e.currentTarget as HTMLElement).style.borderColor = "#2a9d9d"; }}
+            >
+              START FREE TRIAL →
+            </Link>
+            <Link href="/lp/en" style={{
+              fontFamily: "monospace", fontSize: 10, letterSpacing: "0.15em",
+              color: "#2a9d9d", background: "transparent",
+              border: "1px solid rgba(42,157,157,0.3)", padding: "9px 28px",
+              textDecoration: "none", whiteSpace: "nowrap",
+              transition: "all 0.15s", display: "inline-block", textAlign: "center",
+            }}
+              onMouseOver={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#2a9d9d"; }}
+              onMouseOut={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(42,157,157,0.3)"; }}
+            >
+              GET FREE EBOOK →
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* ── Footer ───────────────────────────────────────────────────────── */}
       <footer style={{
         borderTop: "1px solid #1a1a1a", padding: "28px 24px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        flexWrap: "wrap", gap: 12, maxWidth: 1080, margin: "0 auto",
+        maxWidth: 1080, margin: "0 auto",
       }}>
-        <p style={{ fontFamily: "monospace", fontSize: 11, color: "#444", margin: 0 }}>
-          LimbicLab is an educational tool — not medical advice.
-        </p>
-        <p style={{ fontFamily: "monospace", fontSize: 11, color: "#333", margin: 0 }}>
-          Next.js 15 · TypeScript · Tailwind
-        </p>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 16 }}>
+          <p style={{ fontFamily: "monospace", fontSize: 11, color: "#444", margin: 0 }}>
+            LimbicLab is an educational tool — not medical advice.
+          </p>
+          <p style={{ fontFamily: "monospace", fontSize: 11, color: "#333", margin: 0 }}>
+            Next.js 15 · TypeScript · Tailwind
+          </p>
+        </div>
+        <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+          <Link href="/giveaway" style={{ fontFamily: "monospace", fontSize: 10, color: "#444", letterSpacing: "0.12em", textDecoration: "none" }}>GIVEAWAY →</Link>
+          <Link href="/store" style={{ fontFamily: "monospace", fontSize: 10, color: "#444", letterSpacing: "0.12em", textDecoration: "none" }}>STORE →</Link>
+          <Link href="/lp/en" style={{ fontFamily: "monospace", fontSize: 10, color: "#444", letterSpacing: "0.12em", textDecoration: "none" }}>EN →</Link>
+          <Link href="/lp/es" style={{ fontFamily: "monospace", fontSize: 10, color: "#444", letterSpacing: "0.12em", textDecoration: "none" }}>ES →</Link>
+        </div>
       </footer>
     </main>
   );
