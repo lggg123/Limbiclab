@@ -472,17 +472,6 @@ describe("runSimulation", () => {
 // ─── Risk summary boundary conditions ────────────────────────────────────────
 
 describe("risk summary categories (via runSimulation)", () => {
-  function scoreToSummary(score: number): string {
-    // Drive riskScore to a target value by setting only prs (30% weight)
-    // prs=score/30 gives approximately the right level for single-component tests
-    const result = runSimulation({
-      ...BASE_PARAMS,
-      polygenicRiskScore: Math.min(score / 30, 1),
-      noiseLevel: 0,
-    });
-    return result.riskSummary;
-  }
-
   it("score < 20: summary mentions 'Low risk'", () => {
     const result = runSimulation({
       ...BASE_PARAMS,

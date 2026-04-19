@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, within } from "@testing-library/react";
 import { SimulatorForm } from "@/components/simulator/SimulatorForm";
 import type { SimulationParams } from "@/lib/types";
 
@@ -154,9 +154,9 @@ describe("SimulatorForm", () => {
         isRunning={false}
       />
     );
-    // Find the Duration slider (first range input)
-    const sliders = screen.getAllByRole("slider");
-    fireEvent.change(sliders[0], { target: { value: "200" } });
+    // Find the Duration slider by its accessible name
+    const durationSlider = screen.getByRole("slider", { name: "Duration" });
+    fireEvent.change(durationSlider, { target: { value: "200" } });
     expect(onChange).toHaveBeenCalledWith({ durationDays: 200 });
   });
 
@@ -170,9 +170,10 @@ describe("SimulatorForm", () => {
         isRunning={false}
       />
     );
-    const sliders = screen.getAllByRole("slider");
-    // cannabisFrequency is the 3rd slider (index 2): duration, noiseLevel, cannabisFreq
-    fireEvent.change(sliders[2], { target: { value: "2.5" } });
+    // Find the cannabisFrequency slider by scoping to the Cannabis Exposure section
+    const cannabisSection = screen.getByText("Cannabis Exposure").closest("section")!;
+    const cannabisSlider = within(cannabisSection).getByRole("slider", { name: "Use frequency" });
+    fireEvent.change(cannabisSlider, { target: { value: "2.5" } });
     expect(onChange).toHaveBeenCalledWith({ cannabisFrequency: 2.5 });
   });
 
