@@ -21,6 +21,7 @@ class NewsletterFlowState(BaseModel):
     topic: str = ""
     research: str = ""
     newsletter_html: str = ""
+    newsletter_html_es: str = ""
     week_number: int = 0
     store_url: str = ""
 
@@ -60,8 +61,12 @@ class LimbicLabNewsletterFlow(Flow[NewsletterFlowState]):
 
     @listen(run_newsletter_crew)
     def finalize(self):
-        output_path = os.path.join("output", "newsletter.html")
-        print(f"[LimbicLab Newsletter] Output written to {output_path}")
+        # Tasks write their own output files via output_file config.
+        # Log both paths for confirmation.
+        en_path = os.path.join("output", "newsletter_en.html")
+        es_path = os.path.join("output", "newsletter_es.html")
+        print(f"[LimbicLab Newsletter] English output: {en_path}")
+        print(f"[LimbicLab Newsletter] Spanish output: {es_path}")
         return self.state.newsletter_html
 
 

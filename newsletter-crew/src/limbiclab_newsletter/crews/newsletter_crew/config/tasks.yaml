@@ -59,4 +59,53 @@ newsletter_task:
   agent: newsletter_writer
   context:
     - research_task
-  output_file: output/newsletter.html
+  output_file: output/newsletter_en.html
+
+spanish_localization_task:
+  description: >
+    You will receive a complete English HTML newsletter dispatch from the
+    newsletter_writer. Produce a Spanish version that meets ALL of the
+    following requirements:
+
+    LANGUAGE:
+    - Latin American Spanish only — no Spain-specific vocabulary (use
+      "computadora" not "ordenador", "celular" not "móvil", etc.)
+    - Reads as native, not translated — restructure sentences where needed
+      to sound natural in Spanish
+    - Never add phrases like "N. del T." or "(traducido)" or any translator note
+
+    CLINICAL TERMINOLOGY — use these exact terms, never anglicise:
+    - bipolar disorder → trastorno bipolar
+    - HPA axis → eje HPA
+    - prefrontal cortex → corteza prefrontal
+    - epigenetics → epigenética
+    - neurotransmitter → neurotransmisor
+    - dopamine → dopamina
+    - cortisol → cortisol (unchanged)
+    - hippocampus → hipocampo
+    - amygdala → amígdala
+    - kindling model → modelo de kindling (keep "kindling" as it is the
+      established clinical term with no accepted Spanish equivalent)
+    - stress-diathesis → estrés-diátesis
+
+    PRESERVE EXACTLY:
+    - All citations, author names, journal names, years, and statistics
+    - All HTML structure and inline styles — output must be valid HTML email
+    - All section headers (translate their content but keep ALL CAPS format)
+    - The CTA link and store URL
+    - The LimbicLab footer
+    - The dark, graduate-level tone — do not simplify or soften
+
+    OUTPUT:
+    - Complete HTML email in Spanish, same structure as the English version
+    - No English text remaining anywhere in the output
+    - No translator notes or commentary
+  expected_output: >
+    A complete HTML email newsletter in Latin American Spanish. Same inline
+    styles, same dark theme, same structure as the English version. All
+    clinical terms accurate. All citations identical. All statistics preserved.
+    Reads natively — not like a translation.
+  agent: spanish_localizer
+  context:
+    - newsletter_task
+  output_file: output/newsletter_es.html

@@ -31,6 +31,13 @@ class NewsletterCrew:
             verbose=True,
         )
 
+    @agent
+    def spanish_localizer(self) -> Agent:
+        return Agent(
+            config=self.agents_config["spanish_localizer"],  # type: ignore[index]
+            verbose=True,
+        )
+
     @task
     def research_task(self) -> Task:
         return Task(
@@ -41,6 +48,12 @@ class NewsletterCrew:
     def newsletter_task(self) -> Task:
         return Task(
             config=self.tasks_config["newsletter_task"],  # type: ignore[index]
+        )
+
+    @task
+    def spanish_localization_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["spanish_localization_task"],  # type: ignore[index]
         )
 
     @crew
