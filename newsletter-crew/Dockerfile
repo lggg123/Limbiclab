@@ -15,6 +15,8 @@ RUN poetry config virtualenvs.create false \
 # Copy source
 COPY . .
 
+ENV PYTHONPATH=/app/src
+
 # Create output directory
 RUN mkdir -p output
 

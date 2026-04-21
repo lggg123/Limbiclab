@@ -56,7 +56,6 @@ class LimbicLabNewsletterFlow(Flow[NewsletterFlowState]):
                 "store_url": self.state.store_url,
             }
         )
-        self.state.newsletter_html = result.raw
         print("[LimbicLab Newsletter] Crew finished.")
 
     @listen(run_newsletter_crew)

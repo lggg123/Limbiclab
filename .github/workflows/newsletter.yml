@@ -37,16 +37,16 @@ jobs:
           echo "Waiting for newsletter generation..."
           for i in $(seq 1 40); do
             sleep 30
-            STATUS=$(curl --silent \
-              "${{ secrets.RAILWAY_NEWSLETTER_URL }}/status" \
-              | python3 -c "import sys,json; print(json.load(sys.stdin)['status'])")
+            RESPONSE=$(curl --silent "${{ secrets.RAILWAY_NEWSLETTER_URL }}/status")
+            STATUS=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['status'])")
             echo "Attempt $i — status: $STATUS"
             if [ "$STATUS" = "done" ]; then
               echo "Generation complete."
               exit 0
             fi
             if [ "$STATUS" = "error" ]; then
-              echo "Generation failed."
+              ERROR=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('error','unknown'))")
+              echo "Generation failed. Error: $ERROR"
               exit 1
             fi
           done
