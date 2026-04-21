@@ -87,7 +87,7 @@ def _send_newsletters():
         for email in emails:
             try:
                 unsubscribe_url = _make_unsubscribe_url(email)
-                personalized_html = html.replace("{{UNSUBSCRIBE_URL}}", unsubscribe_url)
+                personalized_html = html.replace("%%UNSUBSCRIBE_URL%%", unsubscribe_url)
                 resend.Emails.send({
                     "from": from_addr,
                     "to": email,
