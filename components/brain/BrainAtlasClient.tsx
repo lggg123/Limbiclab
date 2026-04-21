@@ -525,7 +525,13 @@ export function BrainAtlasClient() {
           >
             Neuroanatomy
           </button>
-          <Badge variant="outline">Plain Language</Badge>
+          <button
+            type="button"
+            onClick={() => document.getElementById("region-notes")?.scrollIntoView({ behavior: "smooth" })}
+            className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary cursor-pointer"
+          >
+            Plain Language
+          </button>
         </div>
 
         <h1 className="mb-4 max-w-4xl text-4xl font-bold sm:text-5xl lg:text-6xl">
