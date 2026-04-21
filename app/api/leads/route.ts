@@ -100,6 +100,38 @@ export async function POST(req: NextRequest) {
       })
     }
 
+    if (source === 'newsletter') {
+      await resend.emails.send({
+        from: FROM,
+        to: email.toLowerCase().trim(),
+        subject: "You're on the list — LimbicLab Weekly",
+        html: `
+          <div style="background:#030305;color:#d4d4e0;font-family:monospace;padding:48px 32px;max-width:520px;margin:0 auto;">
+            <div style="font-size:9px;letter-spacing:0.28em;color:#2a9d9d;border:1px solid rgba(42,157,157,0.25);display:inline-block;padding:4px 14px;margin-bottom:28px;">
+              LIMBICLAB · NEWSLETTER
+            </div>
+            <h1 style="font-size:20px;font-weight:700;color:#d4d4e0;letter-spacing:0.04em;margin:0 0 16px;">
+              You're on the list.
+            </h1>
+            <p style="font-size:13px;color:#8888a0;line-height:1.75;margin:0 0 32px;">
+              Every week: one neuroscience topic, dissected. Bipolar disorder, trauma, dark psychology,
+              circadian biology — graduate-level research briefs, no fluff.
+            </p>
+            <p style="font-size:13px;color:#8888a0;line-height:1.75;margin:0 0 32px;">
+              Your first issue lands next Monday. If you don't see it, check your spam folder and mark us as safe.
+            </p>
+            <a href="${BASE_URL}/store" style="display:inline-block;background:#2a9d9d;color:#030305;font-family:monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;padding:14px 32px;text-decoration:none;">
+              VIEW YOUR SUBSCRIPTION →
+            </a>
+            <p style="font-size:10px;color:#3a3a52;margin-top:36px;letter-spacing:0.08em;line-height:1.6;">
+              You received this because you subscribed at limbiclab.xyz.<br/>
+              No spam. Unsubscribe anytime.
+            </p>
+          </div>
+        `,
+      })
+    }
+
     if (source === 'giveaway') {
       await resend.emails.send({
         from: FROM,
