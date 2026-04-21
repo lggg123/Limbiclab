@@ -67,6 +67,7 @@ export async function POST(req: NextRequest) {
         from: FROM,
         to: email.toLowerCase().trim(),
         subject: 'Your Ebook: The Neuroscience of the Dark',
+        text: `The Neuroscience of the Dark\n\nFive chapters. Bipolar oscillation, environmental trauma, ritual neuroscience, suicidality convergence, and the creative brain. 21+ citations.\n\nRead the ebook: ${ebookUrl}\n\nStart your free trial: ${BASE_URL}/store\n\n--\nYou received this because you signed up at limbiclab.xyz.\nUnsubscribe anytime.`,
         html: `
           <div style="background:#030305;color:#d4d4e0;font-family:monospace;padding:48px 32px;max-width:520px;margin:0 auto;">
             <div style="font-size:9px;letter-spacing:0.28em;color:#2a9d9d;border:1px solid rgba(42,157,157,0.25);display:inline-block;padding:4px 14px;margin-bottom:28px;">
@@ -105,6 +106,7 @@ export async function POST(req: NextRequest) {
         from: FROM,
         to: email.toLowerCase().trim(),
         subject: "You're on the list — LimbicLab Weekly",
+        text: `You're on the list.\n\nEvery week: one neuroscience topic, dissected. Bipolar disorder, trauma, dark psychology, circadian biology — graduate-level research briefs, no fluff.\n\nYour first issue lands next Monday. If you don't see it, check your spam folder and mark us as safe.\n\nView your subscription: ${BASE_URL}/store\n\n--\nYou received this because you subscribed at limbiclab.xyz.\nUnsubscribe anytime.`,
         html: `
           <div style="background:#030305;color:#d4d4e0;font-family:monospace;padding:48px 32px;max-width:520px;margin:0 auto;">
             <div style="font-size:9px;letter-spacing:0.28em;color:#2a9d9d;border:1px solid rgba(42,157,157,0.25);display:inline-block;padding:4px 14px;margin-bottom:28px;">
@@ -137,6 +139,7 @@ export async function POST(req: NextRequest) {
         from: FROM,
         to: email.toLowerCase().trim(),
         subject: "You're entered — LimbicLab Giveaway",
+        text: `${name ? `Hey ${name} — your` : 'Your'} entry is confirmed.\n\nThe winner is drawn on May 19, 2026 and we'll email you directly if you win.\n\nPrize bundle:\n- 3-Month Newsletter Subscription\n- The Neuroscience of the Dark Ebook\n- Dark Psychology Defense Guide PDF\n\nDon't want to wait? Start a 14-day free trial: ${BASE_URL}/store\n\n--\nYou received this because you entered the LimbicLab giveaway.\nUnsubscribe anytime.`,
         html: `
           <div style="background:#030305;color:#d4d4e0;font-family:monospace;padding:48px 32px;max-width:520px;margin:0 auto;">
             <div style="font-size:9px;letter-spacing:0.28em;color:#7c3aed;border:1px solid rgba(124,58,237,0.25);display:inline-block;padding:4px 14px;margin-bottom:28px;">
