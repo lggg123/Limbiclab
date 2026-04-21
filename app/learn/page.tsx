@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import React from "react";
 import { Suspense } from "react";
 import { ConceptCard } from "@/components/learn/ConceptCard";
 import { DsmCategoryCard } from "@/components/learn/DsmCategoryCard";
@@ -34,6 +35,8 @@ export const metadata: Metadata = {
 };
 
 export default function LearnPage() {
+  const linkedBadgeClassName = "transition-colors hover:border-primary/60 hover:text-foreground";
+
   return (
     <main className="relative min-h-screen overflow-hidden px-6 py-12">
       <div
@@ -53,9 +56,21 @@ export default function LearnPage() {
 
           <div className="mb-4 flex flex-wrap gap-2">
             <Badge>Neuroscience</Badge>
-            <Badge variant="outline">Brain Atlas Linked</Badge>
-            <Badge variant="outline">Evidence-Aware</Badge>
-            <Badge variant="outline">DSM-5 Context</Badge>
+            <Link href="/brain" aria-label="Open Brain Atlas">
+              <Badge variant="outline" className={linkedBadgeClassName}>
+                Brain Atlas Linked
+              </Badge>
+            </Link>
+            <Link href="#evidence-boundaries" aria-label="Jump to evidence boundaries">
+              <Badge variant="outline" className={linkedBadgeClassName}>
+                Evidence-Aware
+              </Badge>
+            </Link>
+            <Link href="#dsm5-study-map" aria-label="Jump to DSM-5 study map">
+              <Badge variant="outline" className={linkedBadgeClassName}>
+                DSM-5 Context
+              </Badge>
+            </Link>
           </div>
 
           <h1 className="mb-4 max-w-4xl text-4xl font-bold text-foreground sm:text-5xl">
@@ -246,7 +261,7 @@ export default function LearnPage() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <Card className="border-border/70 bg-card/65 backdrop-blur">
+          <Card id="evidence-boundaries" className="scroll-mt-24 border-border/70 bg-card/65 backdrop-blur">
             <CardHeader>
               <CardTitle>Evidence Boundaries</CardTitle>
             </CardHeader>
@@ -354,7 +369,7 @@ export default function LearnPage() {
       </section>
 
       {/* DSM-5 section */}
-      <section className="mx-auto mb-16 max-w-6xl">
+      <section id="dsm5-study-map" className="mx-auto mb-16 max-w-6xl scroll-mt-24">
         <h2 className="mb-3 text-2xl font-bold text-foreground">
           DSM-5 Disorder Families (Study Map)
         </h2>
