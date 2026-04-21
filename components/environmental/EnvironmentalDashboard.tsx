@@ -42,8 +42,19 @@ export default function EnvironmentalDashboard() {
 
   return (
     <div style={{ background: C.bg, minHeight: '100vh', fontFamily: 'monospace', color: C.text }}>
+      <style>{`
+        @media (max-width: 640px) {
+          .env-header { padding: 24px 16px 20px !important; }
+          .env-crisis { padding: 10px 16px !important; }
+          .env-body { padding: 20px 16px !important; }
+          .env-cascade-row { grid-template-columns: 32px 1fr !important; gap: 12px !important; }
+          .env-cascade-label { grid-column: 2; grid-row: 1; }
+          .env-cascade-body { grid-column: 1 / -1; padding-top: 0 !important; }
+          .env-header h1 { font-size: 22px !important; }
+        }
+      `}</style>
       {/* Header */}
-      <div style={{ borderBottom: `1px solid ${C.border}`, padding: '40px 48px 32px' }}>
+      <div className="env-header" style={{ borderBottom: `1px solid ${C.border}`, padding: '40px 48px 32px' }}>
         <div style={{ fontSize: 11, color: C.red, letterSpacing: '0.3em', marginBottom: 12, textTransform: 'uppercase' }}>
           Deep Research // Environmental Psychiatry & Suicidology
         </div>
@@ -65,7 +76,7 @@ export default function EnvironmentalDashboard() {
       </div>
 
       {/* Crisis banner */}
-      <div style={{ background: '#0c0202', borderBottom: `1px solid ${C.red}44`, padding: '10px 48px', display: 'flex', alignItems: 'center', gap: 12 }}>
+      <div className="env-crisis" style={{ background: '#0c0202', borderBottom: `1px solid ${C.red}44`, padding: '10px 48px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ width: 8, height: 8, borderRadius: '50%', background: C.red, flexShrink: 0 }} />
         <span style={{ fontSize: 11, color: '#e0e0e0' }}>
           <strong>Crisis resources:</strong> 988 Suicide & Crisis Lifeline (call/text 988) · Crisis Text Line: text HOME to 741741 · International: befrienders.org
@@ -98,7 +109,7 @@ export default function EnvironmentalDashboard() {
       </div>
 
       {/* Body */}
-      <div style={{ padding: '40px 48px', maxWidth: 1100 }}>
+      <div className="env-body" style={{ padding: '40px 48px', maxWidth: 1100 }}>
         <AnimatePresence mode="wait">
 
           {active === 'hpa' && (
@@ -109,10 +120,10 @@ export default function EnvironmentalDashboard() {
               </div>
               <div style={{ display: 'grid', gap: 0, borderRadius: 4, overflow: 'hidden', border: `1px solid ${C.border}` }}>
                 {HPA_AXIS.cascade.map((step, i) => (
-                  <div key={step.step} style={{ borderBottom: i < HPA_AXIS.cascade.length - 1 ? `1px solid ${C.border}` : 'none', padding: '18px 24px', display: 'grid', gridTemplateColumns: '40px 160px 1fr', gap: 20, alignItems: 'start', background: C.panel }}>
+                  <div key={step.step} className="env-cascade-row" style={{ borderBottom: i < HPA_AXIS.cascade.length - 1 ? `1px solid ${C.border}` : 'none', padding: '18px 24px', display: 'grid', gridTemplateColumns: '40px 160px 1fr', gap: 20, alignItems: 'start', background: C.panel }}>
                     <div style={{ fontSize: 22, fontWeight: 700, color: C.accentDim }}>{step.step}</div>
-                    <div style={{ fontSize: 12, color: C.accent, fontWeight: 600, letterSpacing: '0.05em', paddingTop: 2 }}>{step.label}</div>
-                    <div style={{ fontSize: 11, color: C.textMid, lineHeight: 1.7 }}>{step.body}</div>
+                    <div className="env-cascade-label" style={{ fontSize: 12, color: C.accent, fontWeight: 600, letterSpacing: '0.05em', paddingTop: 2 }}>{step.label}</div>
+                    <div className="env-cascade-body" style={{ fontSize: 11, color: C.textMid, lineHeight: 1.7 }}>{step.body}</div>
                   </div>
                 ))}
               </div>
