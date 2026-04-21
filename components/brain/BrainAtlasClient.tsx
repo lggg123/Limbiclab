@@ -518,7 +518,13 @@ export function BrainAtlasClient() {
 
         <div className="mb-4 flex flex-wrap gap-2">
           <Badge>Creative Atlas</Badge>
-          <Badge variant="outline">Neuroanatomy</Badge>
+          <button
+            type="button"
+            onClick={() => document.getElementById("region-browser")?.scrollIntoView({ behavior: "smooth" })}
+            className="inline-flex items-center rounded-full border border-border px-2.5 py-0.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary cursor-pointer"
+          >
+            Neuroanatomy
+          </button>
           <Badge variant="outline">Plain Language</Badge>
         </div>
 
@@ -584,7 +590,7 @@ export function BrainAtlasClient() {
             </div>
 
             {/* Region family browser */}
-            <div>
+            <div id="region-browser">
               <p className="mb-3 text-xs uppercase tracking-[0.24em] text-muted-foreground">
                 Browse by region family
               </p>
