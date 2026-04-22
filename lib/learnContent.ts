@@ -583,6 +583,74 @@ export const WORLDVIEW_CASE_STUDY_REFERENCES: string[] = [
   "Brewer, J.A., Worhunsky, P.D., Gray, J.R., Tang, Y.Y., Weber, J., & Kober, H. (2011). Meditation experience is associated with differences in default mode network activity and connectivity. PNAS, 108(50), 20254-20259.",
 ];
 
+export const SOCIAL_PERCEPTION_INTRO: string[] = [
+  "Ambiguous social scenes can contain overlapping cues: attraction, rejection, rivalry, exclusion, teasing, dominance display, or uncertainty about intent. In lab settings, researchers often use short video clips or staged interactions to test how viewers interpret those signals in real time.",
+  "A standard approach combines physiology with self-report. Heart rate and skin conductance are recorded while participants watch the clip, then viewers rate perceived intent and emotional response. Those ratings can include threat, attraction, discomfort, jealousy, anger, embarrassment, confusion, or felt rejection. The point is to study arousal together with appraisal, not to assume that one visible behavior reveals a single motive or stable moral character.",
+];
+
+export const SOCIAL_PERCEPTION_PROTOCOL = [
+  {
+    title: "Stimulus design",
+    detail:
+      "Use short video clips showing ambiguous interpersonal dynamics: teasing vs. humiliation, flirtation vs. manipulation, status display vs. self-presentation, or inclusion vs. exclusion.",
+  },
+  {
+    title: "Biophysical recording",
+    detail:
+      "Measure heart rate and skin conductance continuously during clip viewing. If available, add eye tracking or facial EMG to estimate attentional capture and positive-vs-negative facial response.",
+  },
+  {
+    title: "Self-report after each clip",
+    detail:
+      "Ask viewers to rate perceived intent, emotional arousal, threat, attraction, disgust, confusion, and whether the scene felt rejecting, mocking, coercive, sexually charged, or socially competitive.",
+  },
+  {
+    title: "Pattern analysis",
+    detail:
+      "Correlate physiological changes with subjective ratings to distinguish high arousal linked to threat appraisal from high arousal linked to attraction, curiosity, jealousy, or unresolved uncertainty.",
+  },
+];
+
+export const SOCIAL_PERCEPTION_SIGNAL_GUIDE = [
+  {
+    label: "Heart rate",
+    summary:
+      "Tracks overall autonomic engagement, orienting, and stress-related activation during a social scene.",
+    caution:
+      "Heart rate alone cannot determine whether the viewer is feeling fear, anger, attraction, embarrassment, jealousy, or surprise.",
+  },
+  {
+    label: "Skin conductance",
+    summary:
+      "Captures sympathetic arousal and is sensitive to emotionally significant or attention-grabbing moments.",
+    caution:
+      "Higher conductance indicates intensity, not moral truth and not a specific emotion by itself.",
+  },
+  {
+    label: "Self-report",
+    summary:
+      "Adds the viewer's conscious interpretation: rejection, attraction, confusion, admiration, intimidation, or disgust.",
+    caution:
+      "People can underreport shame, jealousy, sexual interest, or hostility, so self-report is useful but incomplete.",
+  },
+];
+
+export const SOCIAL_PERCEPTION_EVIDENCE_BOUNDARIES: string[] = [
+  "Relational aggression, mockery, exclusion, and ambiguous courtship behavior are not exclusive to one gender. They should be studied as social strategies that can appear across people and contexts.",
+  "Physiological arousal is not the same thing as sexual arousal. A strong biometric response may reflect threat, uncertainty, anger, attention capture, embarrassment, or attraction.",
+  "Bragging about multiple partners or options can function as status signaling, insecurity management, impression management, or competitive display. It should not be treated as direct proof of inner character from a single observation.",
+  "When researchers study dating, rejection, jealousy, or attraction, the strongest designs pair physiology with carefully worded self-report and avoid assuming motive from appearance, gender, or one-sided narrative alone.",
+];
+
+export const SOCIAL_PERCEPTION_REFERENCES: string[] = [
+  "Crick, N.R., & Grotpeter, J.K. (1995). Relational aggression, gender, and social-psychological adjustment. Child Development, 66(3), 710-722.",
+  "Downey, G., & Feldman, S.I. (1996). Implications of rejection sensitivity for intimate relationships. Journal of Personality and Social Psychology, 70(6), 1327-1343.",
+  "Eisenberger, N.I., Lieberman, M.D., & Williams, K.D. (2003). Does rejection hurt? An fMRI study of social exclusion. Science, 302(5643), 290-292.",
+  "Kross, E., Berman, M.G., Mischel, W., Smith, E.E., & Wager, T.D. (2011). Social rejection shares somatosensory representations with physical pain. PNAS, 108(15), 6270-6275.",
+  "Bradley, M.M., & Lang, P.J. (2007). Emotion and motivation. In Handbook of Psychophysiology (3rd ed.). Cambridge University Press.",
+  "Cacioppo, J.T., Tassinary, L.G., & Berntson, G.G. (Eds.). (2007). Handbook of Psychophysiology (3rd ed.). Cambridge University Press.",
+];
+
 export const PSYCHOTIC_SYMPTOM_DOMAINS: PsychoticDomain[] = [
   {
     domain: "Positive symptoms",

@@ -44,5 +44,26 @@ describe("LearnPage header links", () => {
       "href",
       "#dsm5-study-map"
     );
+    expect(screen.getByLabelText("Jump to social perception section")).toHaveAttribute(
+      "href",
+      "#social-perception"
+    );
+  });
+
+  it("renders the inside guide section index links", () => {
+    render(<LearnPage />);
+
+    expect(screen.getAllByText("Core Concepts")[0].closest("a")).toHaveAttribute(
+      "href",
+      "#core-concepts"
+    );
+    expect(screen.getAllByText("DSM-5 Study Map")[0].closest("a")).toHaveAttribute(
+      "href",
+      "#dsm5-study-map"
+    );
+    expect(screen.getAllByText("Brain Atlas")[0].closest("a")).toHaveAttribute(
+      "href",
+      "/brain"
+    );
   });
 });

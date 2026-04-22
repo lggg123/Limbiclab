@@ -26,6 +26,11 @@ import {
   WORLDVIEW_MECHANISM_PANELS,
   WORLDVIEW_EVIDENCE_BOUNDARIES,
   WORLDVIEW_CASE_STUDY_REFERENCES,
+  SOCIAL_PERCEPTION_INTRO,
+  SOCIAL_PERCEPTION_PROTOCOL,
+  SOCIAL_PERCEPTION_SIGNAL_GUIDE,
+  SOCIAL_PERCEPTION_EVIDENCE_BOUNDARIES,
+  SOCIAL_PERCEPTION_REFERENCES,
 } from "@/lib/learnContent";
 
 export const metadata: Metadata = {
@@ -33,6 +38,39 @@ export const metadata: Metadata = {
   description:
     "Plain-language explanations of neuroscience concepts, brain-region mapping, and evidence-aware worldview case studies.",
 };
+
+const GUIDE_SECTION_LINKS = [
+  {
+    href: "#core-concepts",
+    title: "Core Concepts",
+    detail: "Foundational models, mood framing, and study anchors.",
+  },
+  {
+    href: "#dsm5-study-map",
+    title: "DSM-5 Study Map",
+    detail: "Disorder families and diagnostic context in one place.",
+  },
+  {
+    href: "/brain",
+    title: "Brain Atlas",
+    detail: "Jump out to the interactive atlas and region pages.",
+  },
+  {
+    href: "#worldview-case-study",
+    title: "Case Study",
+    detail: "Compare ritual, threat, salience, and memory mechanisms.",
+  },
+  {
+    href: "#social-perception",
+    title: "Social Perception",
+    detail: "Ambiguous intent, arousal, rejection, and interpretation.",
+  },
+  {
+    href: "#evidence-boundaries",
+    title: "Evidence Boundaries",
+    detail: "Keep interpretation tied to evidence limits and caveats.",
+  },
+];
 
 export default function LearnPage() {
   const linkedBadgeClassName = "transition-colors hover:border-primary/60 hover:text-foreground";
@@ -71,6 +109,11 @@ export default function LearnPage() {
                 DSM-5 Context
               </Badge>
             </Link>
+            <Link href="#social-perception" aria-label="Jump to social perception section">
+              <Badge variant="outline" className={linkedBadgeClassName}>
+                Social Perception
+              </Badge>
+            </Link>
           </div>
 
           <h1 className="mb-4 max-w-4xl text-4xl font-bold text-foreground sm:text-5xl">
@@ -92,19 +135,19 @@ export default function LearnPage() {
               Start with the core neuroscience concepts, then use the worldview case-study
               section to compare ritual mechanisms against the regions in the creative atlas.
             </p>
-            <div className="grid gap-2 text-foreground/90 sm:grid-cols-2">
-              <div className="rounded-lg border border-border/60 bg-background/40 p-3">
-                Core concepts and DSM study map
-              </div>
-              <div className="rounded-lg border border-border/60 bg-background/40 p-3">
-                Brain-region comparison cards
-              </div>
-              <div className="rounded-lg border border-border/60 bg-background/40 p-3">
-                Neurochemistry and stress systems
-              </div>
-              <div className="rounded-lg border border-border/60 bg-background/40 p-3">
-                Evidence limits and references
-              </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {GUIDE_SECTION_LINKS.map((item) => (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="rounded-lg border border-border/60 bg-background/40 p-3 text-foreground/90 transition-colors hover:border-primary/60 hover:bg-primary/5"
+                >
+                  <p className="font-semibold text-foreground">{item.title}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    {item.detail}
+                  </p>
+                </Link>
+              ))}
             </div>
             <div className="flex flex-wrap gap-3 pt-1">
               <Button asChild>
@@ -118,13 +161,16 @@ export default function LearnPage() {
                   Jump to Dissonance
                 </Link>
               </Button>
+              <Button asChild variant="outline">
+                <Link href="#social-perception">Jump to Social Perception</Link>
+              </Button>
             </div>
           </CardContent>
         </Card>
       </section>
 
       {/* Concepts */}
-      <section className="mx-auto mb-16 max-w-6xl">
+      <section id="core-concepts" className="mx-auto mb-16 max-w-6xl scroll-mt-24">
         <h2 className="mb-6 text-2xl font-bold text-foreground">Core Concepts</h2>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {LEARN_CONCEPTS.map((c) => (
@@ -327,6 +373,115 @@ export default function LearnPage() {
             </Card>
           ))}
         </div>
+      </section>
+
+      {/* Social perception */}
+      <section id="social-perception" className="mx-auto mb-16 max-w-6xl scroll-mt-24">
+        <div className="mb-6 flex flex-wrap items-center gap-2">
+          <Badge>Social Neuroscience</Badge>
+          <Badge variant="outline">Ambiguous Intent</Badge>
+          <Badge variant="outline">Biometric Arousal</Badge>
+          <Badge variant="outline">Evidence Limits</Badge>
+        </div>
+
+        <div className="mb-6 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <Card className="border-primary/30 bg-card/75 backdrop-blur">
+            <CardHeader>
+              <CardTitle>Social Perception, Ambiguity, and Arousal</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm leading-relaxed text-foreground/90">
+              {SOCIAL_PERCEPTION_INTRO.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card className="border-border/70 bg-card/65 backdrop-blur">
+            <CardHeader>
+              <CardTitle>Why This Matters</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm leading-relaxed text-foreground/90">
+              <div className="rounded-lg border border-border/60 bg-background/40 p-3">
+                Ambiguous social signals often trigger measurable body responses before a viewer
+                can fully explain what they think is happening.
+              </div>
+              <div className="rounded-lg border border-border/60 bg-background/40 p-3">
+                The useful question is not which group a scene supposedly proves something about,
+                but which mix of threat, attraction, status, rejection, humiliation, or
+                uncertainty the viewer is perceiving.
+              </div>
+              <div className="rounded-lg border border-border/60 bg-background/40 p-3">
+                That makes social perception a good teaching case for separating autonomic arousal
+                from interpretation.
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="mb-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {SOCIAL_PERCEPTION_PROTOCOL.map((item) => (
+            <Card key={item.title} className="border-border/70 bg-card/60 backdrop-blur">
+              <CardHeader>
+                <CardTitle className="text-lg">{item.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm leading-relaxed text-foreground/90">
+                <p>{item.detail}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <Card className="mb-6 border-primary/25 bg-primary/5">
+          <CardHeader>
+            <CardTitle>Reading the Signals Carefully</CardTitle>
+            <p className="text-sm text-muted-foreground">
+              Biometric measures show intensity and timing. They do not, by themselves, decode
+              motive, sincerity, or moral worth.
+            </p>
+          </CardHeader>
+          <CardContent className="grid gap-4 md:grid-cols-3">
+            {SOCIAL_PERCEPTION_SIGNAL_GUIDE.map((item) => (
+              <Card key={item.label} className="border-border/60 bg-background/50 shadow-none">
+                <CardHeader>
+                  <CardTitle className="text-lg">{item.label}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm leading-relaxed text-foreground/90">
+                  <p>{item.summary}</p>
+                  <p className="text-xs text-muted-foreground">
+                    <span className="font-semibold text-foreground">Caution: </span>
+                    {item.caution}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card className="border-border/70 bg-card/65 backdrop-blur">
+          <CardHeader>
+            <CardTitle>Evidence Boundaries for Social Interpretation</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm leading-relaxed text-foreground/90">
+            {SOCIAL_PERCEPTION_EVIDENCE_BOUNDARIES.map((item) => (
+              <div key={item} className="rounded-lg border border-border/60 bg-background/40 p-3">
+                {item}
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card className="mt-6 border-border/70 bg-card/65 backdrop-blur">
+          <CardHeader>
+            <CardTitle>Selected References for This Section</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+            {SOCIAL_PERCEPTION_REFERENCES.map((ref) => (
+              <p key={ref} className="border-l-2 border-border pl-3">
+                {ref}
+              </p>
+            ))}
+          </CardContent>
+        </Card>
       </section>
 
       {/* Gene primer */}

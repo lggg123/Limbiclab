@@ -29,6 +29,7 @@ const liberationMono = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? 'https://www.limbiclab.xyz'),
   title: {
     default: "LimbicLab",
     template: "%s | LimbicLab",
