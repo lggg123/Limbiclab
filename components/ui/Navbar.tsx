@@ -16,6 +16,7 @@ const NAV_LINKS = [
   { href: '/jealousy-neurobiology',  label: 'Jealousy'      },
   { href: '/social-bonding',         label: 'Social Bonds'  },
   { href: '/environmental-disorders',label: 'Environ.'      },
+  { href: '/cannabis',               label: 'Cannabis'      },
   { href: '/ebook',                  label: 'E-Book'        },
   { href: '/store',                  label: 'Store'         },
 ]

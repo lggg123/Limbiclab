@@ -100,6 +100,14 @@ const RESEARCH = [
     desc: "ACEs, poverty neuroscience, racial trauma, climate grief, epigenetics of inherited trauma, and evidence-based interventions.",
   },
   {
+    href: "/cannabis",
+    tag: "DEEP RESEARCH",
+    label: "Cannabis & the Brain",
+    color: "#4ade80",
+    hoverBg: "#030a03",
+    desc: "Endocannabinoid system, CB1/CB2 receptors, neuroprotection, PTSD, anxiety, neuroplasticity, and clinical evidence. 12+ citations.",
+  },
+  {
     href: "/ebook",
     tag: "E-BOOK · FREE",
     label: "Neuroscience of the Dark",
