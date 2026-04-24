@@ -29,7 +29,7 @@ class NewsletterFlowState(BaseModel):
 class LimbicLabNewsletterFlow(Flow[NewsletterFlowState]):
 
     @start()
-    def prepare_topic(self, crewai_trigger_payload: dict | None = None):
+    def prepare_topic(self):
         base_url = (
             os.getenv("LIMBICLAB_SITE_URL")
             or os.getenv("NEXT_PUBLIC_BASE_URL")
@@ -37,9 +37,7 @@ class LimbicLabNewsletterFlow(Flow[NewsletterFlowState]):
         ).rstrip("/")
         self.state.store_url = f"{base_url}/store"
 
-        if crewai_trigger_payload and crewai_trigger_payload.get("topic"):
-            self.state.topic = crewai_trigger_payload["topic"]
-        else:
+        if not self.state.topic:
             # Rotate topics by ISO week number so each week is different
             from datetime import date
             week = date.today().isocalendar()[1]
@@ -76,9 +74,10 @@ class LimbicLabNewsletterFlow(Flow[NewsletterFlowState]):
 
 
 def kickoff(topic: str | None = None) -> tuple[str, str]:
-    payload = {"topic": topic} if topic else None
     flow = LimbicLabNewsletterFlow()
-    flow.kickoff(inputs=payload)
+    if topic:
+        flow.state.topic = topic
+    flow.kickoff()
     return flow.state.newsletter_en, flow.state.newsletter_es
 
 
