@@ -224,7 +224,7 @@ export default function CannabisDashboard() {
             />
             <div style={{ border: `1px solid ${C.border}`, background: C.panel, padding: 20, borderRadius: 4, marginBottom: 28 }}>
               <p style={{ fontSize: 12, color: C.text, lineHeight: 1.9, margin: 0 }}>
-                Unlike classical neurotransmitters that travel forward from presynaptic to postsynaptic neurons, endocannabinoids are synthesized on demand in the postsynaptic neuron and travel backwards — suppressing excess neurotransmitter release upstream. This "retrograde inhibition" makes the ECS a master regulator of synaptic tone across virtually every major neural circuit.
+                Unlike classical neurotransmitters that travel forward from presynaptic to postsynaptic neurons, endocannabinoids are synthesized on demand in the postsynaptic neuron and travel backwards — suppressing excess neurotransmitter release upstream. This &quot;retrograde inhibition&quot; makes the ECS a master regulator of synaptic tone across virtually every major neural circuit.
               </p>
             </div>
 
@@ -244,7 +244,7 @@ export default function CannabisDashboard() {
             <div style={{ border: `1px solid ${C.border}`, background: C.panel, padding: '18px 22px', borderLeft: `3px solid ${C.accentMid}` }}>
               <div style={{ fontSize: 10, color: C.accentDim, letterSpacing: '0.2em', marginBottom: 8 }}>KEY DISTINCTION</div>
               <p style={{ fontSize: 12, color: C.textMid, lineHeight: 1.8, margin: 0 }}>
-                Phytocannabinoids (plant-derived, e.g. THC, CBD) interact with the same receptors as our endogenous cannabinoids. THC is a partial CB1 agonist — it mimics anandamide but with higher potency and longer duration. CBD does not directly bind CB1/CB2 with high affinity; instead it modulates the ECS indirectly by inhibiting the enzyme FAAH, which breaks down anandamide — effectively raising your brain's own endocannabinoid tone.
+                Phytocannabinoids (plant-derived, e.g. THC, CBD) interact with the same receptors as our endogenous cannabinoids. THC is a partial CB1 agonist — it mimics anandamide but with higher potency and longer duration. CBD does not directly bind CB1/CB2 with high affinity; instead it modulates the ECS indirectly by inhibiting the enzyme FAAH, which breaks down anandamide — effectively raising your brain&apos;s own endocannabinoid tone.
               </p>
             </div>
           </div>
