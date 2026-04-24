@@ -221,16 +221,15 @@ export default function HomePageClient() {
             fontFamily: "monospace", fontSize: 16, color: "#aaa",
             lineHeight: 1.75, maxWidth: 580, margin: "0 auto 16px",
           }}>
-            Model how cannabis interacts with bipolar vulnerability across polygenic risk.
-            Stochastic ODE engine, kindling model, and plain-language neuroscience — all in your browser.
+            Graduate-level research on bipolar disorder, trauma, dark psychology, and the neuroscience of behavior —
+            interactive tools, deep research modules, and weekly dispatches, all in one place.
           </p>
 
           <p className="hero-anim hero-anim-3" style={{
             fontFamily: "monospace", fontSize: 12, color: "#555",
             lineHeight: 1.7, maxWidth: 480, margin: "0 auto 40px",
           }}>
-            Stress-diathesis framing: vulnerability is widely distributed across people,
-            and sustained stress can increase the chance of mood-disorder expression.
+            Peer-reviewed citations on every claim. Built for curious minds, researchers, and anyone who wants to understand what drives human behavior at the neurological level.
           </p>
 
           <div className="hero-anim hero-anim-4 cta-row" style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
