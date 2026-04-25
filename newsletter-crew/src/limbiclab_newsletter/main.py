@@ -44,9 +44,9 @@ def _render_html(sections: dict, topic: str, store_url: str, lang: str = "en") -
         unsub_text  = "Unsubscribe"
 
     hook     = sections.get("HOOK", "").replace("\n", "<br>")
-    biology  = sections.get("BIOLOGY", "").replace("\n\n", "</p><p style='font-size:13px;color:#9090a8;line-height:1.85;margin:12px 0 0;'>").replace("\n", " ")
-    research = sections.get("RESEARCH", "").replace("\n\n", "</p><p style='font-size:13px;color:#9090a8;line-height:1.85;margin:12px 0 0;'>").replace("\n", " ")
-    clinical = sections.get("CLINICAL", "").replace("\n\n", "</p><p style='font-size:13px;color:#9090a8;line-height:1.85;margin:12px 0 0;'>").replace("\n", " ")
+    biology  = sections.get("BIOLOGY", "").replace("\n\n", "</p><p class='body-text' style='font-size:13px;color:#1a1a1a;line-height:1.9;margin:12px 0 0;'>").replace("\n", " ")
+    research = sections.get("RESEARCH", "").replace("\n\n", "</p><p class='body-text' style='font-size:13px;color:#1a1a1a;line-height:1.9;margin:12px 0 0;'>").replace("\n", " ")
+    clinical = sections.get("CLINICAL", "").replace("\n\n", "</p><p class='body-text' style='font-size:13px;color:#1a1a1a;line-height:1.9;margin:12px 0 0;'>").replace("\n", " ")
     citation = sections.get("CITATION", "").replace("\n", " ")
 
     return f"""<!DOCTYPE html>
@@ -55,58 +55,87 @@ def _render_html(sections: dict, topic: str, store_url: str, lang: str = "en") -
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LimbicLab</title>
+<style>
+  /* Light mode defaults */
+  .email-bg   {{ background-color: #ffffff !important; }}
+  .email-td   {{ background-color: #ffffff !important; }}
+  .body-text  {{ color: #1a1a1a !important; }}
+  .hook-text  {{ color: #0a0a0a !important; }}
+  .dim-text   {{ color: #444444 !important; }}
+  .cite-text  {{ color: #333333 !important; }}
+  .cite-label {{ color: #666666 !important; }}
+  .cite-td    {{ background-color: #f5f5f5 !important; border-color: #dddddd !important; }}
+  .divider    {{ background-color: #e0e0e0 !important; }}
+  .footer-text {{ color: #555555 !important; }}
+  .footer-link {{ color: #444444 !important; }}
+
+  /* Dark mode overrides */
+  @media (prefers-color-scheme: dark) {{
+    .email-bg   {{ background-color: #030305 !important; }}
+    .email-td   {{ background-color: #030305 !important; }}
+    .body-text  {{ color: #f0f0f0 !important; }}
+    .hook-text  {{ color: #ffffff !important; }}
+    .dim-text   {{ color: #7a7a9a !important; }}
+    .cite-text  {{ color: #d0d0e8 !important; }}
+    .cite-label {{ color: #4a4a6a !important; }}
+    .cite-td    {{ background-color: #07070e !important; border-color: #1e1e30 !important; }}
+    .divider    {{ background-color: #1e1e30 !important; }}
+    .footer-text {{ color: #4a4a6a !important; }}
+    .footer-link {{ color: #5a5a7a !important; }}
+  }}
+</style>
 </head>
-<body style="margin:0;padding:0;background-color:#030305;font-family:'Courier New',Courier,monospace;" bgcolor="#030305">
-<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#030305" style="background-color:#030305;">
-<tr><td align="center" style="padding:40px 16px;" bgcolor="#030305">
+<body class="email-bg" style="margin:0;padding:0;background-color:#ffffff;font-family:'Courier New',Courier,monospace;" bgcolor="#ffffff">
+<table width="100%" cellpadding="0" cellspacing="0" class="email-bg" bgcolor="#ffffff" style="background-color:#ffffff;">
+<tr><td align="center" class="email-td" style="padding:40px 16px;background-color:#ffffff;" bgcolor="#ffffff">
 <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;">
 
-  <tr><td bgcolor="#030305" style="padding-bottom:24px;background-color:#030305;">
-    <span style="font-size:9px;letter-spacing:0.28em;color:#2a9d9d;border:1px solid #1a4a4a;padding:4px 14px;text-transform:uppercase;">{badge}</span>
+  <tr><td class="email-td" style="padding-bottom:24px;background-color:#ffffff;" bgcolor="#ffffff">
+    <span style="font-size:9px;letter-spacing:0.28em;color:#2a9d9d;border:1px solid #1a7a7a;padding:4px 14px;text-transform:uppercase;">{badge}</span>
   </td></tr>
 
-  <tr><td bgcolor="#030305" style="padding-bottom:10px;background-color:#030305;">
-    <span style="font-size:10px;letter-spacing:0.2em;color:#5a5a7a;text-transform:uppercase;">{topic}</span>
+  <tr><td class="email-td" style="padding-bottom:10px;background-color:#ffffff;" bgcolor="#ffffff">
+    <span class="dim-text" style="font-size:10px;letter-spacing:0.2em;color:#444444;text-transform:uppercase;">{topic}</span>
   </td></tr>
 
-  <tr><td bgcolor="#030305" style="padding-bottom:32px;border-bottom:1px solid #1e1e30;background-color:#030305;">
-    <p style="font-size:18px;font-weight:700;color:#f0f0f0;line-height:1.5;letter-spacing:0.03em;margin:0;">{hook}</p>
+  <tr><td class="email-td" style="padding-bottom:32px;border-bottom:1px solid #e0e0e0;background-color:#ffffff;" bgcolor="#ffffff">
+    <p class="hook-text" style="font-size:18px;font-weight:700;color:#0a0a0a;line-height:1.5;letter-spacing:0.03em;margin:0;">{hook}</p>
   </td></tr>
 
-  <tr><td bgcolor="#030305" style="padding-top:28px;padding-bottom:24px;background-color:#030305;">
+  <tr><td class="email-td" style="padding-top:28px;padding-bottom:24px;background-color:#ffffff;" bgcolor="#ffffff">
     <p style="font-size:10px;letter-spacing:0.28em;color:#2a9d9d;margin:0 0 14px;text-transform:uppercase;">{bio_label}</p>
-    <p style="font-size:13px;color:#c8c8dc;line-height:1.9;margin:0;">{biology}</p>
+    <p class="body-text" style="font-size:13px;color:#1a1a1a;line-height:1.9;margin:0;">{biology}</p>
   </td></tr>
 
-  <tr><td bgcolor="#1e1e30" style="height:1px;font-size:0;line-height:0;background-color:#1e1e30;">&nbsp;</td></tr>
+  <tr><td class="divider" style="height:1px;font-size:0;line-height:0;background-color:#e0e0e0;">&nbsp;</td></tr>
 
-  <tr><td bgcolor="#030305" style="padding-top:28px;padding-bottom:24px;background-color:#030305;">
+  <tr><td class="email-td" style="padding-top:28px;padding-bottom:24px;background-color:#ffffff;" bgcolor="#ffffff">
     <p style="font-size:10px;letter-spacing:0.28em;color:#2a9d9d;margin:0 0 14px;text-transform:uppercase;">{res_label}</p>
-    <p style="font-size:13px;color:#c8c8dc;line-height:1.9;margin:0;">{research}</p>
+    <p class="body-text" style="font-size:13px;color:#1a1a1a;line-height:1.9;margin:0;">{research}</p>
   </td></tr>
 
-  <tr><td bgcolor="#1e1e30" style="height:1px;font-size:0;line-height:0;background-color:#1e1e30;">&nbsp;</td></tr>
+  <tr><td class="divider" style="height:1px;font-size:0;line-height:0;background-color:#e0e0e0;">&nbsp;</td></tr>
 
-  <tr><td bgcolor="#030305" style="padding-top:28px;padding-bottom:28px;background-color:#030305;">
+  <tr><td class="email-td" style="padding-top:28px;padding-bottom:28px;background-color:#ffffff;" bgcolor="#ffffff">
     <p style="font-size:10px;letter-spacing:0.28em;color:#2a9d9d;margin:0 0 14px;text-transform:uppercase;">{clin_label}</p>
-    <p style="font-size:13px;color:#c8c8dc;line-height:1.9;margin:0;">{clinical}</p>
+    <p class="body-text" style="font-size:13px;color:#1a1a1a;line-height:1.9;margin:0;">{clinical}</p>
   </td></tr>
 
-  <tr><td bgcolor="#07070e" style="padding:20px;border:1px solid #1e1e30;background-color:#07070e;">
-    <p style="font-size:9px;letter-spacing:0.22em;color:#4a4a6a;margin:0 0 10px;text-transform:uppercase;">{cite_label}</p>
-    <p style="font-size:11px;color:#9090b0;line-height:1.75;margin:0;font-style:italic;">{citation}</p>
+  <tr><td class="cite-td" style="padding:20px;border:1px solid #dddddd;background-color:#f5f5f5;" bgcolor="#f5f5f5">
+    <p class="cite-label" style="font-size:9px;letter-spacing:0.22em;color:#666666;margin:0 0 10px;text-transform:uppercase;">{cite_label}</p>
+    <p class="cite-text" style="font-size:11px;color:#333333;line-height:1.75;margin:0;font-style:italic;">{citation}</p>
   </td></tr>
 
-  <tr><td bgcolor="#030305" style="padding-top:36px;padding-bottom:36px;text-align:center;border-top:1px solid #1e1e30;background-color:#030305;">
-    <p style="font-size:12px;color:#9090b0;line-height:1.8;margin:0 0 22px;">{cta_body}</p>
-    <a href="{store_url}" style="display:inline-block;background-color:#2a9d9d;color:#030305;font-family:'Courier New',Courier,monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;padding:14px 32px;text-decoration:none;text-transform:uppercase;">{cta_btn}</a>
+  <tr><td class="email-td" style="padding-top:36px;padding-bottom:36px;text-align:center;border-top:1px solid #e0e0e0;background-color:#ffffff;" bgcolor="#ffffff">
+    <p class="body-text" style="font-size:12px;color:#1a1a1a;line-height:1.8;margin:0 0 22px;">{cta_body}</p>
+    <a href="{store_url}" style="display:inline-block;background-color:#2a9d9d;color:#ffffff;font-family:'Courier New',Courier,monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;padding:14px 32px;text-decoration:none;text-transform:uppercase;">{cta_btn}</a>
   </td></tr>
 
-  <tr><td bgcolor="#030305" style="padding-top:24px;border-top:1px solid #0e0e1a;background-color:#030305;">
-    <p style="font-size:10px;color:#4a4a6a;letter-spacing:0.1em;line-height:1.9;margin:0;text-align:center;">
+  <tr><td class="email-td" style="padding-top:24px;border-top:1px solid #eeeeee;background-color:#ffffff;" bgcolor="#ffffff">
+    <p class="footer-text" style="font-size:10px;color:#555555;letter-spacing:0.1em;line-height:1.9;margin:0;text-align:center;">
       LIMBICLAB &middot; limbiclab.xyz<br>
       {footer_sub}<br>
-      <a href="%%UNSUBSCRIBE_URL%%" style="color:#5a5a7a;text-decoration:underline;">{unsub_text}</a>
+      <a class="footer-link" href="%%UNSUBSCRIBE_URL%%" style="color:#444444;text-decoration:underline;">{unsub_text}</a>
     </p>
   </td></tr>
 
