@@ -28,108 +28,35 @@ newsletter_task:
     Using the research brief provided, write this week's LimbicLab
     newsletter dispatch on the topic: {topic}.
 
-    CRITICAL: Output RAW HTML only. Do NOT wrap in markdown code fences,
-    do NOT add ```html or ``` anywhere. The very first character of your
-    output must be < and the last character must be >.
+    Output your content using EXACTLY these section markers on their own lines.
+    Do not add any text before the first marker or after the last marker.
+    Do not add HTML tags — plain text paragraphs only inside each section.
 
-    VOICE AND STYLE:
-    - Graduate-level — assume the reader has a science background
-    - Dark, precise, clinical — like a forensic scientist writing prose
-    - Every major claim must have a citation in parentheses: (Author et al., Year)
-    - Open with a single striking sentence that reframes the topic
-    - Section headers in ALL CAPS, styled with the accent color #2a9d9d
+    ===HOOK===
+    One or two sentences. The single most surprising finding. Reframes the topic.
 
-    STRUCTURE (fill each section with real research content):
-    1. Opening hook — 1-2 sentences, the most surprising finding
-    2. THE BIOLOGY — mechanistic explanation, 150-200 words
-    3. WHAT THE RESEARCH SHOWS — 2-3 key findings with citations, 200-250 words
-    4. CLINICAL IMPLICATIONS — 100-150 words
-    5. THIS WEEK'S CITATION — one key paper, properly formatted
-    6. CTA section — invite reader to start free trial at {store_url}
+    ===BIOLOGY===
+    150-200 words. The mechanistic explanation — how it works at the cellular
+    and circuit level. Every claim cited: (Author et al., Year).
 
-    Use EXACTLY this HTML template, replacing every [PLACEHOLDER] with
-    the real content. Do not alter the structure or inline styles:
+    ===RESEARCH===
+    200-250 words. Two or three key findings from recent studies with full
+    inline citations. Be specific — name the study, the finding, the number.
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>LimbicLab Weekly Dispatch</title>
-    </head>
-    <body style="margin:0;padding:0;background:#030305;font-family:monospace,Courier New,monospace;">
-    <table width="100%" cellpadding="0" cellspacing="0" style="background:#030305;">
-    <tr><td align="center" style="padding:40px 16px;">
-    <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;">
+    ===CLINICAL===
+    100-150 words. What this means for treatment, diagnosis, or scientific
+    understanding. Practical stakes.
 
-      <!-- Header badge -->
-      <tr><td style="padding-bottom:24px;">
-        <span style="font-size:9px;letter-spacing:0.28em;color:#2a9d9d;border:1px solid rgba(42,157,157,0.3);padding:4px 14px;text-transform:uppercase;">LIMBICLAB · WEEKLY DISPATCH</span>
-      </td></tr>
+    ===CITATION===
+    One key paper. Format: Author, A., & Author, B. (Year). Title of paper.
+    Journal Name, volume(issue), pages. DOI if known.
 
-      <!-- Topic label -->
-      <tr><td style="padding-bottom:8px;">
-        <span style="font-size:10px;letter-spacing:0.2em;color:#444455;text-transform:uppercase;">{{TOPIC}}</span>
-      </td></tr>
-
-      <!-- Opening hook -->
-      <tr><td style="padding-bottom:32px;border-bottom:1px solid #161625;">
-        <p style="font-size:18px;font-weight:700;color:#e0e0e0;line-height:1.5;letter-spacing:0.03em;margin:0;">{{OPENING_HOOK}}</p>
-      </td></tr>
-
-      <!-- THE BIOLOGY -->
-      <tr><td style="padding-top:28px;padding-bottom:20px;">
-        <p style="font-size:10px;letter-spacing:0.28em;color:#2a9d9d;margin:0 0 12px;">THE BIOLOGY</p>
-        <p style="font-size:13px;color:#9090a8;line-height:1.85;margin:0;">{{BIOLOGY_CONTENT}}</p>
-      </td></tr>
-
-      <tr><td style="height:1px;background:#161625;"></td></tr>
-
-      <!-- WHAT THE RESEARCH SHOWS -->
-      <tr><td style="padding-top:28px;padding-bottom:20px;">
-        <p style="font-size:10px;letter-spacing:0.28em;color:#2a9d9d;margin:0 0 12px;">WHAT THE RESEARCH SHOWS</p>
-        <p style="font-size:13px;color:#9090a8;line-height:1.85;margin:0;">{{RESEARCH_CONTENT}}</p>
-      </td></tr>
-
-      <tr><td style="height:1px;background:#161625;"></td></tr>
-
-      <!-- CLINICAL IMPLICATIONS -->
-      <tr><td style="padding-top:28px;padding-bottom:28px;">
-        <p style="font-size:10px;letter-spacing:0.28em;color:#2a9d9d;margin:0 0 12px;">CLINICAL IMPLICATIONS</p>
-        <p style="font-size:13px;color:#9090a8;line-height:1.85;margin:0;">{{CLINICAL_CONTENT}}</p>
-      </td></tr>
-
-      <!-- Citation box -->
-      <tr><td style="padding:20px;background:#07070e;border:1px solid #161625;margin-bottom:28px;">
-        <p style="font-size:9px;letter-spacing:0.22em;color:#444455;margin:0 0 8px;">THIS WEEK&apos;S CITATION</p>
-        <p style="font-size:11px;color:#666678;line-height:1.7;margin:0;font-style:italic;">{{CITATION}}</p>
-      </td></tr>
-
-      <!-- CTA -->
-      <tr><td style="padding-top:32px;padding-bottom:32px;text-align:center;border-top:1px solid #161625;">
-        <p style="font-size:12px;color:#666678;line-height:1.75;margin:0 0 20px;">LimbicLab publishes a weekly research brief on bipolar disorder, trauma neuroscience, and dark psychology. Graduate-level. No fluff.</p>
-        <a href="{store_url}" style="display:inline-block;background:#2a9d9d;color:#030305;font-family:monospace,Courier New,monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;padding:14px 32px;text-decoration:none;text-transform:uppercase;">START FREE TRIAL &rarr;</a>
-      </td></tr>
-
-      <!-- Footer -->
-      <tr><td style="padding-top:24px;border-top:1px solid #161625;">
-        <p style="font-size:10px;color:#2a2a3a;letter-spacing:0.1em;line-height:1.8;margin:0;text-align:center;">
-          LIMBICLAB &middot; limbiclab.xyz<br>
-          You received this because you subscribed at limbiclab.xyz.<br>
-          <a href="%%UNSUBSCRIBE_URL%%" style="color:#333345;text-decoration:underline;">Unsubscribe</a>
-        </p>
-      </td></tr>
-
-    </table>
-    </td></tr>
-    </table>
-    </body>
-    </html>
+    VOICE: Graduate-level. Dark, precise, clinical. Never dumbed down.
   expected_output: >
-    A complete, valid HTML email. Raw HTML only — no markdown fences, no
-    backticks, no commentary before or after. First character is <!,
-    last character is >. Every [PLACEHOLDER] replaced with real content.
-    The {store_url} CTA link and %%UNSUBSCRIBE_URL%% footer link are intact.
+    Plain text content divided by exactly five section markers:
+    ===HOOK===, ===BIOLOGY===, ===RESEARCH===, ===CLINICAL===, ===CITATION===.
+    No HTML. No markdown. No preamble or postamble. Sections filled with
+    cited, graduate-level prose on {topic}.
   agent: newsletter_writer
   context:
     - research_task
@@ -171,16 +98,14 @@ spanish_localization_task:
     - The dark, graduate-level tone — do not simplify or soften
 
     OUTPUT:
-    - Complete HTML email in Spanish, same structure as the English version
-    - No English text remaining anywhere in the output (except citations, journal names, and store URL)
-    - No translator notes or commentary
-    - RAW HTML only — do NOT wrap in markdown code fences or backticks
-    - First character must be <! and last character must be >
+    Use the same five section markers as the English version:
+    ===HOOK===, ===BIOLOGY===, ===RESEARCH===, ===CLINICAL===, ===CITATION===
+    Plain text only inside each section. No HTML tags. No translator notes.
+    No English text remaining (except citations, journal names, and URLs).
   expected_output: >
-    A complete HTML email newsletter in Latin American Spanish. Raw HTML only —
-    no markdown fences, no backticks. Same inline styles, same dark theme,
-    same structure as the English version. All clinical terms accurate.
-    All citations identical. All statistics preserved. Reads natively.
+    Plain text content in Latin American Spanish divided by the same five
+    section markers as the English version. All citations identical.
+    All statistics preserved. Reads natively — not like a translation.
   agent: spanish_localizer
   context:
     - newsletter_task
