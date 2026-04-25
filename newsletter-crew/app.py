@@ -103,7 +103,7 @@ def _send_newsletters():
 
 @app.get("/")
 def root():
-    return jsonify({"status": "ok", "service": "limbiclab-newsletter", "endpoints": ["/health", "/generate", "/send", "/status", "/cron"]})
+    return jsonify({"status": "ok", "service": "limbiclab-newsletter", "endpoints": ["/health", "/generate", "/send", "/send-test", "/status", "/cron"]})
 
 
 @app.get("/health")
@@ -153,6 +153,42 @@ def send():
     thread.start()
 
     return jsonify({"message": "Sending started — EN and ES dispatched by language preference"}), 202
+
+
+@app.post("/send-test")
+def send_test():
+    """Send the latest EN newsletter directly to a given email — no Supabase required."""
+    secret = os.getenv("WEBHOOK_SECRET")
+    if secret:
+        if request.headers.get("X-Webhook-Secret", "") != secret:
+            return jsonify({"error": "Unauthorized"}), 401
+
+    if _state["newsletter_en"] is None:
+        return jsonify({"error": "No newsletter generated yet — call /generate first"}), 404
+
+    body = request.get_json(silent=True) or {}
+    email = (body.get("email") or "").strip().lower()
+    if not email or "@" not in email:
+        return jsonify({"error": "Provide a valid 'email' in the request body"}), 400
+
+    try:
+        import resend
+        resend.api_key = os.environ["RESEND_API_KEY"]
+        from_addr = os.getenv("RESEND_FROM_EMAIL", "LimbicLab <onboarding@resend.dev>")
+        subject = f"[TEST] LimbicLab · {_state['topic'] or 'Weekly Dispatch'}"
+        unsubscribe_url = _make_unsubscribe_url(email)
+        html = _state["newsletter_en"].replace("%%UNSUBSCRIBE_URL%%", unsubscribe_url)
+        result = resend.Emails.send({
+            "from": from_addr,
+            "to": email,
+            "subject": subject,
+            "html": html,
+        })
+        logger.info(f"Test email sent to {email}: {result}")
+        return jsonify({"message": f"Test email sent to {email}", "result": str(result)}), 200
+    except Exception as e:
+        logger.exception("send-test failed")
+        return jsonify({"error": str(e)}), 500
 
 
 @app.get("/status")
