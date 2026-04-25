@@ -47,7 +47,7 @@ newsletter_task:
     5. THIS WEEK'S CITATION — one key paper, properly formatted
     6. CTA section — invite reader to start free trial at {store_url}
 
-    Use EXACTLY this HTML template, replacing every {{PLACEHOLDER}} with
+    Use EXACTLY this HTML template, replacing every [PLACEHOLDER] with
     the real content. Do not alter the structure or inline styles:
 
     <!DOCTYPE html>
@@ -128,7 +128,7 @@ newsletter_task:
   expected_output: >
     A complete, valid HTML email. Raw HTML only — no markdown fences, no
     backticks, no commentary before or after. First character is <!,
-    last character is >. Every {{PLACEHOLDER}} replaced with real content.
+    last character is >. Every [PLACEHOLDER] replaced with real content.
     The {store_url} CTA link and %%UNSUBSCRIBE_URL%% footer link are intact.
   agent: newsletter_writer
   context:
