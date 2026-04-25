@@ -65,7 +65,14 @@ class LimbicLabNewsletterFlow(Flow[NewsletterFlowState]):
         for path, attr in ((en_path, "newsletter_en"), (es_path, "newsletter_es")):
             if os.path.exists(path):
                 with open(path, "r", encoding="utf-8") as f:
-                    setattr(self.state, attr, f.read())
+                    content = f.read().strip()
+                # Strip markdown code fences if the LLM wrapped the output
+                if content.startswith("```"):
+                    content = content.split("\n", 1)[-1]
+                if content.endswith("```"):
+                    content = content.rsplit("```", 1)[0]
+                content = content.strip()
+                setattr(self.state, attr, content)
                 print(f"[LimbicLab Newsletter] Loaded: {path}")
             else:
                 print(f"[LimbicLab Newsletter] Warning: {path} not found")
