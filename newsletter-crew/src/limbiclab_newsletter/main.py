@@ -56,57 +56,57 @@ def _render_html(sections: dict, topic: str, store_url: str, lang: str = "en") -
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LimbicLab</title>
 </head>
-<body style="margin:0;padding:0;background:#030305;font-family:'Courier New',Courier,monospace;">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#030305;">
-<tr><td align="center" style="padding:40px 16px;">
+<body style="margin:0;padding:0;background-color:#030305;font-family:'Courier New',Courier,monospace;" bgcolor="#030305">
+<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#030305" style="background-color:#030305;">
+<tr><td align="center" style="padding:40px 16px;" bgcolor="#030305">
 <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;">
 
-  <tr><td style="padding-bottom:24px;">
-    <span style="font-size:9px;letter-spacing:0.28em;color:#2a9d9d;border:1px solid rgba(42,157,157,0.3);padding:4px 14px;text-transform:uppercase;">{badge}</span>
+  <tr><td bgcolor="#030305" style="padding-bottom:24px;background-color:#030305;">
+    <span style="font-size:9px;letter-spacing:0.28em;color:#2a9d9d;border:1px solid #1a4a4a;padding:4px 14px;text-transform:uppercase;">{badge}</span>
   </td></tr>
 
-  <tr><td style="padding-bottom:10px;">
-    <span style="font-size:10px;letter-spacing:0.2em;color:#444455;text-transform:uppercase;">{topic}</span>
+  <tr><td bgcolor="#030305" style="padding-bottom:10px;background-color:#030305;">
+    <span style="font-size:10px;letter-spacing:0.2em;color:#5a5a7a;text-transform:uppercase;">{topic}</span>
   </td></tr>
 
-  <tr><td style="padding-bottom:32px;border-bottom:1px solid #161625;">
-    <p style="font-size:18px;font-weight:700;color:#e0e0e0;line-height:1.5;letter-spacing:0.03em;margin:0;">{hook}</p>
+  <tr><td bgcolor="#030305" style="padding-bottom:32px;border-bottom:1px solid #1e1e30;background-color:#030305;">
+    <p style="font-size:18px;font-weight:700;color:#f0f0f0;line-height:1.5;letter-spacing:0.03em;margin:0;">{hook}</p>
   </td></tr>
 
-  <tr><td style="padding-top:28px;padding-bottom:24px;">
+  <tr><td bgcolor="#030305" style="padding-top:28px;padding-bottom:24px;background-color:#030305;">
     <p style="font-size:10px;letter-spacing:0.28em;color:#2a9d9d;margin:0 0 14px;text-transform:uppercase;">{bio_label}</p>
-    <p style="font-size:13px;color:#9090a8;line-height:1.85;margin:0;">{biology}</p>
+    <p style="font-size:13px;color:#c8c8dc;line-height:1.9;margin:0;">{biology}</p>
   </td></tr>
 
-  <tr><td style="height:1px;background:#161625;font-size:0;line-height:0;">&nbsp;</td></tr>
+  <tr><td bgcolor="#1e1e30" style="height:1px;font-size:0;line-height:0;background-color:#1e1e30;">&nbsp;</td></tr>
 
-  <tr><td style="padding-top:28px;padding-bottom:24px;">
+  <tr><td bgcolor="#030305" style="padding-top:28px;padding-bottom:24px;background-color:#030305;">
     <p style="font-size:10px;letter-spacing:0.28em;color:#2a9d9d;margin:0 0 14px;text-transform:uppercase;">{res_label}</p>
-    <p style="font-size:13px;color:#9090a8;line-height:1.85;margin:0;">{research}</p>
+    <p style="font-size:13px;color:#c8c8dc;line-height:1.9;margin:0;">{research}</p>
   </td></tr>
 
-  <tr><td style="height:1px;background:#161625;font-size:0;line-height:0;">&nbsp;</td></tr>
+  <tr><td bgcolor="#1e1e30" style="height:1px;font-size:0;line-height:0;background-color:#1e1e30;">&nbsp;</td></tr>
 
-  <tr><td style="padding-top:28px;padding-bottom:28px;">
+  <tr><td bgcolor="#030305" style="padding-top:28px;padding-bottom:28px;background-color:#030305;">
     <p style="font-size:10px;letter-spacing:0.28em;color:#2a9d9d;margin:0 0 14px;text-transform:uppercase;">{clin_label}</p>
-    <p style="font-size:13px;color:#9090a8;line-height:1.85;margin:0;">{clinical}</p>
+    <p style="font-size:13px;color:#c8c8dc;line-height:1.9;margin:0;">{clinical}</p>
   </td></tr>
 
-  <tr><td style="padding:20px;background:#07070e;border:1px solid #161625;">
-    <p style="font-size:9px;letter-spacing:0.22em;color:#444455;margin:0 0 10px;text-transform:uppercase;">{cite_label}</p>
-    <p style="font-size:11px;color:#666678;line-height:1.75;margin:0;font-style:italic;">{citation}</p>
+  <tr><td bgcolor="#07070e" style="padding:20px;border:1px solid #1e1e30;background-color:#07070e;">
+    <p style="font-size:9px;letter-spacing:0.22em;color:#4a4a6a;margin:0 0 10px;text-transform:uppercase;">{cite_label}</p>
+    <p style="font-size:11px;color:#9090b0;line-height:1.75;margin:0;font-style:italic;">{citation}</p>
   </td></tr>
 
-  <tr><td style="padding-top:36px;padding-bottom:36px;text-align:center;border-top:1px solid #161625;margin-top:28px;">
-    <p style="font-size:12px;color:#666678;line-height:1.8;margin:0 0 22px;">{cta_body}</p>
-    <a href="{store_url}" style="display:inline-block;background:#2a9d9d;color:#030305;font-family:'Courier New',Courier,monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;padding:14px 32px;text-decoration:none;text-transform:uppercase;">{cta_btn}</a>
+  <tr><td bgcolor="#030305" style="padding-top:36px;padding-bottom:36px;text-align:center;border-top:1px solid #1e1e30;background-color:#030305;">
+    <p style="font-size:12px;color:#9090b0;line-height:1.8;margin:0 0 22px;">{cta_body}</p>
+    <a href="{store_url}" style="display:inline-block;background-color:#2a9d9d;color:#030305;font-family:'Courier New',Courier,monospace;font-size:11px;font-weight:700;letter-spacing:0.2em;padding:14px 32px;text-decoration:none;text-transform:uppercase;">{cta_btn}</a>
   </td></tr>
 
-  <tr><td style="padding-top:24px;border-top:1px solid #0e0e1a;">
-    <p style="font-size:10px;color:#252535;letter-spacing:0.1em;line-height:1.9;margin:0;text-align:center;">
+  <tr><td bgcolor="#030305" style="padding-top:24px;border-top:1px solid #0e0e1a;background-color:#030305;">
+    <p style="font-size:10px;color:#4a4a6a;letter-spacing:0.1em;line-height:1.9;margin:0;text-align:center;">
       LIMBICLAB &middot; limbiclab.xyz<br>
       {footer_sub}<br>
-      <a href="%%UNSUBSCRIBE_URL%%" style="color:#333345;text-decoration:underline;">{unsub_text}</a>
+      <a href="%%UNSUBSCRIBE_URL%%" style="color:#5a5a7a;text-decoration:underline;">{unsub_text}</a>
     </p>
   </td></tr>
 
